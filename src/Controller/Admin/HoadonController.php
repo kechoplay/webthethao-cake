@@ -1,14 +1,14 @@
 <?php
-namespace App\Controller;
+namespace App\Controller\Admin;
 
-use App\Controller\AppController;
+use App\Controller\Admin\App2Controller;
 
 /**
  * Hoadon Controller
  *
  * @property \App\Model\Table\HoadonTable $Hoadon
  */
-class HoadonController extends AppController
+class HoadonController extends App2Controller
 {
 
     /**

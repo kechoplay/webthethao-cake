@@ -1,14 +1,14 @@
 <?php
-namespace App\Controller;
+namespace App\Controller\Admin;
 
-use App\Controller\AppController;
+use App\Controller\Admin\App2Controller;
 
 /**
  * Khachhang Controller
  *
  * @property \App\Model\Table\KhachhangTable $Khachhang
  */
-class KhachhangController extends AppController
+class KhachhangController extends App2Controller
 {
 
     /**

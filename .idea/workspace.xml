@@ -2,63 +2,29 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0f7ba4cc-598c-46b7-bb7c-ed35ed7e3be7" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Controller/Admin/DanhmucController.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Controller/Admin/HoadonController.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Controller/Admin/KhachhangController.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Controller/Admin/SanphamController.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Controller/Admin/SlideController.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Controller/SearchController.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Template/Admin/Danhmuc/add.ctp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Template/Admin/Danhmuc/edit.ctp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Template/Admin/Danhmuc/index.ctp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Template/Admin/Danhmuc/view.ctp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Template/Admin/Hoadon/add.ctp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Template/Admin/Hoadon/edit.ctp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Template/Admin/Hoadon/index.ctp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Template/Admin/Hoadon/view.ctp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Template/Admin/Khachhang/add.ctp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Template/Admin/Khachhang/edit.ctp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Template/Admin/Khachhang/index.ctp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Template/Admin/Khachhang/view.ctp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Template/Admin/Sanpham/edit.ctp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Template/Admin/Sanpham/index.ctp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Template/Admin/Slide/add.ctp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Template/Admin/Slide/edit.ctp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Template/Admin/Slide/index.ctp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Template/Admin/Slide/view.ctp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Template/Element/layouts/banner.ctp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Template/Sanpham/detail.ctp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Template/Sanpham/discount.ctp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Template/Search/index.ctp" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/Template/Sanpham/add.ctp" afterPath="$PROJECT_DIR$/src/Template/Admin/Sanpham/add.ctp" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/Template/Sanpham/view.ctp" afterPath="$PROJECT_DIR$/src/Template/Admin/Sanpham/view.ctp" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Controller/Admin/App2Controller.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Template/Element/layoutadmin/footer.ctp" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Template/Element/layoutadmin/header.ctp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tmp/cache/models/myapp_cake_model_debug_kit_panels" afterPath="$PROJECT_DIR$/tmp/cache/models/myapp_cake_model_debug_kit_panels" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tmp/cache/models/myapp_cake_model_debug_kit_requests" afterPath="$PROJECT_DIR$/tmp/cache/models/myapp_cake_model_debug_kit_requests" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tmp/cache/models/myapp_cake_model_default_danhmuc" afterPath="$PROJECT_DIR$/tmp/cache/models/myapp_cake_model_default_danhmuc" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tmp/cache/models/myapp_cake_model_default_sanpham" afterPath="$PROJECT_DIR$/tmp/cache/models/myapp_cake_model_default_sanpham" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tmp/cache/models/myapp_cake_model_default_slide" afterPath="$PROJECT_DIR$/tmp/cache/models/myapp_cake_model_default_slide" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tmp/cache/persistent/myapp_cake_core_translations_cake_en__u_s" afterPath="$PROJECT_DIR$/tmp/cache/persistent/myapp_cake_core_translations_cake_en__u_s" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tmp/cache/persistent/myapp_cake_core_translations_debug_kit_en__u_s" afterPath="$PROJECT_DIR$/tmp/cache/persistent/myapp_cake_core_translations_debug_kit_en__u_s" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tmp/cache/persistent/myapp_cake_core_translations_default_en__u_s" afterPath="$PROJECT_DIR$/tmp/cache/persistent/myapp_cake_core_translations_default_en__u_s" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tmp/debug_kit.sqlite" afterPath="$PROJECT_DIR$/tmp/debug_kit.sqlite" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/routes.php" afterPath="$PROJECT_DIR$/config/routes.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/logs/debug.log" afterPath="$PROJECT_DIR$/logs/debug.log" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/logs/error.log" afterPath="$PROJECT_DIR$/logs/error.log" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Controller/AppController.php" afterPath="$PROJECT_DIR$/src/Controller/AppController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Controller/DanhmucController.php" afterPath="$PROJECT_DIR$/src/Controller/DanhmucController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Controller/HomeController.php" afterPath="$PROJECT_DIR$/src/Controller/HomeController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Controller/KhachhangController.php" afterPath="$PROJECT_DIR$/src/Controller/KhachhangController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Controller/SanphamController.php" afterPath="$PROJECT_DIR$/src/Controller/SanphamController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Model/Entity/Danhmuc.php" afterPath="$PROJECT_DIR$/src/Model/Entity/Danhmuc.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Model/Table/DanhmucTable.php" afterPath="$PROJECT_DIR$/src/Model/Table/DanhmucTable.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Model/Table/KhachhangTable.php" afterPath="$PROJECT_DIR$/src/Model/Table/KhachhangTable.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Model/Table/SanphamTable.php" afterPath="$PROJECT_DIR$/src/Model/Table/SanphamTable.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Template/Danhmuc/view.ctp" afterPath="$PROJECT_DIR$/src/Template/Danhmuc/view.ctp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Template/Element/layouts/footer.ctp" afterPath="$PROJECT_DIR$/src/Template/Element/layouts/footer.ctp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Template/Element/layouts/header.ctp" afterPath="$PROJECT_DIR$/src/Template/Element/layouts/header.ctp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Template/Element/layouts/slidebar.ctp" afterPath="$PROJECT_DIR$/src/Template/Element/layouts/slidebar.ctp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Template/Home/index.ctp" afterPath="$PROJECT_DIR$/src/Template/Home/index.ctp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Template/Layout/default2.ctp" afterPath="$PROJECT_DIR$/src/Template/Layout/default2.ctp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Template/Sanpham/index.ctp" afterPath="$PROJECT_DIR$/src/Template/Sanpham/index.ctp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Controller/Admin/AdminController.php" afterPath="$PROJECT_DIR$/src/Controller/Admin/AdminController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Controller/Admin/DanhmucController.php" afterPath="$PROJECT_DIR$/src/Controller/Admin/DanhmucController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Controller/Admin/HoadonController.php" afterPath="$PROJECT_DIR$/src/Controller/Admin/HoadonController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Controller/Admin/KhachhangController.php" afterPath="$PROJECT_DIR$/src/Controller/Admin/KhachhangController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Controller/Admin/SanphamController.php" afterPath="$PROJECT_DIR$/src/Controller/Admin/SanphamController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Controller/Admin/SlideController.php" afterPath="$PROJECT_DIR$/src/Controller/Admin/SlideController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Template/Layout/default.ctp" afterPath="$PROJECT_DIR$/src/Template/Layout/default.ctp" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -70,29 +36,12 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="DanhmucController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Controller/DanhmucController.php">
+      <file leaf-file-name="default.ctp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Template/Layout/default.ctp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="357">
-              <caret line="21" column="45" lean-forward="false" selection-start-line="21" selection-start-column="45" selection-end-line="21" selection-end-column="45" />
-              <folding>
-                <element signature="e#34#67#0#PHP" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index.ctp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Template/Search/index.ctp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
-              <caret line="12" column="23" lean-forward="false" selection-start-line="12" selection-start-column="23" selection-end-line="12" selection-end-column="23" />
-              <folding>
-                <element signature="n#style#0;n#td#1;n#tr#0;n#table#0;n#form#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#td#1;n#tr#1;n#table#0;n#form#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-                <marker date="1499749029976" expanded="true" signature="771:793" ph="..." />
-                <marker date="1499749029976" expanded="true" signature="849:929" ph="..." />
-              </folding>
+            <state relative-caret-position="408">
+              <caret line="36" column="0" lean-forward="true" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -107,79 +56,88 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="routes.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/config/routes.php">
+      <file leaf-file-name="header.ctp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Template/Element/layoutadmin/header.ctp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="221">
-              <caret line="42" column="3" lean-forward="false" selection-start-line="42" selection-start-column="3" selection-end-line="42" selection-end-column="3" />
+            <state relative-caret-position="340">
+              <caret line="20" column="43" lean-forward="false" selection-start-line="20" selection-start-column="43" selection-end-line="20" selection-end-column="43" />
+              <folding>
+                <element signature="n#style#0;n#nav#0;n#div#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="footer.ctp" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/Template/Element/layoutadmin/footer.ctp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="493">
+              <caret line="29" column="9" lean-forward="true" selection-start-line="29" selection-start-column="9" selection-end-line="29" selection-end-column="9" />
+              <folding>
+                <marker date="1499769743367" expanded="true" signature="833:845" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="add.ctp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Template/Admin/Admin/add.ctp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AdminController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Controller/Admin/AdminController.php">
+      <file leaf-file-name="App2Controller.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Controller/Admin/App2Controller.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="306">
+              <caret line="30" column="54" lean-forward="false" selection-start-line="30" selection-start-column="54" selection-end-line="30" selection-end-column="54" />
+              <folding>
+                <element signature="e#609#640#0#PHP" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="HoadonController.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Controller/Admin/HoadonController.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="170">
-              <caret line="10" column="6" lean-forward="false" selection-start-line="10" selection-start-column="6" selection-end-line="10" selection-end-column="6" />
+              <caret line="10" column="35" lean-forward="false" selection-start-line="10" selection-start-column="35" selection-end-line="10" selection-end-column="35" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ErrorController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Controller/ErrorController.php">
+      <file leaf-file-name="KhachhangController.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Controller/Admin/KhachhangController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="374">
-              <caret line="34" column="0" lean-forward="true" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
+            <state relative-caret-position="170">
+              <caret line="10" column="38" lean-forward="false" selection-start-line="10" selection-start-column="38" selection-end-line="10" selection-end-column="38" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="HomeController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Controller/HomeController.php">
+      <file leaf-file-name="SanphamController.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Controller/Admin/SanphamController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="8" column="29" lean-forward="false" selection-start-line="8" selection-start-column="29" selection-end-line="8" selection-end-column="29" />
+            <state relative-caret-position="51">
+              <caret line="3" column="25" lean-forward="false" selection-start-line="3" selection-start-column="25" selection-end-line="3" selection-end-column="25" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
       <file leaf-file-name="SlideController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Controller/SlideController.php">
+        <entry file="file://$PROJECT_DIR$/src/Controller/Admin/SlideController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="357">
-              <caret line="21" column="31" lean-forward="false" selection-start-line="21" selection-start-column="27" selection-end-line="21" selection-end-column="31" />
+            <state relative-caret-position="17">
+              <caret line="1" column="30" lean-forward="false" selection-start-line="1" selection-start-column="30" selection-end-line="1" selection-end-column="30" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AppController.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/Controller/AppController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="51">
-              <caret line="15" column="24" lean-forward="false" selection-start-line="15" selection-start-column="24" selection-end-line="15" selection-end-column="24" />
-              <folding>
-                <element signature="e#603#634#0#PHP" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="banner.ctp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Template/Element/layouts/banner.ctp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="425">
-              <caret line="25" column="0" lean-forward="false" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
-              <folding>
-                <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-                <marker date="1499755290307" expanded="true" signature="1338:1346" ph="‹" />
-                <marker date="1499755290307" expanded="true" signature="1430:1438" ph="›" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -243,9 +201,18 @@
         <option value="$PROJECT_DIR$/src/Template/Search/index.ctp" />
         <option value="$PROJECT_DIR$/src/Template/Element/layouts/banner.ctp" />
         <option value="$PROJECT_DIR$/src/Template/Layout/default2.ctp" />
-        <option value="$PROJECT_DIR$/config/routes.php" />
-        <option value="$PROJECT_DIR$/src/Controller/Admin/AdminController.php" />
         <option value="$PROJECT_DIR$/src/Controller/AppController.php" />
+        <option value="$PROJECT_DIR$/src/Controller/Admin/AdminController.php" />
+        <option value="$PROJECT_DIR$/config/routes.php" />
+        <option value="$PROJECT_DIR$/src/Controller/Admin/DanhmucController.php" />
+        <option value="$PROJECT_DIR$/src/Controller/Admin/HoadonController.php" />
+        <option value="$PROJECT_DIR$/src/Controller/Admin/KhachhangController.php" />
+        <option value="$PROJECT_DIR$/src/Controller/Admin/SanphamController.php" />
+        <option value="$PROJECT_DIR$/src/Controller/Admin/SlideController.php" />
+        <option value="$PROJECT_DIR$/src/Controller/Admin/App2Controller.php" />
+        <option value="$PROJECT_DIR$/src/Template/Element/layoutadmin/header.ctp" />
+        <option value="$PROJECT_DIR$/src/Template/Layout/default.ctp" />
+        <option value="$PROJECT_DIR$/src/Template/Element/layoutadmin/footer.ctp" />
       </list>
     </option>
   </component>
@@ -516,6 +483,32 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="layoutadmin" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="webthethao" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="webthethao" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Template" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Element" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="Flash" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
@@ -557,6 +550,32 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="Template" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Admin" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="webthethao" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="webthethao" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Template" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Admin" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -688,7 +707,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../projects" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -793,12 +812,12 @@
       <updated>1499223827667</updated>
       <workItem from="1499223829688" duration="51969000" />
       <workItem from="1499669948390" duration="564000" />
-      <workItem from="1499743972867" duration="9755000" />
+      <workItem from="1499743972867" duration="12870000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="62288000" />
+    <option name="totallyTimeSpent" value="65403000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1066" extended-state="6" />
@@ -834,51 +853,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/Template/Sanpham/index.ctp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2159">
-          <caret line="127" column="55" lean-forward="false" selection-start-line="127" selection-start-column="55" selection-end-line="127" selection-end-column="55" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Controller/SanphamController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="23" column="5" lean-forward="true" selection-start-line="23" selection-start-column="5" selection-end-line="23" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Template/Element/Flash/default.ctp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Controller/PagesController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/TestCase/Controller/PagesControllerTest.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-540">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/webroot/css/base2.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="336">
-          <caret line="77" column="48" lean-forward="false" selection-start-line="77" selection-start-column="48" selection-end-line="77" selection-end-column="48" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/webroot/css/bootstrap.min.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -921,14 +895,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1428">
           <caret line="84" column="33" lean-forward="false" selection-start-line="84" selection-start-column="33" selection-end-line="84" selection-end-column="33" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Controller/Admin/SanphamController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -1063,14 +1029,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Controller/Admin/DanhmucController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-306">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Controller/SearchController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="374">
@@ -1098,14 +1056,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Template/Layout/default.ctp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="27" column="0" lean-forward="true" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Template/Admin/Danhmuc/add.ctp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="204">
@@ -1115,14 +1065,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Template/Admin/Slide/add.ctp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Controller/Admin/SlideController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -1198,34 +1140,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Template/Layout/default2.ctp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="25" column="73" lean-forward="false" selection-start-line="25" selection-start-column="73" selection-end-line="25" selection-end-column="73" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/config/routes.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="42" column="3" lean-forward="false" selection-start-line="42" selection-start-column="3" selection-end-line="42" selection-end-column="3" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Controller/Admin/AdminController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="6" lean-forward="false" selection-start-line="10" selection-start-column="6" selection-end-line="10" selection-end-column="6" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Controller/ErrorController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="34" column="0" lean-forward="true" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
+        <state relative-caret-position="714">
+          <caret line="77" column="16" lean-forward="false" selection-start-line="77" selection-start-column="16" selection-end-line="77" selection-end-column="16" />
           <folding />
         </state>
       </provider>
@@ -1240,10 +1158,120 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Controller/AppController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="15" column="24" lean-forward="false" selection-start-line="15" selection-start-column="24" selection-end-line="15" selection-end-column="24" />
+        <state relative-caret-position="289">
+          <caret line="29" column="29" lean-forward="true" selection-start-line="29" selection-start-column="29" selection-end-line="29" selection-end-column="29" />
           <folding>
             <element signature="e#603#634#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Controller/ErrorController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="34" column="0" lean-forward="false" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Controller/Admin/AdminController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="44" lean-forward="false" selection-start-line="10" selection-start-column="44" selection-end-line="10" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Controller/Admin/DanhmucController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="1" column="30" lean-forward="false" selection-start-line="1" selection-start-column="30" selection-end-line="1" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Controller/Admin/HoadonController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="35" lean-forward="false" selection-start-line="10" selection-start-column="35" selection-end-line="10" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Controller/Admin/KhachhangController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="38" lean-forward="false" selection-start-line="10" selection-start-column="38" selection-end-line="10" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Controller/Admin/SanphamController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" column="25" lean-forward="false" selection-start-line="3" selection-start-column="25" selection-end-line="3" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Controller/Admin/SlideController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="1" column="30" lean-forward="false" selection-start-line="1" selection-start-column="30" selection-end-line="1" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Template/Admin/Admin/add.ctp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Controller/Admin/App2Controller.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="30" column="54" lean-forward="false" selection-start-line="30" selection-start-column="54" selection-end-line="30" selection-end-column="54" />
+          <folding>
+            <element signature="e#609#640#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Template/Layout/default2.ctp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="25" column="73" lean-forward="false" selection-start-line="25" selection-start-column="73" selection-end-line="25" selection-end-column="73" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Template/Element/layoutadmin/header.ctp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="20" column="43" lean-forward="false" selection-start-line="20" selection-start-column="43" selection-end-line="20" selection-end-column="43" />
+          <folding>
+            <element signature="n#style#0;n#nav#0;n#div#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Template/Layout/default.ctp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="36" column="0" lean-forward="true" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Template/Element/layoutadmin/footer.ctp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="493">
+          <caret line="29" column="9" lean-forward="true" selection-start-line="29" selection-start-column="9" selection-end-line="29" selection-end-column="9" />
+          <folding>
+            <marker date="1499769743367" expanded="true" signature="833:845" ph="{...}" />
           </folding>
         </state>
       </provider>

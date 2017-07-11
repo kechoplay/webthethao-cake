@@ -1,14 +1,14 @@
 <?php
-namespace App\Controller;
+namespace App\Controller\Admin;
 
-use App\Controller\AppController;
+use App\Controller\Admin\App2Controller;
 
 /**
  * Admin Controller
  *
  * @property \App\Model\Table\AdminTable $Admin
  */
-class AdminController extends AppController
+class AdminController extends App2Controller
 {
 
     /**

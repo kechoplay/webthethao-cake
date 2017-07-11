@@ -1,10 +1,10 @@
 <?php
-namespace App\Controller;
+namespace App\Controller\Admin;
 
-use App\Controller\AppController;
+use App\Controller\Admin\App2Controller;
 
 
-class SanphamController extends AppController
+class SanphamController extends App2Controller
 {
     public function index()
     {

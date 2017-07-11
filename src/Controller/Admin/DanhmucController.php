@@ -1,14 +1,14 @@
 <?php
-namespace App\Controller;
+namespace App\Controller\Admin;
 
-use App\Controller\AppController;
+use App\Controller\Admin\App2Controller;
 
 /**
  * Danhmuc Controller
  *
  * @property \App\Model\Table\DanhmucTable $Danhmuc
  */
-class DanhmucController extends AppController
+class DanhmucController extends App2Controller
 {
 
     /**
