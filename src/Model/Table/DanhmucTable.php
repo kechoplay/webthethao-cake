@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Model\Table;
 
 use Cake\ORM\Query;
@@ -34,21 +35,13 @@ class DanhmucTable extends Table
     {
         parent::initialize($config);
 
-        $this->table('danhmuc');
-        $this->displayField('cat_id');
-        $this->primaryKey('cat_id');
+        $this->setTable('danhmuc');
+        $this->setDisplayField('cat_name');
+        $this->setPrimaryKey('cat_id');
 
-        $this->belongsTo('Cats', [
+        $this->belongsTo('Danhmuc', [
             'foreignKey' => 'cat_id',
             'joinType' => 'INNER'
-        ]);
-        $this->belongsTo('ParentDanhmuc', [
-            'className' => 'Danhmuc',
-            'foreignKey' => 'parent_id'
-        ]);
-        $this->hasMany('ChildDanhmuc', [
-            'className' => 'Danhmuc',
-            'foreignKey' => 'parent_id'
         ]);
     }
 
@@ -86,9 +79,7 @@ class DanhmucTable extends Table
      */
     public function buildRules(RulesChecker $rules)
     {
-        $rules->add($rules->existsIn(['cat_id'], 'Cats'));
-        $rules->add($rules->existsIn(['parent_id'], 'ParentDanhmuc'));
-
+        $rules->add($rules->existsIn(['cat_id'], 'Danhmuc'));
         return $rules;
     }
 }

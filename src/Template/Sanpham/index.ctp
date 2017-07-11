@@ -1,64 +1,162 @@
-<?php
-/**
-  * @var \App\View\AppView $this
-  */
-?>
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('New Sanpham'), ['action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Danhmuc'), ['controller' => 'Danhmuc', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Danhmuc'), ['controller' => 'Danhmuc', 'action' => 'add']) ?></li>
+<div class="span9">
+    <ul class="breadcrumb">
+        <li><a href="<?= $this->Url->build('/')?>">Trang chủ</a> <span class="divider">/</span></li>
+        <li><a href="<?= $this->Url->build('/sanpham')?>">Sản phẩm</a> <span class="divider">/</span></li>
+        <li class="active">Tất cả sản phẩm</li>
     </ul>
-</nav>
-<div class="sanpham index large-9 medium-8 columns content">
-    <h3><?= __('Sanpham') ?></h3>
-    <table cellpadding="0" cellspacing="0">
-        <thead>
-            <tr>
-                <th scope="col"><?= $this->Paginator->sort('pro_id') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('cat_id') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('pro_name') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('pro_price') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('pro_discount') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('pro_image') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('pro_quantity') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('pro_count_buy') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('pro_view') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('pro_status') ?></th>
-                <th scope="col" class="actions"><?= __('Actions') ?></th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php foreach ($sanpham as $sanpham): ?>
-            <tr>
-                <td><?= $this->Number->format($sanpham->pro_id) ?></td>
-                <td><?= $sanpham->has('danhmuc') ? $this->Html->link($sanpham->danhmuc->cat_id, ['controller' => 'Danhmuc', 'action' => 'view', $sanpham->danhmuc->cat_id]) : '' ?></td>
-                <td><?= h($sanpham->pro_name) ?></td>
-                <td><?= $this->Number->format($sanpham->pro_price) ?></td>
-                <td><?= $this->Number->format($sanpham->pro_discount) ?></td>
-                <td><?= h($sanpham->pro_image) ?></td>
-                <td><?= $this->Number->format($sanpham->pro_quantity) ?></td>
-                <td><?= $this->Number->format($sanpham->pro_count_buy) ?></td>
-                <td><?= $this->Number->format($sanpham->pro_view) ?></td>
-                <td><?= h($sanpham->pro_status) ?></td>
-                <td class="actions">
-                    <?= $this->Html->link(__('View'), ['action' => 'view', $sanpham->pro_id]) ?>
-                    <?= $this->Html->link(__('Edit'), ['action' => 'edit', $sanpham->pro_id]) ?>
-                    <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $sanpham->pro_id], ['confirm' => __('Are you sure you want to delete # {0}?', $sanpham->pro_id)]) ?>
-                </td>
-            </tr>
-            <?php endforeach; ?>
-        </tbody>
-    </table>
-    <div class="paginator">
-        <ul class="pagination">
-            <?= $this->Paginator->first('<< ' . __('first')) ?>
-            <?= $this->Paginator->prev('< ' . __('previous')) ?>
-            <?= $this->Paginator->numbers() ?>
-            <?= $this->Paginator->next(__('next') . ' >') ?>
-            <?= $this->Paginator->last(__('last') . ' >>') ?>
-        </ul>
-        <p><?= $this->Paginator->counter(['format' => __('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')]) ?></p>
+    <h3>
+        Tất cả sản phẩm
+        <small class="pull-right"> <?= ($countsanpham); ?> sản phẩm có sẵn</small>
+    </h3>
+    <hr class="soft"/>
+    <div id="myTab" class="pull-right" style="margin-bottom:20px;">
+        <a href="#listView" data-toggle="tab"><span class="btn btn-large"><i class="icon-list"></i></span></a>
+        <a href="#blockView" data-toggle="tab"><span class="btn btn-large btn-primary"><i
+                        class="icon-th-large"></i></span></a>
     </div>
+    <br class="clr"/>
+    <div class="tab-content">
+        <div class="tab-pane" id="listView">
+            <?php
+            foreach ($sanpham as $key => $value) {
+                ?>
+                <div class="row">
+                    <div class="span2">
+                        <div class="tag1"></div>
+                        <?= $this->Html->image('../img/' . $value["pro_image"]) ?>
+                    </div>
+                    <div class="span4">
+                        <h3>Có sẵn</h3>
+                        <hr class="soft"/>
+                        <h5><?= $value['pro_name']; ?> </h5>
+                        <p>
+
+                        </p>
+                        <a class="btn btn-small pull-right"
+                           href="<?= $this->Url->build(['controller' => 'sanpham', 'action' => 'detail', $value['pro_id']]) ?>">
+                            View Details
+                        </a>
+                        <br class="clr"/>
+                    </div>
+                    <div class="span3 alignR">
+                        <form class="form-horizontal qtyFrm">
+                            <?php
+                            if ($value['pro_discount'] == 0) {
+                                ?>
+                                <h3><?= number_format($value['pro_price']); ?> VNĐ </h3>
+                                <?php
+                            } else {
+                                ?>
+                                <h3><?= number_format($value['pro_price'] - $value['pro_discount']); ?> VNĐ </h3>
+                                <h4 style="text-decoration:line-through;"><?= number_format($value['pro_price']); ?>
+                                    VNĐ</h4>
+                                <?php
+                            }
+                            ?>
+                            <br/>
+                            <?php
+                            if ($value['pro_quantity'] > 0) {
+                                ?>
+                                <a href="addcart.php?proid=<?= $value['pro_id']; ?>"
+                                   class="btn btn-large btn-primary"> Add to <i class=" icon-shopping-cart"></i></a>
+                                <?php
+                            } else {
+                                ?>
+                                <a class="btn btn-large btn-primary"> Hết hàng</i></a>
+                                <?php
+                            }
+                            ?>
+                            <a href="<?= $this->Url->build(['controller' => 'sanpham', 'action' => 'detail', $value['pro_id']]) ?>"
+                               class="btn btn-large"><i class="icon-zoom-in"></i></a>
+
+                        </form>
+                    </div>
+                </div>
+                <hr class="soft"/>
+                <?php
+            }
+            ?>
+
+        </div>
+
+        <div class="tab-pane active" id="blockView">
+            <ul class="thumbnails">
+                <?php
+                foreach ($sanpham as $key => $value) {
+                    ?>
+                    <li class="span3">
+                        <div class="thumbnail">
+                            <div class="tag"></div>
+                            <a href="<?= $this->Url->build(['controller' => 'sanpham', 'action' => 'detail', $value['pro_id']]) ?>">
+                                <?= $this->Html->image('../img/' . $value["pro_image"]) ?>
+                            </a>
+                            <div class="caption">
+                                <h5><?php echo $value['pro_name']; ?></h5>
+                                <p>
+
+                                </p>
+                                <h4 style="text-align:center">
+                                    <a class="btn"
+                                       href="<?= $this->Url->build(['controller' => 'sanpham', 'action' => 'detail', $value['pro_id']]) ?>">
+                                        <i class="icon-zoom-in"></i>
+                                    </a>
+                                    <?php
+                                    if ($value['pro_quantity'] > 0) {
+                                        ?>
+                                        <a class="btn" href="addcart.php?proid=<?php echo $value['pro_id']; ?>">Add to
+                                            <i class="icon-shopping-cart"></i>
+                                        </a>
+                                        <?php
+                                    } else {
+                                        ?>
+                                        <a class="btn"> Hết hàng</i></a>
+                                        <?php
+                                    }
+                                    ?>
+                                    <?php
+                                    if ($value['pro_discount'] == 0) {
+                                        ?>
+                                        <a class="btn btn-primary"
+                                           href="#"><?= number_format($value['pro_price']); ?></a>
+                                        <?php
+                                    } else {
+                                        ?>
+                                        <a class="btn btn-primary"
+                                           href="#"><?= number_format($value['pro_price'] - $value['pro_discount']); ?>
+                                        </a>
+                                        <a class="btn btn-primary" style="text-decoration:line-through;"
+                                           href="#"><?= number_format($value['pro_price']); ?>
+                                        </a>
+                                    <?php } ?>
+                                </h4>
+                            </div>
+                        </div>
+                    </li>
+                    <?php
+                }
+                ?>
+            </ul>
+        </div>
+    </div>
+
+    <div class="pagination">
+        <ul class="pagination">
+            <li>
+                <?= $this->Paginator->first('<< ' . __('first')) ?>
+            </li>
+            <li>
+                <?= $this->Paginator->prev('< ' . __('previous')) ?>
+            </li>
+            <li class="active">
+                <?= $this->Paginator->numbers() ?>
+            </li>
+            <li>
+                <?= $this->Paginator->next(__('next') . ' >') ?>
+            </li>
+            <li>
+                <?= $this->Paginator->last(__('last') . ' >>') ?>
+            </li>
+        </ul>
+    </div>
+    <br class="clr"/>
 </div>

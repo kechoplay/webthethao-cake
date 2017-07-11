@@ -36,7 +36,7 @@ class KhachhangTable extends Table
         $this->displayField('cus_id');
         $this->primaryKey('cus_id');
 
-        $this->belongsTo('Cuses', [
+        $this->belongsTo('Khachhang', [
             'foreignKey' => 'cus_id',
             'joinType' => 'INNER'
         ]);
@@ -94,7 +94,7 @@ class KhachhangTable extends Table
     {
         $rules->add($rules->isUnique(['username']));
         $rules->add($rules->isUnique(['email']));
-        $rules->add($rules->existsIn(['cus_id'], 'Cuses'));
+        $rules->add($rules->existsIn(['cus_id'], 'Khachhang'));
 
         return $rules;
     }

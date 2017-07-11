@@ -20,12 +20,13 @@
                 <span class="icon-bar"></span>
             </a>
             <div class="navbar-inner">
-                <a class="brand" href="index.php"><img src="img/logo/logoheader.png" alt="Bootsshop"
-                                                       style="width:65%;"/></a>
+                <a class="brand" href="<?= $this->Url->build(['controller' => 'home', 'action' => 'index']) ?>">
+                    <?= $this->Html->image('logo/logoheader.png', ["alt" => "tungshop.esy.es", "style" => ['width:65%']]) ?>
+                </a>
                 <ul id="topMenu" class="nav pull-right">
-                    <li class=""><a href="products.php">Sản phẩm</a></li>
-                    <li class=""><a href="search.php">Tìm kiếm</a></li>
-                    <li class=""><a href="special_offer.php">Giảm giá</a></li>
+                    <li class=""><a href="<?=$this->Url->build(['controller'=>'sanpham','action'=>'index'])?>">Sản phẩm</a></li>
+                    <li class=""><a href="<?=$this->Url->build('/search')?>">Tìm kiếm</a></li>
+                    <li class=""><a href="<?=$this->Url->build(['controller'=>'sanpham','action'=>'discount'])?>">Giảm giá</a></li>
                     <li class=""><a href="contact.php">Liên hệ</a></li>
                     <li class="">
                         <a href="#login" role="button" data-toggle="modal" style="padding-right:0"><span

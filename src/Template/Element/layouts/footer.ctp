@@ -26,13 +26,27 @@
             </div>
             <div id="socialMedia" class="span3 pull-right">
                 <h5>SOCIAL MEDIA </h5>
-                <a href="https://www.facebook.com/kieusontung"><img width="60" height="60"
-                                                                    src="img/facebook.png" title="facebook"
-                                                                    alt="facebook"/></a>
-                <a href="#"><img width="60" height="60" src="img/twitter.png" title="twitter" alt="twitter"/></a>
-                <a href="https://www.youtube.com/channel/UCwIvGjnD7dPo6KTKNn_wMhA"><img width="60" height="60"
-                                                                                        src="img/youtube.png"
-                                                                                        title="youtube" alt="youtube"/></a>
+                <a href="https://www.facebook.com/kieusontung">
+                    <?= $this->Html->image('facebook.png', [
+                        'alt' => 'facebook',
+                        'title' => 'facebook',
+                        'style' => ['width:60', 'height:60']
+                    ]) ?>
+                </a>
+                <a href="#">
+                    <?= $this->Html->image('twitter.png', [
+                        'alt' => 'twitter',
+                        'title' => 'twitter',
+                        'style' => ['width:60', 'height:60']
+                    ]) ?>
+                </a>
+                <a href="https://www.youtube.com/channel/UCwIvGjnD7dPo6KTKNn_wMhA">
+                    <?= $this->Html->image('youtube.png', [
+                        'alt' => 'youtube',
+                        'title' => 'youtube',
+                        'style' => ['width:60', 'height:60']
+                    ]) ?>
+                </a>
             </div>
         </div>
         <p class="pull-right">&copy; Bootshop</p>

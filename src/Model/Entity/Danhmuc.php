@@ -13,8 +13,8 @@ use Cake\ORM\Entity;
  * @property bool $cat_status
  *
  * @property \App\Model\Entity\Cat $cat
- * @property \App\Model\Entity\ParentDanhmuc $parent_danhmuc
- * @property \App\Model\Entity\ChildDanhmuc[] $child_danhmuc
+ * @property \App\Model\Entity\Danhmuc $parent_danhmuc
+ * @property \App\Model\Entity\Danhmuc[] $child_danhmuc
  */
 class Danhmuc extends Entity
 {

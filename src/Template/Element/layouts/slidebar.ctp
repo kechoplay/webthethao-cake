@@ -5,42 +5,72 @@
             <div id="sidebar" class="span3">
                 <div class="well well-small">
                     <a id="myCart" href="cart.php">
-                        <img src="img/ico-cart.png" alt="cart">0 sản phẩm trong giỏ hàng
+                        <?= $this->Html->image('ico-cart.png', ["alt" => "cart"]) ?> 0 sản phẩm trong giỏ hàng
                     </a>
                 </div>
                 <ul id="sideManu" class="nav nav-tabs nav-stacked">
-                    <li class="subMenu open"><a> </a>
-                        <ul>
-                            <li>
-                                <a class="active" href="products.php?catid=">
-                                    <i class="icon-chevron-right"></i>
-                                </a>
+                    <?php foreach ($collection->nest('cat_id', 'parent_id')->toArray() as $categories): ?>
+                        <?php if ($categories->children): ?>
+                            <li class="subMenu open"><a><?= $categories->cat_name ?> </a>
+                                <ul>
+                                    <?php foreach ($categories->children as $key => $category): ?>
+                                        <li>
+                                            <a class="active"
+                                               href="<?= $this->Url->build(['controller' => 'danhmuc', 'action' => 'view', $category->cat_id]) ?>">
+                                                <i class="icon-chevron-right"></i><?= $category->cat_name ?>
+                                            </a>
+                                        </li>
+                                    <?php endforeach; ?>
+                                </ul>
                             </li>
-                        </ul>
-                    </li>
+                        <?php else: ?>
+                            <li><a><?= $categories->cat_name ?></a></li>
+                        <?php endif; ?>
+                    <?php endforeach; ?>
                 </ul>
                 <br/>
-                <div class="thumbnail">
-                    <a href="product_details.php?proid=<&catid=">
-                        <img src="" alt=""/>
-                    </a>
-                    <div class="caption">
-                        <h5></h5>
-                        <h4 style="text-align:center">
-                            <a class="btn" href="product_details.php?proid=&catid=">
-                                <i class="icon-zoom-in"></i>
-                            </a>
-                            <a class="btn" href="addcart.php?proid=">Add to
-                                <i class="icon-shopping-cart"></i>
-                            </a>
-                            <a class="btn btn-primary" href="#"></a>
-
-                            <a class="btn btn-primary" href="#">
-                            </a>
-                            <a class="btn btn-primary" style="text-decoration:line-through;" href="#">
-                            </a>
-                        </h4>
+                <?php
+                foreach ($randomproduct as $value):
+                    ?>
+                    <div class="thumbnail">
+                        <a href="<?= $this->Url->build(['controller' => 'sanpham', 'action' => 'detail', $value['pro_id']]) ?>">
+                            <?= $this->Html->image($value['pro_image'], [
+                                "alt" => "tungshop.esy.es"
+                            ])
+                            ?>
+                        </a>
+                        <div class="caption">
+                            <h5><?= $value['pro_name'] ?></h5>
+                            <h4 style="text-align:center">
+                                <a class="btn"
+                                   href="<?= $this->Url->build(['controller' => 'sanpham', 'action' => 'detail', $value['pro_id']]) ?>">
+                                    <i class="icon-zoom-in"></i>
+                                </a>
+                                <a class="btn" href="addcart.php?proid=<?= $value['pro_id']; ?>">Add to
+                                    <i class="icon-shopping-cart"></i>
+                                </a>
+                                <?php
+                                if ($value['pro_discount'] == 0) {
+                                    ?>
+                                    <a class="btn btn-primary"
+                                       href="#"><?= number_format($value['pro_price']); ?></a>
+                                    <?php
+                                } else {
+                                    ?>
+                                    <a class="btn btn-primary"
+                                       href="#"><?= number_format($value['pro_price'] - $value['pro_discount']); ?>
+                                    </a>
+                                    <a class="btn btn-primary" style="text-decoration:line-through;"
+                                       href="#"><?= number_format($value['pro_price']); ?>
+                                    </a>
+                                    <?php
+                                }
+                                ?>
+                            </h4>
+                        </div>
                     </div>
-                </div>
-                <br/>
+                    <br/>
+                    <?php
+                endforeach;
+                ?>
             </div>

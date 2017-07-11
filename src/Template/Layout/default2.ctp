@@ -18,10 +18,12 @@ $description = 'Shop thể thao';
 <!DOCTYPE html>
 <html>
 <head>
-    <?=$this->element('head');?>
+    <?= $this->element('head'); ?>
 </head>
 <body>
 <?php echo $this->element('layouts/header') ?>
+
+<?php echo ($this->request->here == '/home' || $this->request->here == '/') ? $this->element('layouts/banner') : '' ?>
 
 <?php echo $this->element('layouts/slidebar') ?>
 
