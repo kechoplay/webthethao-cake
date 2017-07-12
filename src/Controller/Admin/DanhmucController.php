@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Controller\Admin;
 
 use App\Controller\Admin\App2Controller;
@@ -18,11 +19,9 @@ class DanhmucController extends App2Controller
      */
     public function index()
     {
-        $this->paginate = [
-            'contain' => ['ParentDanhmuc']
-        ];
-        $danhmuc = $this->paginate($this->Danhmuc);
-
+        $danhmuc = ($this->Danhmuc->find('all'));
+//        debug($this->Danhmuc->find('all')->count());
+//        die();
         $this->set(compact('danhmuc'));
         $this->set('_serialize', ['danhmuc']);
     }
@@ -54,6 +53,9 @@ class DanhmucController extends App2Controller
         $danhmuc = $this->Danhmuc->newEntity();
         if ($this->request->is('post')) {
             $danhmuc = $this->Danhmuc->patchEntity($danhmuc, $this->request->data);
+            if ($danhmuc->parent_id==null){
+                $danhmuc->parent_id=0;
+            }
             if ($this->Danhmuc->save($danhmuc)) {
                 $this->Flash->success(__('The danhmuc has been saved.'));
 
@@ -62,9 +64,8 @@ class DanhmucController extends App2Controller
             $this->Flash->error(__('The danhmuc could not be saved. Please, try again.'));
         }
         $cats = $this->Danhmuc->find('list', ['limit' => 200]);
-        $parentDanhmuc = $this->Danhmuc->ParentDanhmuc->find('list', ['limit' => 200]);
+        $parentDanhmuc = $this->Danhmuc->find('treelist', ['limit' => 200]);
         $this->set(compact('danhmuc', 'cats', 'parentDanhmuc'));
-        $this->set('_serialize', ['danhmuc']);
     }
 
     /**
@@ -76,11 +77,12 @@ class DanhmucController extends App2Controller
      */
     public function edit($id = null)
     {
-        $danhmuc = $this->Danhmuc->get($id, [
-            'contain' => []
-        ]);
+        $danhmuc = $this->Danhmuc->get($id);
         if ($this->request->is(['patch', 'post', 'put'])) {
             $danhmuc = $this->Danhmuc->patchEntity($danhmuc, $this->request->data);
+            if ($danhmuc->parent_id==null){
+                $danhmuc->parent_id=0;
+            }
             if ($this->Danhmuc->save($danhmuc)) {
                 $this->Flash->success(__('The danhmuc has been saved.'));
 
@@ -89,9 +91,11 @@ class DanhmucController extends App2Controller
             $this->Flash->error(__('The danhmuc could not be saved. Please, try again.'));
         }
         $cats = $this->Danhmuc->find('list', ['limit' => 200]);
-        $parentDanhmuc = $this->Danhmuc->ParentDanhmuc->find('list', ['limit' => 200]);
+        $parentDanhmuc = $this->Danhmuc->find('treelist', ['limit' => 200]);
+//        debug(compact('danhmuc', 'cats', 'parentDanhmuc'));
+//        die();
         $this->set(compact('danhmuc', 'cats', 'parentDanhmuc'));
-        $this->set('_serialize', ['danhmuc']);
+//        $this->set('_serialize', ['danhmuc']);
     }
 
     /**

@@ -1,52 +1,59 @@
 <?php
 /**
-  * @var \App\View\AppView $this
-  */
+ * @var \App\View\AppView $this
+ */
 ?>
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('New Danhmuc'), ['action' => 'add']) ?></li>
-    </ul>
-</nav>
-<div class="danhmuc index large-9 medium-8 columns content">
-    <h3><?= __('Danhmuc') ?></h3>
-    <table cellpadding="0" cellspacing="0">
-        <thead>
-            <tr>
-                <th scope="col"><?= $this->Paginator->sort('cat_id') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('cat_name') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('parent_id') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('sort_order') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('cat_status') ?></th>
-                <th scope="col" class="actions"><?= __('Actions') ?></th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php foreach ($danhmuc as $danhmuc): ?>
-            <tr>
-                <td><?= $this->Number->format($danhmuc->cat_id) ?></td>
-                <td><?= h($danhmuc->cat_name) ?></td>
-                <td><?= $danhmuc->has('parent_danhmuc') ? $this->Html->link($danhmuc->parent_danhmuc->cat_id, ['controller' => 'Danhmuc', 'action' => 'view', $danhmuc->parent_danhmuc->cat_id]) : '' ?></td>
-                <td><?= $this->Number->format($danhmuc->sort_order) ?></td>
-                <td><?= h($danhmuc->cat_status) ?></td>
-                <td class="actions">
-                    <?= $this->Html->link(__('View'), ['action' => 'view', $danhmuc->cat_id]) ?>
-                    <?= $this->Html->link(__('Edit'), ['action' => 'edit', $danhmuc->cat_id]) ?>
-                    <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $danhmuc->cat_id], ['confirm' => __('Are you sure you want to delete # {0}?', $danhmuc->cat_id)]) ?>
-                </td>
-            </tr>
-            <?php endforeach; ?>
-        </tbody>
-    </table>
-    <div class="paginator">
-        <ul class="pagination">
-            <?= $this->Paginator->first('<< ' . __('first')) ?>
-            <?= $this->Paginator->prev('< ' . __('previous')) ?>
-            <?= $this->Paginator->numbers() ?>
-            <?= $this->Paginator->next(__('next') . ' >') ?>
-            <?= $this->Paginator->last(__('last') . ' >>') ?>
-        </ul>
-        <p><?= $this->Paginator->counter(['format' => __('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')]) ?></p>
+<div id="page-wrapper">
+    <div class="container-fluid">
+        <div class="row">
+            <?php
+//            echo "<pre>";
+//            print_r($danhmuc);
+//            die();
+            ?>
+            <div class="col-lg-12">
+                <h1 class="page-header">Danh mục
+                    <small>Danh sách</small>
+                </h1>
+            </div>
+            <?= $this->Flash->render()?>
+            <!-- /.col-lg-12 -->
+            <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                <thead>
+                <tr align="center">
+                    <th>ID</th>
+                    <th>Tên danh mục</th>
+                    <th>Vị trí hiển thị</th>
+                    <th>Danh mục cha</th>
+                    <th>Trạng thái</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                </tr>
+                </thead>
+                <tbody>
+                <?php
+                foreach ($danhmuc as $key => $value) {
+
+                    ?>
+                    <tr class="odd gradeX" align="center">
+                        <td><?= $value['cat_id'] ?></td>
+                        <td><?= $value['cat_name'] ?></td>
+                        <td><?= $value['sort_order'] ?></td>
+                        <td><?= ($value['parent_id'] == 0) ? 'None' : $value['parent_id'] ?></td>
+                        <td><?= ($value['cat_status'] == 1) ? "Hiện" : "Ẩn" ?></td>
+                        <td class="center"><i
+                                    class="fa fa-pencil fa-fw"></i><?= $this->Html->link('Edit', ['action' => 'edit', $value->cat_id]) ?>
+                        <td class="center"><i
+                                    class="fa fa-trash-o fa-fw"></i> <?= $this->Form->postLink('Delete', ['action' => 'delete', $value->cat_id], ['confirm' => __('Are you sure want to delete {0}', $value->cat_name)]) ?>
+                        </td>
+                    </tr>
+                    <?php
+                }
+                ?>
+                </tbody>
+            </table>
+        </div>
+        <!-- /.row -->
     </div>
+    <!-- /.container-fluid -->
 </div>

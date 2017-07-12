@@ -39,10 +39,16 @@ class DanhmucTable extends Table
         $this->setDisplayField('cat_name');
         $this->setPrimaryKey('cat_id');
 
+        $this->addBehavior('Tree', [
+            'left' => 'sort_order',
+            'right' => 'sort_order'
+        ]);
+
         $this->belongsTo('Danhmuc', [
             'foreignKey' => 'cat_id',
             'joinType' => 'INNER'
         ]);
+
     }
 
     /**
@@ -81,5 +87,9 @@ class DanhmucTable extends Table
     {
         $rules->add($rules->existsIn(['cat_id'], 'Danhmuc'));
         return $rules;
+    }
+
+    public function asd()
+    {
     }
 }

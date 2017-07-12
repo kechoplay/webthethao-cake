@@ -1,60 +1,63 @@
 <?php
 /**
-  * @var \App\View\AppView $this
-  */
+ * @var \App\View\AppView $this
+ */
 ?>
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('New Admin'), ['action' => 'add']) ?></li>
-    </ul>
-</nav>
-<div class="admin index large-9 medium-8 columns content">
-    <h3><?= __('Admin') ?></h3>
-    <table cellpadding="0" cellspacing="0">
-        <thead>
-            <tr>
-                <th scope="col"><?= $this->Paginator->sort('id') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('user') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('pass') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('fullname') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('email') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('level') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('status') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('created_at') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('last_access') ?></th>
-                <th scope="col" class="actions"><?= __('Actions') ?></th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php foreach ($admin as $admin): ?>
-            <tr>
-                <td><?= $this->Number->format($admin->id) ?></td>
-                <td><?= h($admin->user) ?></td>
-                <td><?= h($admin->pass) ?></td>
-                <td><?= h($admin->fullname) ?></td>
-                <td><?= h($admin->email) ?></td>
-                <td><?= $this->Number->format($admin->level) ?></td>
-                <td><?= $this->Number->format($admin->status) ?></td>
-                <td><?= h($admin->created_at) ?></td>
-                <td><?= h($admin->last_access) ?></td>
-                <td class="actions">
-                    <?= $this->Html->link(__('View'), ['action' => 'view', $admin->id]) ?>
-                    <?= $this->Html->link(__('Edit'), ['action' => 'edit', $admin->id]) ?>
-                    <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $admin->id], ['confirm' => __('Are you sure you want to delete # {0}?', $admin->id)]) ?>
-                </td>
-            </tr>
-            <?php endforeach; ?>
-        </tbody>
-    </table>
-    <div class="paginator">
-        <ul class="pagination">
-            <?= $this->Paginator->first('<< ' . __('first')) ?>
-            <?= $this->Paginator->prev('< ' . __('previous')) ?>
-            <?= $this->Paginator->numbers() ?>
-            <?= $this->Paginator->next(__('next') . ' >') ?>
-            <?= $this->Paginator->last(__('last') . ' >>') ?>
-        </ul>
-        <p><?= $this->Paginator->counter(['format' => __('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')]) ?></p>
+<div id="page-wrapper">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">Nhân viên
+                    <small>Danh sách</small>
+                </h1>
+            </div>
+            <h4 style="text-align:center"><strong><?php echo isset($error['error']) ? $error['error'] : "" ?></strong>
+            </h4>
+            <?= $this->Flash->render() ?>
+            <!-- /.col-lg-12 -->
+            <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                <thead>
+                <tr align="center">
+                    <th>ID</th>
+                    <th>Username</th>
+                    <th>Fullname</th>
+                    <th>Email</th>
+                    <th>Level</th>
+                    <th>Status</th>
+                    <th>Created_at</th>
+                    <th>Last_access</th>
+                    <th>Delete</th>
+                    <th>Edit</th>
+                </tr>
+                </thead>
+                <tbody>
+                <?php
+                foreach ($admin as $key => $value) {
+
+                    ?>
+                    <tr class="odd gradeX" align="center">
+                        <td><?php echo $value['id'] ?></td>
+                        <td><?php echo $value['user'] ?></td>
+                        <td><?php echo $value['fullname'] ?></td>
+                        <td><?php echo $value['email'] ?></td>
+                        <td><?php echo ($value['level'] == 1) ? "Administrator" : "Manager" ?></td>
+                        <td><?php echo ($value['status'] == 1) ? "Hiện" : "Ẩn" ?></td>
+                        <td><?php echo $this->Time->format($value['created_at']) ?></td>
+                        <td><?php echo $this->Time->format($value['last_access']) ?></td>
+                        <td class="center"><i
+                                    class="fa fa-pencil fa-fw"></i><?= $this->Html->link('Edit', ['action' => 'edit', $value->id]) ?>
+                        </td>
+                        <td class="center"><i
+                                    class="fa fa-trash-o fa-fw"></i> <?= $this->Form->postLink('Delete', ['action' => 'delete', $value->id], ['confirm' => __('Are you sure want to delete {0}', $value->user)]) ?>
+                        </td>
+                    </tr>
+                    <?php
+                }
+                ?>
+                </tbody>
+            </table>
+        </div>
+        <!-- /.row -->
     </div>
+    <!-- /.container-fluid -->
 </div>

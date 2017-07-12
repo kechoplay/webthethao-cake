@@ -44,10 +44,10 @@
                         <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Danh mục<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li>
-                                <a href="admin_category.php">danh sách danh mục</a>
+                                <a href="<?= $this->Url->build(['controller'=>'danhmuc','action'=>'index'])?>">Danh sách danh mục</a>
                             </li>
                             <li>
-                                <a href="admin_add_category.php">Thêm danh mục</a>
+                                <a href="<?= $this->Url->build(['controller'=>'danhmuc','action'=>'add'])?>">Thêm danh mục</a>
                             </li>
                         </ul>
                         <!-- /.nav-second-level -->
@@ -56,10 +56,10 @@
                         <a href="#"><i class="fa fa-cube fa-fw"></i> Sản phẩm<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li>
-                                <a href="admin_product.php">Danh sách sản phẩm</a>
+                                <a href="<?= $this->Url->build(['controller'=>'sanpham','action'=>'index'])?>">Danh sách sản phẩm</a>
                             </li>
                             <li>
-                                <a href="admin_add_product.php">Thêm sản phẩm</a>
+                                <a href="<?= $this->Url->build(['controller'=>'sanpham','action'=>'index'])?>">Thêm sản phẩm</a>
                             </li>
                         </ul>
                         <!-- /.nav-second-level -->
@@ -68,13 +68,13 @@
                         <a href="#"><i class="fa fa-users fa-fw"></i> Tài khoản<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li>
-                                <a href="admin_account.php">Thông tin cá nhân</a>
+                                <a href="<?= $this->Url->build(['controller'=>'admin','action'=>'index'])?>">Thông tin cá nhân</a>
                             </li>
                             <li>
-                                <a href="admin_customer.php">Danh sách người dùng</a>
+                                <a href="<?= $this->Url->build(['controller'=>'khachhang','action'=>'index'])?>">Danh sách người dùng</a>
                             </li>
                             <li>
-                                <a href="admin_user.php">Danh sách thành viên</a>
+                                <a href="<?= $this->Url->build(['controller'=>'admin','action'=>'index'])?>">Danh sách thành viên</a>
                             </li>
                         </ul>
                         <!-- /.nav-second-level -->
@@ -83,7 +83,7 @@
                         <a href="#"><i class="fa fa-shopping-cart fa-fw"></i> Hóa đơn<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li>
-                                <a href="admin_order.php">Danh sách hóa đơn</a>
+                                <a href="<?= $this->Url->build(['controller'=>'hoadon','action'=>'index'])?>">Danh sách hóa đơn</a>
                             </li>
                         </ul>
                         <!-- /.nav-second-level -->
@@ -92,10 +92,10 @@
                         <a href="#"><i class="fa fa-shopping-cart fa-fw"></i> Slide<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li>
-                                <a href="admin_slide.php">Danh sách slide</a>
+                                <a href="<?= $this->Url->build(['controller'=>'slide','action'=>'index'])?>">Danh sách slide</a>
                             </li>
                             <li>
-                                <a href="admin_add_slide.php">Thêm slide</a>
+                                <a href="<?= $this->Url->build(['controller'=>'slide','action'=>'add'])?>">Thêm slide</a>
                             </li>
                         </ul>
                         <!-- /.nav-second-level -->

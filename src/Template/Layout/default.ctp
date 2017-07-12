@@ -24,10 +24,17 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
         <?= $cakeDescription ?>:
         <?= $this->fetch('title') ?>
     </title>
+
     <?= $this->Html->meta('icon') ?>
 
-    <?= $this->Html->css('base.css') ?>
-    <?= $this->Html->css('cake.css') ?>
+    <?= $this->Html->css('admin/bootstrap.min.css') ?>
+    <?= $this->Html->css('admin/metisMenu.min.css') ?>
+    <?= $this->Html->css('admin/sb-admin-2.css') ?>
+    <?= $this->Html->css('admin/font-awesome.min.css') ?>
+    <?= $this->Html->css('admin/dataTables.bootstrap.css') ?>
+    <?= $this->Html->css('admin/dataTables.responsive.css') ?>
+    <?= $this->Html->script('admin/jquery.min.js') ?>
+    <?= $this->Html->script('jquery.min.js') ?>
 
     <?= $this->fetch('meta') ?>
     <?= $this->fetch('css') ?>
@@ -36,10 +43,7 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
 <body>
 
 <?= $this->element('layoutadmin/header') ?>
-<?= $this->Flash->render() ?>
-<div class="container clearfix">
     <?= $this->fetch('content') ?>
-</div>
 <?= $this->element('layoutadmin/footer') ?>
 </body>
 </html>

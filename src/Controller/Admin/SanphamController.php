@@ -20,7 +20,7 @@ class SanphamController extends App2Controller
     public function view($id = null)
     {
         $sanpham = $this->Sanpham->get($id, [
-            'contain' => ['Pros', 'Danhmuc']
+            'contain' => ['Danhmuc']
         ]);
 
         $this->set('sanpham', $sanpham);
@@ -39,7 +39,7 @@ class SanphamController extends App2Controller
             }
             $this->Flash->error(__('The sanpham could not be saved. Please, try again.'));
         }
-        $pros = $this->Sanpham->Pros->find('list', ['limit' => 200]);
+        $pros = $this->Sanpham->find('list', ['limit' => 200]);
         $danhmuc = $this->Sanpham->Danhmuc->find('list', ['limit' => 200]);
         $this->set(compact('sanpham', 'pros', 'danhmuc'));
         $this->set('_serialize', ['sanpham']);
@@ -59,7 +59,7 @@ class SanphamController extends App2Controller
             }
             $this->Flash->error(__('The sanpham could not be saved. Please, try again.'));
         }
-        $pros = $this->Sanpham->Pros->find('list', ['limit' => 200]);
+        $pros = $this->Sanpham->find('list', ['limit' => 200]);
         $danhmuc = $this->Sanpham->Danhmuc->find('list', ['limit' => 200]);
         $this->set(compact('sanpham', 'pros', 'danhmuc'));
         $this->set('_serialize', ['sanpham']);
