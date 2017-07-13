@@ -4,26 +4,6 @@
  */
 ?>
 
-<div class="sanpham form large-9 medium-8 columns content">
-    <?= $this->Form->create($sanpham) ?>
-    <fieldset>
-        <legend><?= __('Edit Sanpham') ?></legend>
-        <?php
-        echo $this->Form->input('cat_id', ['options' => $danhmuc]);
-        echo $this->Form->input('pro_name');
-        echo $this->Form->input('pro_price');
-        echo $this->Form->input('pro_discount');
-        echo $this->Form->input('pro_image');
-        echo $this->Form->input('pro_description');
-        echo $this->Form->input('pro_quantity');
-        echo $this->Form->input('pro_count_buy');
-        echo $this->Form->input('pro_view');
-        echo $this->Form->input('pro_status');
-        ?>
-    </fieldset>
-    <?= $this->Form->button(__('Submit')) ?>
-    <?= $this->Form->end() ?>
-</div>
 <div id="page-wrapper">
     <div class="container-fluid">
         <div class="row">
@@ -55,54 +35,15 @@
                     <?= isset($error['proimage']) ? $error['proimage'] : ""; ?>
                 </div>
                 <div class="form-group">
-                    <label>Miêu tả</label>
-                    <textarea class="ckeditor" id="" rows="3"
-                              name="prodes"><?= isset($_GET['proid']) ? $pro[6] : '' ?></textarea>
-
-                    <?= isset($error['prodes']) ? $error['prodes'] : "" ?>
+                    <?= $this->Form->input('pro_description',['type'=>'textarea','class'=>['ckeditor','form-control']])?>
                 </div>
                 <div class="form-group">
-                    <label>Số lượng nhập</label>
-                    <input class="form-control" name="proquan" max="9999" min="0" type="number"
-                           value="<?= isset($_GET['proid']) ? $pro[7] : 0 ?>"/>
-                    <?= isset($error['proquan']) ? $error['proquan'] : "" ?>
+                    <?= $this->Form->input('pro_quantity',['class'=>'form-control','type'=>'number','max'=>'9999','min'=>'1'])?>
                 </div>
                 <div class="form-group">
-                    <label>Trạng thái</label>
-                    <?php
-                    if (isset($pro[10])) {
-                        if ($pro[10] == 1) {
-                            ?>
-                            <label class="radio-inline">
-                                <input name="status" value="1" checked="" type="radio">Hiện
-                            </label>
-                            <label class="radio-inline">
-                                <input name="status" value="2" type="radio">Ẩn
-                            </label>
-                            <?php
-                        } elseif ($pro[10] == 2) {
-                            ?>
-                            <label class="radio-inline">
-                                <input name="status" value="1" type="radio">Hiện
-                            </label>
-                            <label class="radio-inline">
-                                <input name="status" value="2" checked="" type="radio">Ẩn
-                            </label>
-                            <?php
-                        }
-                    } else {
-                        ?>
-                        <label class="radio-inline">
-                            <input name="status" value="1" checked="" type="radio">Hiện
-                        </label>
-                        <label class="radio-inline">
-                            <input name="status" value="2" type="radio">Ẩn
-                        </label>
-                        <?php
-                    }
-                    ?>
+                    <?=$this->Form->input('pro_status',['options'=>[0,1],'class'=>'form-control'])?>
                 </div>
-                <button type="submit" name="save" class="btn btn-default">Lưu</button>
+                <?= $this->Form->button(__('Submit'),['class'=>'btn btn-default'])?>
                 <button type="reset" class="btn btn-default">Reset</button>
                 <?= $this->Form->end() ?>
             </div>

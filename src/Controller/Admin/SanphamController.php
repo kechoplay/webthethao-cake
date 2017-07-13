@@ -29,10 +29,10 @@ class SanphamController extends App2Controller
             }
             $this->Flash->error(__('The sanpham could not be saved. Please, try again.'));
         }
-        $pros = $this->Sanpham->find('list', ['limit' => 200]);
-        $danhmuc = $this->Sanpham->Danhmuc->find('list', ['limit' => 200]);
-        $this->set(compact('sanpham', 'pros', 'danhmuc'));
-        $this->set('_serialize', ['sanpham']);
+        // $pros = $this->Sanpham->find('list', ['limit' => 200]);
+        $danhmuc = $this->Sanpham->Danhmuc->find('list', ['limit' => 200])->where(['parent_id !=' => '0']);
+        $this->set(compact('sanpham', 'danhmuc'));
+        // $this->set('_serialize', ['sanpham']);
     }
 
     public function edit($id = null)
