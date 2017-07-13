@@ -3,6 +3,7 @@
 namespace App\Controller\Admin;
 
 use App\Controller\Admin\App2Controller;
+use Cake\ORM\TableRegistry;
 
 /**
  * Danhmuc Controller
@@ -27,23 +28,6 @@ class DanhmucController extends App2Controller
     }
 
     /**
-     * View method
-     *
-     * @param string|null $id Danhmuc id.
-     * @return \Cake\Network\Response|null
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
-     */
-    public function view($id = null)
-    {
-        $danhmuc = $this->Danhmuc->get($id, [
-            'contain' => ['ParentDanhmuc', 'ChildDanhmuc']
-        ]);
-
-        $this->set('danhmuc', $danhmuc);
-        $this->set('_serialize', ['danhmuc']);
-    }
-
-    /**
      * Add method
      *
      * @return \Cake\Network\Response|null Redirects on successful add, renders view otherwise.
@@ -53,8 +37,8 @@ class DanhmucController extends App2Controller
         $danhmuc = $this->Danhmuc->newEntity();
         if ($this->request->is('post')) {
             $danhmuc = $this->Danhmuc->patchEntity($danhmuc, $this->request->data);
-            if ($danhmuc->parent_id==null){
-                $danhmuc->parent_id=0;
+            if ($danhmuc->parent_id == null) {
+                $danhmuc->parent_id = 0;
             }
             if ($this->Danhmuc->save($danhmuc)) {
                 $this->Flash->success(__('The danhmuc has been saved.'));
@@ -80,8 +64,8 @@ class DanhmucController extends App2Controller
         $danhmuc = $this->Danhmuc->get($id);
         if ($this->request->is(['patch', 'post', 'put'])) {
             $danhmuc = $this->Danhmuc->patchEntity($danhmuc, $this->request->data);
-            if ($danhmuc->parent_id==null){
-                $danhmuc->parent_id=0;
+            if ($danhmuc->parent_id == null) {
+                $danhmuc->parent_id = 0;
             }
             if ($this->Danhmuc->save($danhmuc)) {
                 $this->Flash->success(__('The danhmuc has been saved.'));
@@ -90,11 +74,11 @@ class DanhmucController extends App2Controller
             }
             $this->Flash->error(__('The danhmuc could not be saved. Please, try again.'));
         }
-        $cats = $this->Danhmuc->find('list', ['limit' => 200]);
+//        $cats = $this->Danhmuc->find('list', ['limit' => 200]);
         $parentDanhmuc = $this->Danhmuc->find('treelist', ['limit' => 200]);
 //        debug(compact('danhmuc', 'cats', 'parentDanhmuc'));
 //        die();
-        $this->set(compact('danhmuc', 'cats', 'parentDanhmuc'));
+        $this->set(compact('danhmuc', 'parentDanhmuc'));
 //        $this->set('_serialize', ['danhmuc']);
     }
 
@@ -109,10 +93,18 @@ class DanhmucController extends App2Controller
     {
         $this->request->allowMethod(['post', 'delete']);
         $danhmuc = $this->Danhmuc->get($id);
-        if ($this->Danhmuc->delete($danhmuc)) {
-            $this->Flash->success(__('The danhmuc has been deleted.'));
+        $issetparent = $this->Danhmuc->find('list')->where(['parent_id' => $id])->count();
+        $issetproduct = TableRegistry::get('sanpham')->find('list')->where(['cat_id' => $id])->count();
+//        debug($issetproduct);
+//        die();
+        if ($issetparent > 0) {
+            $this->Flash->error(__('You can not delete this item "{0}" because you have the list of this item. Please, try again.',$id));
+        } elseif ($issetproduct > 0) {
+            $this->Flash->error(__('You can not delete this item "{0}" because you have a product of this item. Please, try again.',$id));
         } else {
-            $this->Flash->error(__('The danhmuc could not be deleted. Please, try again.'));
+            if ($this->Danhmuc->delete($danhmuc)) {
+                $this->Flash->success(__('The danhmuc has been deleted.'));
+            }
         }
 
         return $this->redirect(['action' => 'index']);

@@ -59,7 +59,7 @@
                                 <a href="<?= $this->Url->build(['controller'=>'sanpham','action'=>'index'])?>">Danh sách sản phẩm</a>
                             </li>
                             <li>
-                                <a href="<?= $this->Url->build(['controller'=>'sanpham','action'=>'index'])?>">Thêm sản phẩm</a>
+                                <a href="<?= $this->Url->build(['controller'=>'sanpham','action'=>'add'])?>">Thêm sản phẩm</a>
                             </li>
                         </ul>
                         <!-- /.nav-second-level -->
