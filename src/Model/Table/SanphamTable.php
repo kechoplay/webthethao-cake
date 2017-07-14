@@ -12,9 +12,11 @@ class SanphamTable extends Table
     {
         parent::initialize($config);
 
-        $this->table('sanpham');
-        $this->displayField('pro_id');
-        $this->primaryKey('pro_id');
+        $this->setTable('sanpham');
+        $this->setDisplayField('pro_id');
+        $this->setPrimaryKey('pro_id');
+
+        $this->addBehavior('Timestamp');
 
         $this->belongsTo('Sanpham', [
             'foreignKey' => 'pro_id',
@@ -38,8 +40,7 @@ class SanphamTable extends Table
 
         $validator
             ->numeric('pro_discount')
-            ->requirePresence('pro_discount', 'create')
-            ->notEmpty('pro_discount');
+            ->requirePresence('pro_discount', 'create');
 
         $validator
             ->requirePresence('pro_image', 'create')
@@ -53,16 +54,6 @@ class SanphamTable extends Table
             ->integer('pro_quantity')
             ->requirePresence('pro_quantity', 'create')
             ->notEmpty('pro_quantity');
-
-        $validator
-            ->integer('pro_count_buy')
-            ->requirePresence('pro_count_buy', 'create')
-            ->notEmpty('pro_count_buy');
-
-        $validator
-            ->integer('pro_view')
-            ->requirePresence('pro_view', 'create')
-            ->notEmpty('pro_view');
 
         $validator
             ->boolean('pro_status')
