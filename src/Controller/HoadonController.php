@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Controller;
 
 use App\Controller\AppController;
@@ -28,29 +29,26 @@ class HoadonController extends AppController
         $this->set('_serialize', ['hoadon']);
     }
 
-    public function addcart()
+    public function addcart($id)
     {
-        if($this->request->is('post')) {
-            $id = $this->request->data('id');
-            return $id;
-            $sanpham=TableRegistry::get('sanpham')->find('all')->toArray();
-            $session = $this->request->session();
-            $sessioncart=$session->read('cart') ? $session->read('cart') : [];
-            if (isset($sessioncart[$id])){
-                $sl=$sessioncart[$id]['sl']+1;
-            }else{
-                $sl=1;
-            }
-            $sessioncart[$id]=array(
-                'id'=>$id,
-                'name'=>$sanpham->pro_name,
-                'image'=>$sanpham->pro_image,
-                'price'=>$sanpham->pro_price,
-                'discaount'=>$sanpham->pro_discount,
-                'sl'=>$sl
-            );
-            $session->write('cart',$sessioncart);
+        $sanpham = TableRegistry::get('sanpham')->find('all')->where(['pro_id' => $id])->toArray();
+        $session = $this->request->session();
+        $sessioncart = $session->read('cart') ? $session->read('cart') : [];
+        if (array_key_exists($id,$sessioncart)) {
+            $sl = $sessioncart[$id]['sl'] + 1;
+        } else {
+            $sl = 1;
         }
+        $sessioncart[$id] = array(
+            'id' => $id,
+            'name' => $sanpham->pro_name,
+            'image' => $sanpham->pro_image,
+            'price' => $sanpham->pro_price,
+            'discaount' => $sanpham->pro_discount,
+            'sl' => $sl
+        );
+        $session->write('cart', $sessioncart);
+        return $id;
     }
 
     /**
