@@ -19,7 +19,7 @@ class HoadonController extends App2Controller
     public function index()
     {
         $this->paginate = [
-            'contain' => ['Ords', 'Khachhang']
+            'contain' => ['Khachhang']
         ];
         $hoadon = $this->paginate($this->Hoadon);
 
@@ -37,7 +37,7 @@ class HoadonController extends App2Controller
     public function view($id = null)
     {
         $hoadon = $this->Hoadon->get($id, [
-            'contain' => ['Ords', 'Khachhang']
+            'contain' => ['Khachhang']
         ]);
 
         $this->set('hoadon', $hoadon);
@@ -61,9 +61,8 @@ class HoadonController extends App2Controller
             }
             $this->Flash->error(__('The hoadon could not be saved. Please, try again.'));
         }
-        $ords = $this->Hoadon->Ords->find('list', ['limit' => 200]);
         $khachhang = $this->Hoadon->Khachhang->find('list', ['limit' => 200]);
-        $this->set(compact('hoadon', 'ords', 'khachhang'));
+        $this->set(compact('hoadon','khachhang'));
         $this->set('_serialize', ['hoadon']);
     }
 
@@ -88,9 +87,8 @@ class HoadonController extends App2Controller
             }
             $this->Flash->error(__('The hoadon could not be saved. Please, try again.'));
         }
-        $ords = $this->Hoadon->Ords->find('list', ['limit' => 200]);
         $khachhang = $this->Hoadon->Khachhang->find('list', ['limit' => 200]);
-        $this->set(compact('hoadon', 'ords', 'khachhang'));
+        $this->set(compact('hoadon','khachhang'));
         $this->set('_serialize', ['hoadon']);
     }
 

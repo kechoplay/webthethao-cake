@@ -30,9 +30,17 @@ class AdminTable extends Table
     {
         parent::initialize($config);
 
-        $this->table('admin');
-        $this->displayField('id');
-        $this->primaryKey('id');
+        $this->setTable('admin');
+        $this->setDisplayField('id');
+        $this->setPrimaryKey('id');
+        $this->addBehavior('Timestamp',[
+            'event'=>[
+                'Model.beforeSave'=>[
+                    'created_at'=>'new',
+                    'last_access'=>'always'
+                ]
+            ]
+        ]);
     }
 
     /**
@@ -43,10 +51,6 @@ class AdminTable extends Table
      */
     public function validationDefault(Validator $validator)
     {
-        $validator
-            ->integer('id')
-            ->allowEmpty('id', 'create');
-
         $validator
             ->requirePresence('user', 'create')
             ->notEmpty('user');
@@ -66,23 +70,25 @@ class AdminTable extends Table
 
         $validator
             ->integer('level')
+            ->notEquals('level','0','Please choose the level')
             ->requirePresence('level', 'create')
             ->notEmpty('level');
 
         $validator
             ->integer('status')
+            ->notEquals('status','0','Please choose the status')
             ->requirePresence('status', 'create')
             ->notEmpty('status');
 
-        $validator
-            ->dateTime('created_at')
-            ->requirePresence('created_at', 'create')
-            ->notEmpty('created_at');
-
-        $validator
-            ->dateTime('last_access')
-            ->requirePresence('last_access', 'create')
-            ->notEmpty('last_access');
+//        $validator
+//            ->dateTime('created_at')
+//            ->requirePresence('created_at', 'create')
+//            ->notEmpty('created_at');
+//
+//        $validator
+//            ->dateTime('last_access')
+//            ->requirePresence('last_access', 'create')
+//            ->notEmpty('last_access');
 
         return $validator;
     }
@@ -96,8 +102,10 @@ class AdminTable extends Table
      */
     public function buildRules(RulesChecker $rules)
     {
-        $rules->add($rules->isUnique(['email']));
+        $rules->add($rules->isUnique(['email'],['message'=>'The email has been used']));
+        $rules->add($rules->isUnique(['user'],['message'=>'The user has been used']));
 
         return $rules;
     }
+
 }

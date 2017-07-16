@@ -21,6 +21,15 @@ class SanphamController extends App2Controller
     {
         $sanpham = $this->Sanpham->newEntity();
         if ($this->request->is('post')) {
+            $file=$this->request->data['pro_image'];
+            $ext=substr(strtolower(strrchr($file['name'],'.')),1);
+            $arr_ext=array('jpg','png','jpeg','gif');
+            if (in_array($ext,$arr_ext)){
+                if ($file['name']!=''){
+                    move_uploaded_file($file['tmp_name'],WWW_ROOT . 'img/' . $file['name']);
+                    $this->request->data['pro_image']=$file['name'];
+                }
+            }
             $sanpham = $this->Sanpham->patchEntity($sanpham, $this->request->data);
             if ($this->Sanpham->save($sanpham)) {
                 $this->Flash->success(__('The sanpham has been saved.'));
@@ -41,6 +50,22 @@ class SanphamController extends App2Controller
             'contain' => ['Danhmuc']
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
+            $file = $this->request->data['pro_image'];
+            $ext = substr(strtolower(strrchr($file['name'], '.')), 1);
+            $arr_axt=array('png','jpg','jpeg','gif');
+//            echo "<pre>";
+//            print_r($file);
+//            echo $this->request->data['pro_image'];
+//            echo $ext;
+//            die();
+            if ($file['name'] != '') {
+                if (in_array($ext,$arr_axt)){
+                    move_uploaded_file($file['tmp_name'], WWW_ROOT . 'img/' . $file['name']);
+                    $this->request->data['pro_image']=$file['name'];
+                }
+            }else{
+                $this->request->data['pro_image']=$sanpham->pro_image;
+            }
             $sanpham = $this->Sanpham->patchEntity($sanpham, $this->request->data);
             if ($this->Sanpham->save($sanpham)) {
                 $this->Flash->success(__('The sanpham has been saved.'));

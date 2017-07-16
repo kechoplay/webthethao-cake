@@ -10,10 +10,9 @@
                 <h1 class="page-header">Nhân viên
                     <small>Danh sách</small>
                 </h1>
+                <?= $this->Flash->render() ?>
+                <p><a href="<?= $this->Url->build(['action' => 'add']) ?>">Thêm tài khoản</a></p>
             </div>
-            <h4 style="text-align:center"><strong><?php echo isset($error['error']) ? $error['error'] : "" ?></strong>
-            </h4>
-            <?= $this->Flash->render() ?>
             <!-- /.col-lg-12 -->
             <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                 <thead>
@@ -26,8 +25,8 @@
                     <th>Status</th>
                     <th>Created_at</th>
                     <th>Last_access</th>
-                    <th>Delete</th>
                     <th>Edit</th>
+                    <th>Delete</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -36,14 +35,14 @@
 
                     ?>
                     <tr class="odd gradeX" align="center">
-                        <td><?php echo $value['id'] ?></td>
-                        <td><?php echo $value['user'] ?></td>
-                        <td><?php echo $value['fullname'] ?></td>
-                        <td><?php echo $value['email'] ?></td>
-                        <td><?php echo ($value['level'] == 1) ? "Administrator" : "Manager" ?></td>
-                        <td><?php echo ($value['status'] == 1) ? "Hiện" : "Ẩn" ?></td>
-                        <td><?php echo $this->Time->format($value['created_at']) ?></td>
-                        <td><?php echo $this->Time->format($value['last_access']) ?></td>
+                        <td><?= $value['id'] ?></td>
+                        <td><?= $value['user'] ?></td>
+                        <td><?= $value['fullname'] ?></td>
+                        <td><?= $value['email'] ?></td>
+                        <td><?= ($value['level'] == 1) ? "Administrator" : "Manager" ?></td>
+                        <td><?= ($value['status'] == 1) ? "Hiện" : "Ẩn" ?></td>
+                        <td><?= ($value['created_at']) ?></td>
+                        <td><?= ($value['last_access']) ?></td>
                         <td class="center"><i
                                     class="fa fa-pencil fa-fw"></i><?= $this->Html->link('Edit', ['action' => 'edit', $value->id]) ?>
                         </td>

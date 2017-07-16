@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Model\Table;
 
 use Cake\ORM\Query;
@@ -32,14 +33,10 @@ class KhachhangTable extends Table
     {
         parent::initialize($config);
 
-        $this->table('khachhang');
-        $this->displayField('cus_id');
-        $this->primaryKey('cus_id');
+        $this->setTable('khachhang');
+        $this->setDisplayField('cus_id');
+        $this->setPrimaryKey('cus_id');
 
-        $this->belongsTo('Khachhang', [
-            'foreignKey' => 'cus_id',
-            'joinType' => 'INNER'
-        ]);
     }
 
     /**
@@ -55,19 +52,26 @@ class KhachhangTable extends Table
             ->notEmpty('username');
 
         $validator
+            ->minLength('password', '6', 'The password more than 6 charactor')
             ->requirePresence('password', 'create')
-            ->notEmpty('password');
+            ->notEmpty('password')
+            ->add('password', 'validFormat', [
+                'rule' => array('custom', '/^[A-Z]{1}[a-zA-Z0-9]{6,32}$/'),
+                'message' => 'Password must be starting with letters in hoa and words from 6 to 32 characters'
+            ]);
 
         $validator
             ->requirePresence('fullname', 'create')
             ->notEmpty('fullname');
 
         $validator
-            ->email('email')
+            ->email('email', '/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/', 'Your password is not in the correct format')
             ->requirePresence('email', 'create')
             ->notEmpty('email');
 
         $validator
+            ->minLength('mobile', '9')
+            ->numeric('mobile', 'Your mobile is not in the correct format')
             ->requirePresence('mobile', 'create')
             ->notEmpty('mobile');
 
@@ -92,10 +96,15 @@ class KhachhangTable extends Table
      */
     public function buildRules(RulesChecker $rules)
     {
-        $rules->add($rules->isUnique(['username']));
-        $rules->add($rules->isUnique(['email']));
-        $rules->add($rules->existsIn(['cus_id'], 'Khachhang'));
+        $rules->add($rules->isUnique(['username'],['message'=>'The username has been used']));
+        $rules->add($rules->isUnique(['email'],['message'=>'The email has been used']));
+
+//        $rules->addCreate()
 
         return $rules;
+    }
+
+    public function checkusername($username){
+
     }
 }

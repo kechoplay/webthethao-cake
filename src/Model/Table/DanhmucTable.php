@@ -44,11 +44,6 @@ class DanhmucTable extends Table
             'right' => 'sort_order'
         ]);
 
-        $this->belongsTo('Danhmuc', [
-            'foreignKey' => 'cat_id',
-            'joinType' => 'INNER'
-        ]);
-
     }
 
     /**
@@ -85,11 +80,8 @@ class DanhmucTable extends Table
      */
     public function buildRules(RulesChecker $rules)
     {
-        $rules->add($rules->existsIn(['cat_id'], 'Danhmuc'));
+        $rules->add($rules->isUnique(['cat_name'],['message'=>'The category name has been used']));
         return $rules;
     }
 
-    public function asd()
-    {
-    }
 }

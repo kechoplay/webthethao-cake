@@ -2,6 +2,7 @@
 /**
  * @var \App\View\AppView $this
  */
+$status=array('0'=>'Ẩn','1'=>'Hiện');
 ?>
 
 <div id="page-wrapper">
@@ -25,22 +26,21 @@
                     <?= $this->Form->input('pro_price', ['class' => 'form-control', 'placeholder' => 'Nhập giá gốc', 'onkeypress' => 'return numberOnly(this, event);']) ?>
                 </div>
                 <div class="form-group">
-                    <?= $this->Form->input('pro_discount', ['class' => 'form-control', 'placeholder' => 'Nhập giá gốc', 'onkeypress' => 'return numberOnly(this, event);', 'required' => false]) ?>
+                    <?= $this->Form->input('pro_discount', ['class' => 'form-control', 'placeholder' => 'Nhập giảm giá', 'onkeypress' => 'return numberOnly(this, event);', 'required' => false]) ?>
                 </div>
                 <div class="form-group">
                     <div class="row">
-                    <div class="col-lg-6">
-                        <label>Hình ảnh</label><br>
-                        <?= $this->Html->image('../img/' . (isset($sanpham->pro_image) ? $sanpham->pro_image : 'avatar_2x.png'), ['style' => 'width:150px', 'id' => 'image']) ?>
-                    </div>
-                    <div class="col-lg-6">
-                        <label>Ảnh thay thế</label><br>
-                        <img id="image_thaythe" style="width: 150px;"/>
-                    </div>
-                    <div class="col-lg-12">
-                        <?= $this->Form->input('pro_image', ['class' => 'form-control', 'type' => 'file', 'id' => 'fileimage', 'accept' => 'image/*']) ?>
-                    </div>
-                    <input type="hidden" name="image" value="<?= isset($_GET['proid']) ? $pro[5] : '' ?>">
+                        <div class="col-lg-6">
+                            <label>Hình ảnh</label><br>
+                            <?= $this->Html->image('../img/' . (isset($sanpham->pro_image) ? $sanpham->pro_image : 'avatar_2x.png'), ['style' => 'width:150px', 'id' => 'image']) ?>
+                        </div>
+                        <div class="col-lg-6">
+                            <label>Ảnh thay thế</label><br>
+                            <img id="image_thaythe" style="width: 150px;"/>
+                        </div>
+                        <div class="col-lg-12">
+                            <?= $this->Form->input('pro_image', ['class' => 'form-control', 'type' => 'file', 'id' => 'fileimage', 'accept' => 'image/*','required'=>false]) ?>
+                        </div>
                     </div>
                 </div>
                 <div class="form-group">
@@ -50,7 +50,7 @@
                     <?= $this->Form->input('pro_quantity', ['class' => 'form-control', 'type' => 'number', 'max' => '9999', 'min' => '1']) ?>
                 </div>
                 <div class="form-group">
-                    <?= $this->Form->input('pro_status', ['options' => [0, 1], 'class' => 'form-control']) ?>
+                    <?= $this->Form->input('pro_status', ['options' => $status, 'class' => 'form-control']) ?>
                 </div>
                 <?= $this->Form->button(__('Submit'), ['class' => 'btn btn-default']) ?>
                 <button type="reset" class="btn btn-default">Reset</button>
@@ -72,7 +72,7 @@
         });
     });
     document.getElementById('fileimage').onchange = function (event) {
-        alert("xx");
+        // alert("xx");
         var input = event.target;
         var reader = new FileReader();
         reader.onload = function () {

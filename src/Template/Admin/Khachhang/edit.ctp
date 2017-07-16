@@ -1,34 +1,43 @@
 <?php
 /**
-  * @var \App\View\AppView $this
-  */
+ * @var \App\View\AppView $this
+ */
 ?>
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Form->postLink(
-                __('Delete'),
-                ['action' => 'delete', $khachhang->cus_id],
-                ['confirm' => __('Are you sure you want to delete # {0}?', $khachhang->cus_id)]
-            )
-        ?></li>
-        <li><?= $this->Html->link(__('List Khachhang'), ['action' => 'index']) ?></li>
-    </ul>
-</nav>
-<div class="khachhang form large-9 medium-8 columns content">
-    <?= $this->Form->create($khachhang) ?>
-    <fieldset>
-        <legend><?= __('Edit Khachhang') ?></legend>
-        <?php
-            echo $this->Form->input('username');
-            echo $this->Form->input('password');
-            echo $this->Form->input('fullname');
-            echo $this->Form->input('email');
-            echo $this->Form->input('mobile');
-            echo $this->Form->input('address');
-            echo $this->Form->input('status');
-        ?>
-    </fieldset>
-    <?= $this->Form->button(__('Submit')) ?>
-    <?= $this->Form->end() ?>
+<div id="page-wrapper">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">Khách hàng
+                    <small>Sửa</small>
+                </h1>
+            </div>
+
+            <div class="col-lg-7" style="padding-bottom:120px">
+                <?= $this->Form->create($khachhang) ?>
+                <div class="form-group">
+                    <?= $this->Form->input('username', ['class' => 'form-control', 'disabled' => true]) ?>
+                </div>
+                <div class="form-group">
+                    <?= $this->Form->input('fullname', ['class' => 'form-control', 'disabled' => true]) ?>
+                </div>
+                <div class="form-group">
+                    <?= $this->Form->input('email', ['class' => 'form-control', 'disabled' => true]) ?>
+                </div>
+                <div class="form-group">
+                    <?= $this->Form->input('mobile', ['class' => 'form-control', 'disabled' => true]) ?>
+                </div>
+                <div class="form-group">
+                    <?= $this->Form->input('address', ['class' => 'form-control', 'disabled' => true]) ?>
+                </div>
+                <div class="form-group">
+                    <?= $this->Form->input('status', ['class' => 'form-control', 'options' => ['0', '1']]) ?>
+                </div>
+                <?= $this->Form->button('Save', ['class' => 'btn btn-default']) ?>
+                <button type="reset" class="btn btn-default">Làm lại</button>
+                <?= $this->Form->end() ?>
+            </div>
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
 </div>

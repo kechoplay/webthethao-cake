@@ -2,6 +2,7 @@
 namespace App\Controller\Admin;
 
 use App\Controller\Admin\App2Controller;
+use Cake\Auth\DefaultPasswordHasher;
 
 /**
  * Admin Controller
@@ -18,8 +19,10 @@ class AdminController extends App2Controller
      */
     public function index()
     {
-        $admin = $this->paginate($this->Admin);
-
+        $admin = $this->Admin->find('all')->toArray();
+//        echo "<pre>";
+//        print_r($admin);
+//        die();
         $this->set(compact('admin'));
         $this->set('_serialize', ['admin']);
     }
@@ -51,6 +54,7 @@ class AdminController extends App2Controller
         $admin = $this->Admin->newEntity();
         if ($this->request->is('post')) {
             $admin = $this->Admin->patchEntity($admin, $this->request->data);
+            $admin->pass=$this->_setPassword($admin->pass);
             if ($this->Admin->save($admin)) {
                 $this->Flash->success(__('The admin has been saved.'));
 
@@ -105,5 +109,11 @@ class AdminController extends App2Controller
         }
 
         return $this->redirect(['action' => 'index']);
+    }
+
+    protected function _setPassword($value)
+    {
+        $hasher=new DefaultPasswordHasher();
+        return $hasher->hash($value);
     }
 }

@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Model\Entity;
 
 use Cake\ORM\Entity;
@@ -19,6 +20,18 @@ use Cake\ORM\Entity;
 class Admin extends Entity
 {
 
+    public $level = array(
+        '0' => '--Chọn quyền truy cập--',
+        '1' => 'Administrator',
+        '2' => 'Manager'
+    );
+
+    public $status = array(
+        '0' => '--Chọn trạng thái--',
+        '1' => 'Hiện',
+        '2' => 'Ẩn'
+    );
+
     /**
      * Fields that can be mass assigned using newEntity() or patchEntity().
      *
@@ -32,4 +45,10 @@ class Admin extends Entity
         '*' => true,
         'id' => false
     ];
+
+    protected function _setPassword($value)
+    {
+        $hasher=new DefaultPasswordHasher();
+        return $hasher->hash($value);
+    }
 }

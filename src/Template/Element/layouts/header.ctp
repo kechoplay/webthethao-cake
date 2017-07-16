@@ -7,11 +7,12 @@
             <div class="span6">
                 <div class="pull-right">
                     <a href="cart.php"><span class="btn btn-mini btn-primary"><i
-                                    class="icon-shopping-cart icon-white"></i> [ 0 ] sản phẩm trong giỏ hàng </span>
+                                    class="icon-shopping-cart icon-white"></i> [ <?= isset($cart) ? count($cart) : '0' ?> ] sản phẩm trong giỏ hàng </span>
                     </a>
                 </div>
             </div>
         </div>
+<!--        --><?//= $cart?>
         <!-- Navbar ================================================== -->
         <div id="logoArea" class="navbar">
             <a id="smallScreen" data-target="#topMenu" data-toggle="collapse" class="btn btn-navbar">

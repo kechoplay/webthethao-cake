@@ -33,14 +33,10 @@ class HoadonTable extends Table
     {
         parent::initialize($config);
 
-        $this->table('hoadon');
-        $this->displayField('name');
-        $this->primaryKey('ord_id');
+        $this->setTable('hoadon');
+        $this->setDisplayField('name');
+        $this->setPrimaryKey('ord_id');
 
-        $this->belongsTo('Ords', [
-            'foreignKey' => 'ord_id',
-            'joinType' => 'INNER'
-        ]);
         $this->belongsTo('Khachhang', [
             'foreignKey' => 'cus_id',
             'joinType' => 'INNER'
@@ -98,7 +94,6 @@ class HoadonTable extends Table
      */
     public function buildRules(RulesChecker $rules)
     {
-        $rules->add($rules->existsIn(['ord_id'], 'Ords'));
         $rules->add($rules->existsIn(['cus_id'], 'Khachhang'));
 
         return $rules;

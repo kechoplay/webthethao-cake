@@ -220,3 +220,5 @@ Type::build('timestamp')
 if (Configure::read('debug')) {
     Plugin::load('DebugKit', ['bootstrap' => true]);
 }
+
+date_default_timezone_set('Asia/Ho_Chi_Minh');

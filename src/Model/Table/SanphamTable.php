@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Model\Table;
 
 use Cake\ORM\Query;
@@ -18,10 +19,6 @@ class SanphamTable extends Table
 
         $this->addBehavior('Timestamp');
 
-        $this->belongsTo('Sanpham', [
-            'foreignKey' => 'pro_id',
-            'joinType' => 'INNER'
-        ]);
         $this->belongsTo('Danhmuc', [
             'foreignKey' => 'cat_id'
         ]);
@@ -40,11 +37,10 @@ class SanphamTable extends Table
 
         $validator
             ->numeric('pro_discount')
-            ->requirePresence('pro_discount', 'create');
+            ->allowEmpty('pro_discount');
 
-        $validator
-            ->requirePresence('pro_image', 'create')
-            ->notEmpty('pro_image');
+//        $validator
+//            ->requirePresence('pro_image', 'create');
 
         $validator
             ->requirePresence('pro_description', 'create')
@@ -65,13 +61,12 @@ class SanphamTable extends Table
 
     public function buildRules(RulesChecker $rules)
     {
-        $rules->add($rules->existsIn(['pro_id'], 'Sanpham'));
         $rules->add($rules->existsIn(['cat_id'], 'Danhmuc'));
 
         return $rules;
     }
 
-    public function getlistProduct($where=null,$order=null,$limit=null)
+    public function getlistProduct($where = null, $order = null, $limit = null)
     {
 //        if (is_array($where)) {
 //            $where = (count($where) ? implode(' and ', $where) : '');
