@@ -31,10 +31,10 @@ class HoadonController extends AppController
 
     public function addcart($id)
     {
-        $sanpham = TableRegistry::get('sanpham')->find('all')->where(['pro_id' => $id])->toArray();
+        $sanpham = TableRegistry::get('sanpham')->get($id);
         $session = $this->request->session();
         $sessioncart = $session->read('cart') ? $session->read('cart') : [];
-        if (array_key_exists($id,$sessioncart)) {
+        if (array_key_exists($id, $sessioncart)) {
             $sl = $sessioncart[$id]['sl'] + 1;
         } else {
             $sl = 1;
@@ -44,11 +44,17 @@ class HoadonController extends AppController
             'name' => $sanpham->pro_name,
             'image' => $sanpham->pro_image,
             'price' => $sanpham->pro_price,
-            'discaount' => $sanpham->pro_discount,
+            'discount' => $sanpham->pro_discount,
             'sl' => $sl
         );
         $session->write('cart', $sessioncart);
-        return $id;
+        $session->read('cart');
+        echo count($sessioncart);
+        die();
+//        echo $sanpham->pro_name;
+//        echo "<pre>";
+//        print_r($sessioncart);
+//        die();
     }
 
     /**

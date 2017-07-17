@@ -7,7 +7,7 @@
             <div class="span6">
                 <div class="pull-right">
                     <a href="cart.php"><span class="btn btn-mini btn-primary"><i
-                                    class="icon-shopping-cart icon-white"></i> [ <?= isset($cart) ? count($cart) : '0' ?> ] sản phẩm trong giỏ hàng </span>
+                                    class="icon-shopping-cart icon-white"></i> [ <span id="cart">0</span> ] sản phẩm trong giỏ hàng </span>
                     </a>
                 </div>
             </div>
