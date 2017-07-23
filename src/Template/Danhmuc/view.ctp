@@ -56,7 +56,7 @@
                             <?php
                             if ($value['pro_quantity'] > 0) {
                                 ?>
-                                <a href="addcart.php?proid=<?php echo $value['pro_id']; ?>"
+                                <a href="javascript:void(0)" onclick="addcart(<?= $value->pro_id ?>)"
                                    class="btn btn-large btn-primary"> Add to <i class=" icon-shopping-cart"></i></a>
                                 <?php
                             } else {
@@ -102,7 +102,7 @@
                                     <?php
                                     if ($value['pro_quantity'] > 0) {
                                         ?>
-                                        <a class="btn" href="addcart.php?proid=<?php echo $value['pro_id']; ?>">Add to
+                                        <a class="btn" href="javascript:void(0)" onclick="addcart(<?= $value->pro_id ?>)">Add to
                                             <i class="icon-shopping-cart"></i>
                                         </a>
                                         <?php
@@ -159,3 +159,8 @@
     </div>
     <br class="clr"/>
 </div>
+<?php $url=Cake\Routing\Router::Url(['controller'=>'hoadon','action'=>'addcart']) ?>
+<script>
+    var url="<?=$url?>";
+    console.log(url);
+</script>

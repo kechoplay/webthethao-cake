@@ -1,3 +1,6 @@
+<?php
+use Cake\Routing\Router;
+?>
 <div class="span9">
     <h4>Sản phẩm mới nhất </h4>
     <ul class="thumbnails">
@@ -118,19 +121,8 @@
     </ul>
     <div id="cart"></div>
 </div>
+<?php $url=Cake\Routing\Router::Url(['controller'=>'hoadon','action'=>'addcart']) ?>
 <script>
-    //    $(document).ready(function () {
-    function addcart(id) {
-        $(document).ready(function () {
-            $.ajax({
-                type: 'POST',
-                url: 'hoadon/addcart/' + id,
-//                data: id,
-                success: function (data) {
-                    $('#cart').html(data);
-                }
-            });
-        });
-    }
-    //    })
+    var url="<?=$url?>";
+    console.log(url);
 </script>

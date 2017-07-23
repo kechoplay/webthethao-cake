@@ -5,7 +5,7 @@
             <div id="sidebar" class="span3">
                 <div class="well well-small">
                     <a id="myCart" href="cart.php">
-                        <?= $this->Html->image('ico-cart.png', ["alt" => "cart"]) ?> 0 sản phẩm trong giỏ hàng
+                        <?= $this->Html->image('ico-cart.png', ["alt" => "cart"]) ?> <span id="cart"><?= $countCart ?></span> sản phẩm trong giỏ hàng
                     </a>
                 </div>
                 <ul id="sideManu" class="nav nav-tabs nav-stacked">
@@ -46,7 +46,7 @@
                                    href="<?= $this->Url->build(['controller' => 'sanpham', 'action' => 'detail', $value['pro_id']]) ?>">
                                     <i class="icon-zoom-in"></i>
                                 </a>
-                                <a class="btn" href="addcart.php?proid=<?= $value['pro_id']; ?>">Add to
+                                <a class="btn" href="javascript:void(0)" onclick="addcart(<?= $value->pro_id ?>)">Add to
                                     <i class="icon-shopping-cart"></i>
                                 </a>
                                 <?php

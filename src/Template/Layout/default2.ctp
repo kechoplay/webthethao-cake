@@ -29,6 +29,8 @@ $description = 'Shop thể thao';
 
 <?php echo $this->fetch('content'); ?>
 
+<?= $this->Html->script('addcart.js') ?>
+
 <?php echo $this->element('layouts/footer') ?>
 
 </body>

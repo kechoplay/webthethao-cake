@@ -57,6 +57,11 @@ class HoadonController extends AppController
 //        die();
     }
 
+    public function addcartwithquan()
+    {
+
+    }
+
     /**
      * View method
      *

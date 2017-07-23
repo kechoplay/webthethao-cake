@@ -8,8 +8,8 @@
 </script>
 <div class="span9">
     <ul class="breadcrumb">
-        <li><a href="<?= $this->Url->build('/')?>">Trang chủ</a> <span class="divider">/</span></li>
-        <li><a href="<?= $this->Url->build('/sanpham')?>">Sản phẩm</a> <span class="divider">/</span></li>
+        <li><a href="<?= $this->Url->build('/') ?>">Trang chủ</a> <span class="divider">/</span></li>
+        <li><a href="<?= $this->Url->build('/sanpham') ?>">Sản phẩm</a> <span class="divider">/</span></li>
         <li><a href="#">Chi tiết sản phẩm</a> <span class="divider">/</span></li>
         <li class="active"><?= $sanpham['pro_name'] ?></li>
     </ul>
@@ -38,8 +38,7 @@
             <h3><?= $sanpham['pro_name'] ?></h3>
             <small></small>
             <hr class="soft"/>
-            <form class="form-horizontal qtyFrm" method="POST"
-                  action="addcart.php?proid=<?= $sanpham['pro_id'] ?>">
+            <form class="form-horizontal qtyFrm" id="formcart">
                 <div class="control-group">
                     <label class="control-label">
                         <?php
@@ -62,7 +61,7 @@
                                onchange="changequan(this.value)" placeholder="Qty."/>
                         Sô lượng : <?= ($sanpham['pro_quantity']) != 0 ? $sanpham['pro_quantity'] : "Hết hàng" ?>
                         <input type="hidden" name="quan" id="quan" value="<?= $sanpham['pro_quantity'] ?>">
-                        <button type="submit" name="addcart" class="btn btn-large btn-primary pull-right"> Thêm giỏ hàng
+                        <button name="addcart" type="button" class="btn btn-large btn-primary pull-right"> Thêm giỏ hàng
                             <i class=" icon-shopping-cart"></i>
                         </button>
                     </div>
@@ -107,8 +106,8 @@
                                 ?>
                                 <div class="row">
                                     <div class="span2">
-                                        <a href="<?=$this->Url->build(['controller'=>'sanpham','action'=>'detail',$value['pro_id']])?>">
-                                            <?=$this->Html->image('../img/'.$value["pro_image"])?>
+                                        <a href="<?= $this->Url->build(['controller' => 'sanpham', 'action' => 'detail', $value['pro_id']]) ?>">
+                                            <?= $this->Html->image('../img/' . $value["pro_image"]) ?>
                                         </a>
                                     </div>
                                     <div class="span4">
@@ -119,7 +118,7 @@
 
                                         </p>
                                         <a class="btn btn-small pull-right"
-                                           href="<?=$this->Url->build(['controller'=>'sanpham','action'=>'detail',$value['pro_id']])?>">Xem
+                                           href="<?= $this->Url->build(['controller' => 'sanpham', 'action' => 'detail', $value['pro_id']]) ?>">Xem
                                             chi tiết</a>
                                         <br class="clr"/>
                                     </div>
@@ -144,8 +143,9 @@
                                                 <?php
                                                 if ($value['pro_quantity'] > 0) {
                                                     ?>
-                                                    <a href="addcart.php?proid=<?php echo $value['pro_id']; ?>"
-                                                       class="btn btn-large btn-primary"> Thêm vào <i
+                                                    <a href="javascript:void(0)"
+                                                       onclick="addcart(<?= $value->pro_id ?>)"
+                                                       class="btn btn-large btn-primary"> Add to <i
                                                                 class=" icon-shopping-cart"></i></a>
                                                     <?php
                                                 } else {
@@ -154,8 +154,8 @@
                                                     <?php
                                                 }
                                                 ?>
-                                                <a href="<?=$this->Url->build(['controller'=>'sanpham','action'=>'detail',$value['pro_id']])?>""
-                                                   class="btn btn-large"><i class="icon-zoom-in"></i></a>
+                                                <a href="<?= $this->Url->build(['controller' => 'sanpham', 'action' => 'detail', $value['pro_id']]) ?>""
+                                                class="btn btn-large"><i class="icon-zoom-in"></i></a>
                                             </div>
                                         </form>
                                     </div>
@@ -172,24 +172,23 @@
                                     ?>
                                     <li class="span3">
                                         <div class="thumbnail">
-                                            <a href="<?=$this->Url->build(['controller'=>'sanpham','action'=>'detail',$value['pro_id']])?>">
-                                                <?=$this->Html->image('../img/'.$value["pro_image"])?>
+                                            <a href="<?= $this->Url->build(['controller' => 'sanpham', 'action' => 'detail', $value['pro_id']]) ?>">
+                                                <?= $this->Html->image('../img/' . $value["pro_image"]) ?>
                                             </a>
                                             <div class="caption">
                                                 <h5><?php echo $value[2] ?></h5>
                                                 <p></p>
                                                 <h4 style="text-align:center">
                                                     <a class="btn"
-                                                       href="<?=$this->Url->build(['controller'=>'sanpham','action'=>'detail',$value['pro_id']])?>">
+                                                       href="<?= $this->Url->build(['controller' => 'sanpham', 'action' => 'detail', $value['pro_id']]) ?>">
                                                         <i class="icon-zoom-in"></i>
                                                     </a>
                                                     <?php
                                                     if ($value['pro_quantity'] > 0) {
                                                         ?>
-                                                        <a class="btn"
-                                                           href="addcart.php?proid=<?php echo $value['pro_id']; ?>">Thêm
-                                                            vào
-                                                            <i class="icon-shopping-cart"></i>
+                                                        <a class="btn" href="javascript:void(0)"
+                                                           onclick="addcart(<?= $value->pro_id ?>)">
+                                                            Add to <i class="icon-shopping-cart"></i>
                                                         </a>
                                                         <?php
                                                     } else {
@@ -231,3 +230,27 @@
         </div>
 
     </div>
+</div>
+<?php
+$url = Cake\Routing\Router::Url(['controller' => 'hoadon', 'action' => 'addcart']);
+$url2 = Cake\Routing\Router::Url(['controller' => 'hoadon', 'action' => 'addcartwithquan']);
+?>
+<script>
+    var url = "<?=$url?>";
+    var url2 = "<?=$url2?>";
+    console.log(url);
+    console.log(url2);
+    $(document).ready(function () {
+        console.log($('#formcart').serialize());
+        $('.addcart').click(function(){
+            $.ajax({
+                type: 'POST',
+                url: url,
+                data: $('#formcart').serialize(),
+                success: function(data){
+
+                }
+            });
+        });
+    });
+</script>

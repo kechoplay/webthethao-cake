@@ -7,12 +7,12 @@
             <div class="span6">
                 <div class="pull-right">
                     <a href="cart.php"><span class="btn btn-mini btn-primary"><i
-                                    class="icon-shopping-cart icon-white"></i> [ <span id="cart">0</span> ] sản phẩm trong giỏ hàng </span>
+                                    class="icon-shopping-cart icon-white"></i> [ <span id="cart"><?= $countCart ?></span> ] sản phẩm trong giỏ hàng </span>
                     </a>
                 </div>
             </div>
         </div>
-<!--        --><?//= $cart?>
+        <!--        --><? //= $cart?>
         <!-- Navbar ================================================== -->
         <div id="logoArea" class="navbar">
             <a id="smallScreen" data-target="#topMenu" data-toggle="collapse" class="btn btn-navbar">
@@ -25,9 +25,12 @@
                     <?= $this->Html->image('logo/logoheader.png', ["alt" => "tungshop.esy.es", "style" => ['width:65%']]) ?>
                 </a>
                 <ul id="topMenu" class="nav pull-right">
-                    <li class=""><a href="<?=$this->Url->build(['controller'=>'sanpham','action'=>'index'])?>">Sản phẩm</a></li>
-                    <li class=""><a href="<?=$this->Url->build('/search')?>">Tìm kiếm</a></li>
-                    <li class=""><a href="<?=$this->Url->build(['controller'=>'sanpham','action'=>'discount'])?>">Giảm giá</a></li>
+                    <li class=""><a href="<?= $this->Url->build(['controller' => 'sanpham', 'action' => 'index']) ?>">Sản
+                            phẩm</a></li>
+                    <li class=""><a href="<?= $this->Url->build('/search') ?>">Tìm kiếm</a></li>
+                    <li class=""><a
+                                href="<?= $this->Url->build(['controller' => 'sanpham', 'action' => 'discount']) ?>">Giảm
+                            giá</a></li>
                     <li class=""><a href="contact.php">Liên hệ</a></li>
                     <li class="">
                         <a href="#login" role="button" data-toggle="modal" style="padding-right:0"><span

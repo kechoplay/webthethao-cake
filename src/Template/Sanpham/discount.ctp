@@ -47,9 +47,9 @@
                             <h4 style="text-decoration:line-through;"><?php echo number_format($value['pro_price']); ?>
                                 VNĐ</h4>
                             <br/>
-                            <a href="addcart.php?proid=<?php echo $value['pro_id']; ?>"
-                               class="btn btn-large btn-primary"> Thêm vào <i class=" icon-shopping-cart"></i></a>
-                            <a href="<?=$this->Url->build(['controller'=>'sanpham','action'=>'detail',$value['pro_id']])?>"
+                            <a href="javascript:void(0)" onclick="addcart(<?= $value->pro_id ?>)"
+                               class="btn btn-large btn-primary"> Add to <i class=" icon-shopping-cart"></i></a>
+                            <a href="<?= $this->Url->build(['controller' => 'sanpham', 'action' => 'detail', $value['pro_id']]) ?>"
                                class="btn btn-large"><i class="icon-zoom-in"></i></a>
 
                         </form>
@@ -85,11 +85,11 @@
                                 </p>
                                 <h4 style="text-align:center">
                                     <a class="btn"
-                                       href="<?=$this->Url->build(['controller'=>'sanpham','action'=>'detail',$value['pro_id']])?>">
+                                       href="<?= $this->Url->build(['controller' => 'sanpham', 'action' => 'detail', $value['pro_id']]) ?>">
                                         <i class="icon-zoom-in"></i>
                                     </a>
-                                    <a class="btn" href="addcart.php?proid=<?php echo $value['pro_id']; ?>">Thêm vào <i
-                                                class="icon-shopping-cart"></i>
+                                    <a class="btn" href="javascript:void(0)" onclick="addcart(<?= $value->pro_id ?>)">Add
+                                        to <i class="icon-shopping-cart"></i>
                                     </a>
                                     <a class="btn btn-primary"
                                        href="#"><?= number_format($value['pro_price'] - $value['pro_discount']); ?>
@@ -129,3 +129,8 @@
     </div>
     <br class="clr"/>
 </div>
+<?php $url=Cake\Routing\Router::Url(['controller'=>'hoadon','action'=>'addcart']) ?>
+<script>
+    var url="<?=$url?>";
+    console.log(url);
+</script>
