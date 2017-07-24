@@ -121,7 +121,7 @@ use Cake\Routing\Router;
     </ul>
     <div id="cart"></div>
 </div>
-<?php $url=Cake\Routing\Router::Url(['controller'=>'hoadon','action'=>'addcart']) ?>
+<?php $url=Cake\Routing\Router::Url(['controller'=>'cart','action'=>'addcart']) ?>
 <script>
     var url="<?=$url?>";
     console.log(url);

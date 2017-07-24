@@ -29,39 +29,6 @@ class HoadonController extends AppController
         $this->set('_serialize', ['hoadon']);
     }
 
-    public function addcart($id)
-    {
-        $sanpham = TableRegistry::get('sanpham')->get($id);
-        $session = $this->request->session();
-        $sessioncart = $session->read('cart') ? $session->read('cart') : [];
-        if (array_key_exists($id, $sessioncart)) {
-            $sl = $sessioncart[$id]['sl'] + 1;
-        } else {
-            $sl = 1;
-        }
-        $sessioncart[$id] = array(
-            'id' => $id,
-            'name' => $sanpham->pro_name,
-            'image' => $sanpham->pro_image,
-            'price' => $sanpham->pro_price,
-            'discount' => $sanpham->pro_discount,
-            'sl' => $sl
-        );
-        $session->write('cart', $sessioncart);
-        $session->read('cart');
-        echo count($sessioncart);
-        die();
-//        echo $sanpham->pro_name;
-//        echo "<pre>";
-//        print_r($sessioncart);
-//        die();
-    }
-
-    public function addcartwithquan()
-    {
-
-    }
-
     /**
      * View method
      *

@@ -61,7 +61,9 @@
                                onchange="changequan(this.value)" placeholder="Qty."/>
                         Sô lượng : <?= ($sanpham['pro_quantity']) != 0 ? $sanpham['pro_quantity'] : "Hết hàng" ?>
                         <input type="hidden" name="quan" id="quan" value="<?= $sanpham['pro_quantity'] ?>">
-                        <button name="addcart" type="button" class="btn btn-large btn-primary pull-right"> Thêm giỏ hàng
+                        <input type="hidden" name="proid" id="proid" value="<?= $sanpham['pro_id'] ?>">
+                        <button name="addcart" id="addcart" type="button" class="btn btn-large btn-primary pull-right">
+                            Thêm giỏ hàng
                             <i class=" icon-shopping-cart"></i>
                         </button>
                     </div>
@@ -232,23 +234,26 @@
     </div>
 </div>
 <?php
-$url = Cake\Routing\Router::Url(['controller' => 'hoadon', 'action' => 'addcart']);
-$url2 = Cake\Routing\Router::Url(['controller' => 'hoadon', 'action' => 'addcartwithquan']);
+$url = Cake\Routing\Router::Url(['controller' => 'cart', 'action' => 'addcart']);
+$url2 = Cake\Routing\Router::Url(['controller' => 'cart', 'action' => 'addcartwithquan']);
+$url3 = Cake\Routing\Router::Url(['controller' => 'cart', 'action' => 'index']);
 ?>
 <script>
     var url = "<?=$url?>";
     var url2 = "<?=$url2?>";
-    console.log(url);
-    console.log(url2);
+    var url3 = "<?=$url3?>";
     $(document).ready(function () {
-        console.log($('#formcart').serialize());
-        $('.addcart').click(function(){
+        $('#addcart').click(function () {
             $.ajax({
-                type: 'POST',
-                url: url,
+                type: 'post',
+                url: url2,
                 data: $('#formcart').serialize(),
-                success: function(data){
-
+                success: function (data) {
+                    $('span#cart').html(data);
+                    window.location=url3;
+                },
+                error: function (data) {
+                    alert('fail');
                 }
             });
         });

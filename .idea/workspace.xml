@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0f7ba4cc-598c-46b7-bb7c-ed35ed7e3be7" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/webroot/js/addcart.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Controller/CartController.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tmp/cache/models/myapp_cake_model_debug_kit_panels" afterPath="$PROJECT_DIR$/tmp/cache/models/myapp_cake_model_debug_kit_panels" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tmp/cache/models/myapp_cake_model_debug_kit_requests" afterPath="$PROJECT_DIR$/tmp/cache/models/myapp_cake_model_debug_kit_requests" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tmp/cache/models/myapp_cake_model_default_danhmuc" afterPath="$PROJECT_DIR$/tmp/cache/models/myapp_cake_model_default_danhmuc" />
@@ -16,16 +15,8 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/logs/debug.log" afterPath="$PROJECT_DIR$/logs/debug.log" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/logs/error.log" afterPath="$PROJECT_DIR$/logs/error.log" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Controller/AppController.php" afterPath="$PROJECT_DIR$/src/Controller/AppController.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Controller/HoadonController.php" afterPath="$PROJECT_DIR$/src/Controller/HoadonController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Template/Danhmuc/view.ctp" afterPath="$PROJECT_DIR$/src/Template/Danhmuc/view.ctp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Template/Element/layouts/header.ctp" afterPath="$PROJECT_DIR$/src/Template/Element/layouts/header.ctp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Template/Element/layouts/slidebar.ctp" afterPath="$PROJECT_DIR$/src/Template/Element/layouts/slidebar.ctp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Template/Home/index.ctp" afterPath="$PROJECT_DIR$/src/Template/Home/index.ctp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Template/Layout/default2.ctp" afterPath="$PROJECT_DIR$/src/Template/Layout/default2.ctp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Template/Sanpham/detail.ctp" afterPath="$PROJECT_DIR$/src/Template/Sanpham/detail.ctp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Template/Sanpham/discount.ctp" afterPath="$PROJECT_DIR$/src/Template/Sanpham/discount.ctp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Template/Sanpham/index.ctp" afterPath="$PROJECT_DIR$/src/Template/Sanpham/index.ctp" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -59,13 +50,11 @@
       <file leaf-file-name="detail.ctp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Template/Sanpham/detail.ctp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
-              <caret line="46" column="49" lean-forward="false" selection-start-line="46" selection-start-column="49" selection-end-line="46" selection-end-column="49" />
+            <state relative-caret-position="434">
+              <caret line="252" column="36" lean-forward="false" selection-start-line="252" selection-start-column="36" selection-end-line="252" selection-end-column="36" />
               <folding>
                 <element signature="n#div#2;n#div#0;n#div#0;n#!!top" expanded="false" />
-                <element signature="n#div#0;n#div#2;n#div#0;n#div#0;n#!!top" expanded="false" />
-                <element signature="n#div#1;n#div#1;n#div#0;n#div#2;n#div#0;n#div#0;n#!!top" expanded="false" />
-                <element signature="n#div#0;n#div#1;n#div#1;n#div#0;n#div#2;n#div#0;n#div#0;n#!!top" expanded="false" />
+                <element signature="n#div#1;n#div#0;n#div#2;n#div#0;n#div#0;n#!!top" expanded="false" />
                 <element signature="n#div#1;n#div#1;n#div#1;n#div#0;n#div#2;n#div#0;n#div#0;n#!!top" expanded="false" />
               </folding>
             </state>
@@ -102,13 +91,25 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="HoadonController.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="HoadonController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Controller/HoadonController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="51" column="33" lean-forward="true" selection-start-line="51" selection-start-column="33" selection-end-line="51" selection-end-column="33" />
+            <state relative-caret-position="153">
+              <caret line="29" column="5" lean-forward="false" selection-start-line="29" selection-start-column="5" selection-end-line="29" selection-end-column="5" />
               <folding>
                 <element signature="e#34#67#0#PHP" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CartController.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/Controller/CartController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="417">
+              <caret line="88" column="18" lean-forward="true" selection-start-line="88" selection-start-column="18" selection-end-line="88" selection-end-column="18" />
+              <folding>
+                <element signature="e#121#154#0#PHP" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -167,7 +168,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/Template/Error/error400.ctp" />
         <option value="$PROJECT_DIR$/src/Template/Layout/error.ctp" />
         <option value="$PROJECT_DIR$/src/Controller/DanhmucController.php" />
         <option value="$PROJECT_DIR$/src/Controller/SanphamController.php" />
@@ -218,6 +218,7 @@
         <option value="$PROJECT_DIR$/webroot/js/addcart.js" />
         <option value="$PROJECT_DIR$/src/Controller/HoadonController.php" />
         <option value="$PROJECT_DIR$/src/Template/Sanpham/detail.ctp" />
+        <option value="$PROJECT_DIR$/src/Controller/CartController.php" />
       </list>
     </option>
   </component>
@@ -280,6 +281,7 @@
     </navigator>
     <panes>
       <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -355,7 +357,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -482,11 +483,12 @@
       <workItem from="1500733366960" duration="5196000" />
       <workItem from="1500795527342" duration="8187000" />
       <workItem from="1500817540428" duration="4124000" />
+      <workItem from="1500902391565" duration="5655000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="172106000" />
+    <option name="totallyTimeSpent" value="177761000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
@@ -522,13 +524,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/Template/Admin/Danhmuc/index.ctp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="18" column="12" lean-forward="true" selection-start-line="18" selection-start-column="12" selection-end-line="18" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Template/Element/layoutadmin/header.ctp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
@@ -870,26 +865,34 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/Controller/HoadonController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="29" column="5" lean-forward="false" selection-start-line="29" selection-start-column="5" selection-end-line="29" selection-end-column="5" />
+          <folding>
+            <element signature="e#34#67#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/Template/Sanpham/detail.ctp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="46" column="49" lean-forward="false" selection-start-line="46" selection-start-column="49" selection-end-line="46" selection-end-column="49" />
+        <state relative-caret-position="434">
+          <caret line="252" column="36" lean-forward="false" selection-start-line="252" selection-start-column="36" selection-end-line="252" selection-end-column="36" />
           <folding>
             <element signature="n#div#2;n#div#0;n#div#0;n#!!top" expanded="false" />
-            <element signature="n#div#0;n#div#2;n#div#0;n#div#0;n#!!top" expanded="false" />
-            <element signature="n#div#1;n#div#1;n#div#0;n#div#2;n#div#0;n#div#0;n#!!top" expanded="false" />
-            <element signature="n#div#0;n#div#1;n#div#1;n#div#0;n#div#2;n#div#0;n#div#0;n#!!top" expanded="false" />
+            <element signature="n#div#1;n#div#0;n#div#2;n#div#0;n#div#0;n#!!top" expanded="false" />
             <element signature="n#div#1;n#div#1;n#div#1;n#div#0;n#div#2;n#div#0;n#div#0;n#!!top" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Controller/HoadonController.php">
+    <entry file="file://$PROJECT_DIR$/src/Controller/CartController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="51" column="33" lean-forward="true" selection-start-line="51" selection-start-column="33" selection-end-line="51" selection-end-column="33" />
+        <state relative-caret-position="417">
+          <caret line="88" column="18" lean-forward="true" selection-start-line="88" selection-start-column="18" selection-end-line="88" selection-end-column="18" />
           <folding>
-            <element signature="e#34#67#0#PHP" expanded="true" />
+            <element signature="e#121#154#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
