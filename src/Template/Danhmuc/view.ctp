@@ -159,7 +159,7 @@
     </div>
     <br class="clr"/>
 </div>
-<?php $url=Cake\Routing\Router::Url(['controller'=>'hoadon','action'=>'addcart']) ?>
+<?php $url=Cake\Routing\Router::Url(['controller'=>'cart','action'=>'addcart']) ?>
 <script>
     var url="<?=$url?>";
     console.log(url);

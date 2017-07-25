@@ -4,7 +4,7 @@
             <!-- Sidebar ================================================== -->
             <div id="sidebar" class="span3">
                 <div class="well well-small">
-                    <a id="myCart" href="cart.php">
+                    <a id="myCart" href="<?=$this->Url->build(['controller'=>'cart','action'=>'index'])?>">
                         <?= $this->Html->image('ico-cart.png', ["alt" => "cart"]) ?> <span id="cart"><?= $countCart ?></span> sản phẩm trong giỏ hàng
                     </a>
                 </div>

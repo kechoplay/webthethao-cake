@@ -26,10 +26,10 @@ class CartController extends AppController
      */
     public function index()
     {
-        $hoadon = ($this->Hoadon);
-
-        $this->set(compact('hoadon'));
-        $this->set('_serialize', ['hoadon']);
+        $sessioncart=$this->request->session();
+        $mycart=$sessioncart->read('cart');
+        $this->set('mycart',$mycart);
+        $this->set('title','Giỏ hàng');
     }
 
     public function addcart($id=null)
@@ -48,8 +48,9 @@ class CartController extends AppController
             'image' => $sanpham->pro_image,
             'price' => $sanpham->pro_price,
             'discount' => $sanpham->pro_discount,
+            'quantity' => $sanpham->pro_quantity,
             'sl' => $sl
-        );
+            );
         $session->write('cart', $sessioncart);
         $session->read('cart');
         echo count($sessioncart);
@@ -79,29 +80,26 @@ class CartController extends AppController
                 'image' => $sanpham->pro_image,
                 'price' => $sanpham->pro_price,
                 'discount' => $sanpham->pro_discount,
+                'quantity' => $sanpham->pro_quantity,
                 'sl' => $sl
-            );
+                );
             $session->write('cart',$sessioncart);
             echo count($sessioncart);
             die();
         }
     }
 
-    /**
-     * View method
-     *
-     * @param string|null $id Hoadon id.
-     * @return \Cake\Network\Response|null
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
-     */
-    public function view($id = null)
+    public function delcart($id = null)
     {
-        $hoadon = $this->Hoadon->get($id, [
-            'contain' => ['Khachhang']
-        ]);
-
-        $this->set('hoadon', $hoadon);
-        $this->set('_serialize', ['hoadon']);
+        $session=$this->request->session();
+        $sessioncart=$session->read('cart');
+        if (count($sessioncart)!=1 && count($sessioncart)>0 ) {
+            unset($sessioncart[$id]);
+            $session->write('cart',$sessioncart);
+        }else{
+            $session->delete('cart');
+        }
+        $this->redirect(['action'=>'index']);
     }
 
     /**
@@ -137,7 +135,7 @@ class CartController extends AppController
     {
         $hoadon = $this->Hoadon->get($id, [
             'contain' => []
-        ]);
+            ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
             $hoadon = $this->Hoadon->patchEntity($hoadon, $this->request->data);
             if ($this->Hoadon->save($hoadon)) {
