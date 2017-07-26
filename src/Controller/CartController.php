@@ -72,7 +72,7 @@ class CartController extends AppController
             if (array_key_exists($id,$sessioncart)){
                 $sl=$sessioncart[$id]['sl']+$number;
             }else{
-                $sl=1;
+                $sl=$number;
             }
             $sessioncart[$id]=array(
                 'id' => $id,
