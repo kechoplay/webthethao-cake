@@ -51,7 +51,11 @@
 		</table>	
 		
 	
+<<<<<<< HEAD
 	<form method="POST">
+=======
+	<form id="form-cart">
+>>>>>>> origin/master
 		<table class="table table-bordered">
 			<thead>
 				<tr>
@@ -77,8 +81,18 @@
 							<td><?=$value['name']; ?><br/></td>
 							<td>
 								<div class="input-append">
+<<<<<<< HEAD
 									<input class="span1" style="max-width:34px" placeholder="1" id="appendedInputButtons" onkeypress="return numberOnly(this, event);" size="16" name="num[<?=$value['id']; ?>]" type="text" value="<?=$value['sl']; ?>" >
 									<a href="<?=$this->Url->build(['action'=>'delcart',$value['id']])?>"><button class="btn btn-danger" type="button" onclick="return xacnhanxoa();" name="del"><i class="icon-remove icon-white"></i></button></a>
+=======
+									<input class="span1" style="max-width:34px" placeholder="1" id="appendedInputButtons"
+                                           onkeypress="return numberOnly(this, event);" size="16" name="num[<?=$value['id']; ?>]" type="text" value="<?=$value['sl']; ?>" >
+									<a href="<?=$this->Url->build(['action'=>'delcart',$value['id']])?>">
+                                        <button class="btn btn-danger" type="button" onclick="return xacnhanxoa();" name="del">
+                                            <i class="icon-remove icon-white"></i>
+                                        </button>
+                                    </a>
+>>>>>>> origin/master
 									<input type="hidden" value="<?=$value['quantity']; ?>" name="quan" />
 								</div>
 							</td>
@@ -97,7 +111,11 @@
 					<tr><td colspan="6">Không có sản phẩm trong giỏ hàng</td></tr>
 				<?php endif; ?>
 				<tr>
+<<<<<<< HEAD
 					<td colspan="6"><input type="submit" name="capnhat" value="Cập nhật giỏ hàng"></td>
+=======
+					<td colspan="6"><input type="button" name="capnhat" id="capnhat" value="Cập nhật giỏ hàng"></td>
+>>>>>>> origin/master
 				</tr>
 				<tr>
 					<td colspan="5" style="text-align:right">Total Price:	</td>
@@ -114,6 +132,7 @@
 			</tbody>
 		</table>
 	</form>
+<<<<<<< HEAD
 	<script type="text/javascript">
 		function numberOnly(myfield, e){
 			var key,keychar;
@@ -143,3 +162,48 @@
 		<h4 class="pull-right">Bạn hãy đăng nhập để được thanh toán</h4>
 
 </div>
+=======
+	<a href="<?=$this->Url->build(['controller'=>'sanpham','action'=>'index'])?>" class="btn btn-large"><i class="icon-arrow-left"></i> Continue Shopping </a>
+
+
+    <a href="payment.php" class="btn btn-large pull-right">Next <i class="icon-arrow-right"></i></a>
+
+
+
+    <h4 class="pull-right">Bạn hãy đăng nhập để được thanh toán</h4>
+
+</div>
+<script type="text/javascript">
+    function numberOnly(myfield, e){
+        var key,keychar;
+        if (window.event){
+            key = window.event.keyCode
+        }else if (e){
+            key = e.which
+        }else{
+            return true
+        }
+        keychar = String.fromCharCode(key);
+        if ((key==null) || (key==0) || (key==8) || (key==9) || (key==13) || (key==27)){
+            return true
+        }else if (("0123456789").indexOf(keychar) > -1){
+            return true
+        }
+        return false;
+    }
+    jQuery(document).ready(function () {
+        $('#capnhat').click(function () {
+            console.log($('#form-cart').serialize());
+            $.ajax({
+                type:'post',
+                url:'/cart/update',
+                data: $('#form-cart').serialize(),
+                success : function (data) {
+                    var data=JSON.parse(data);
+                    console.log(data);
+                }
+            });
+        });
+    })
+</script>
+>>>>>>> origin/master

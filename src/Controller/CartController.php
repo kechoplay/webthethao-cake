@@ -28,6 +28,12 @@ class CartController extends AppController
     {
         $sessioncart=$this->request->session();
         $mycart=$sessioncart->read('cart');
+<<<<<<< HEAD
+=======
+//        echo "<pre>";
+//        print_r($mycart);
+//        die();
+>>>>>>> origin/master
         $this->set('mycart',$mycart);
         $this->set('title','Giỏ hàng');
     }
@@ -72,7 +78,11 @@ class CartController extends AppController
             if (array_key_exists($id,$sessioncart)){
                 $sl=$sessioncart[$id]['sl']+$number;
             }else{
+<<<<<<< HEAD
                 $sl=1;
+=======
+                $sl=$number;
+>>>>>>> origin/master
             }
             $sessioncart[$id]=array(
                 'id' => $id,
@@ -102,6 +112,7 @@ class CartController extends AppController
         $this->redirect(['action'=>'index']);
     }
 
+<<<<<<< HEAD
     /**
      * Add method
      *
@@ -169,5 +180,17 @@ class CartController extends AppController
         }
 
         return $this->redirect(['action' => 'index']);
+=======
+    public function update()
+    {
+        if ($this->request->is('post')){
+            $number=$this->request->data('num');
+            foreach ($number as $value){
+//                if ()
+            }
+            print_r($number);
+            die();
+        }
+>>>>>>> origin/master
     }
 }
