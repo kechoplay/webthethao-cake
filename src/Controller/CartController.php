@@ -28,6 +28,9 @@ class CartController extends AppController
     {
         $sessioncart=$this->request->session();
         $mycart=$sessioncart->read('cart');
+//        echo "<pre>";
+//        print_r($mycart);
+//        die();
         $this->set('mycart',$mycart);
         $this->set('title','Giỏ hàng');
     }
@@ -102,72 +105,15 @@ class CartController extends AppController
         $this->redirect(['action'=>'index']);
     }
 
-    /**
-     * Add method
-     *
-     * @return \Cake\Network\Response|null Redirects on successful add, renders view otherwise.
-     */
-    public function add()
+    public function update()
     {
-        $hoadon = $this->Hoadon->newEntity();
-        if ($this->request->is('post')) {
-            $hoadon = $this->Hoadon->patchEntity($hoadon, $this->request->data);
-            if ($this->Hoadon->save($hoadon)) {
-                $this->Flash->success(__('The hoadon has been saved.'));
-
-                return $this->redirect(['action' => 'index']);
+        if ($this->request->is('post')){
+            $number=$this->request->data('num');
+            foreach ($number as $value){
+//                if ()
             }
-            $this->Flash->error(__('The hoadon could not be saved. Please, try again.'));
+            print_r($number);
+            die();
         }
-        $khachhang = $this->Hoadon->Khachhang->find('list', ['limit' => 200]);
-        $this->set(compact('hoadon', 'khachhang'));
-        $this->set('_serialize', ['hoadon']);
-    }
-
-    /**
-     * Edit method
-     *
-     * @param string|null $id Hoadon id.
-     * @return \Cake\Network\Response|null Redirects on successful edit, renders view otherwise.
-     * @throws \Cake\Network\Exception\NotFoundException When record not found.
-     */
-    public function edit($id = null)
-    {
-        $hoadon = $this->Hoadon->get($id, [
-            'contain' => []
-            ]);
-        if ($this->request->is(['patch', 'post', 'put'])) {
-            $hoadon = $this->Hoadon->patchEntity($hoadon, $this->request->data);
-            if ($this->Hoadon->save($hoadon)) {
-                $this->Flash->success(__('The hoadon has been saved.'));
-
-                return $this->redirect(['action' => 'index']);
-            }
-            $this->Flash->error(__('The hoadon could not be saved. Please, try again.'));
-        }
-        $ords = $this->Hoadon->find('list', ['limit' => 200]);
-        $khachhang = $this->Hoadon->Khachhang->find('list', ['limit' => 200]);
-        $this->set(compact('hoadon', 'khachhang'));
-        $this->set('_serialize', ['hoadon']);
-    }
-
-    /**
-     * Delete method
-     *
-     * @param string|null $id Hoadon id.
-     * @return \Cake\Network\Response|null Redirects to index.
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
-     */
-    public function delete($id = null)
-    {
-        $this->request->allowMethod(['post', 'delete']);
-        $hoadon = $this->Hoadon->get($id);
-        if ($this->Hoadon->delete($hoadon)) {
-            $this->Flash->success(__('The hoadon has been deleted.'));
-        } else {
-            $this->Flash->error(__('The hoadon could not be deleted. Please, try again.'));
-        }
-
-        return $this->redirect(['action' => 'index']);
     }
 }
