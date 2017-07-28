@@ -27,7 +27,7 @@
 .alignR{text-align:right;}
 .control-label.alignL, .alignL{text-align:left;}
 .loginFrm{ margin-bottom:8px;}
-.loginFrm .control-group{padding:8px 14px 0; margin-bottom:0 }
+.loginFrm .control-group{padding:8px 14px 0; margin-bottom:0 !important; }
 /* Compair product page */
 .checkbox input[type="checkbox"]{ margin:4px 0 8px -20px }
 #sm{text-align:right}

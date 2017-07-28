@@ -8,6 +8,7 @@
 <?= $this->Html->css('bootstrap-responsive.min.css') ?>
 <?= $this->Html->css('font-awesome.css') ?>
 <?= $this->Html->script('jquery.min.js') ?>
+<?= $this->Html->script('jquery.validate.min.js') ?>
 <!--<link id="callCss" rel="stylesheet" href="css/bootstrap.min.css" media="screen"/>-->
 <!--<link href="css/base2.css" rel="stylesheet" media="screen"/>-->
 <!--<!-- Bootstrap style responsive -->

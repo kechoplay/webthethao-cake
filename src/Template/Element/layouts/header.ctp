@@ -2,7 +2,7 @@
     <div class="container">
         <div id="welcomeLine" class="row">
 
-            <div class="span6"><a href="login.php">Đăng nhập</div>
+            <div class="span6"><a href="<?=$this->Url->build(['controller'=>'khachhang','action'=>'register'])?>">Đăng ký</div>
 
             <div class="span6">
                 <div class="pull-right">
