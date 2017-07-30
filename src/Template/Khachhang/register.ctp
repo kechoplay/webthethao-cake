@@ -10,9 +10,9 @@
             <button type="button" class="close" data-dismiss="alert">×</button>
             <strong>Lorem Ipsum is simply dummy</strong> text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s
          </div>-->
-        <div class="alert fade in">
+        <div class="alert alert-success fade in" style="display:none;">
             <button type="button" class="close" data-dismiss="alert">×</button>
-            <strong>Lorem Ipsum is simply dummy</strong> text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s
+            
          </div>
         <div class="alert alert-block fade in" style="display:none;">
             <button type="button" class="close" data-dismiss="alert">×</button>
@@ -29,7 +29,7 @@
             <div class="control-group">
                 <label class="control-label" for="password">Password <sup>*</sup></label>
                 <div class="controls">
-                    <input type="password" id="password" name="password" placeholder="Password" pattern="/^[A-Z]{1}[a-zA-Z0-9]{6,32}$/">
+                    <input type="password" id="password" name="password" placeholder="Password" pattern="/^[A-Z]{1}[a-zA-Z0-9]{6,32}$/"> (Mật khẩu phải bắt đầu bằng chữ in hoa và có từ 6 đến 32 ký tự)
                 </div>
             </div>
             <div class="control-group">
@@ -135,13 +135,20 @@
                 console.log($(form).serialize());
                 $.ajax({
                     type:'post',
-                    url:'/khachhang/register',
+                    // url:'/register',
                     data:$(form).serialize(),
                     success: function (data) {
                         var data=JSON.parse(data);
                         console.log(data);
                         if (data.success){
-
+                            $('.alert-success').css('display','block');
+                            $('.alert-success').html(data.message);
+                            setTimeout(function(){
+                                location.reload();
+                            },3000);
+                        }else{
+                            $('.alert-block').css('display','block');
+                            $('.alert-block').html(data.message);
                         }
                     }
                 });

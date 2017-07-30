@@ -26,9 +26,9 @@ class KhachhangController extends AppController
 
     public function register()
     {
+        $khachhang=$this->Khachhang;
+        $user=$this->Khachhang->newEntity();
         if($this->request->is('post')){
-            $khachhang=$this->Khachhang;
-            $user=$this->Khachhang->newEntity();
             $userdata=$this->request->getData();
             $username=$khachhang->find('all')->where(['username'=>$userdata['username']])->count();
             $email=$khachhang->find('all')->where(['email'=>$userdata['email']])->count();
@@ -36,29 +36,37 @@ class KhachhangController extends AppController
                 $return =array(
                     'success' => false,
                     'message' => "Tên đăng nhập đã tồn tại"
-                );
+                    );
             }
             if ($email>0){
                 $return =array(
                     'success' => false,
                     'message' => "email đã tồn tại"
-                );
+                    );
             }
-            foreach ($user as $key => $value){
+            if (!preg_match("/^[A-Z]{1}[a-zA-Z0-9]{6,32}$/", $userdata['password'])) {
+                $return =array(
+                    'success' => false,
+                    'message' => "Mật khẩu không đúng định dạng"
+                    );
+            }
+            foreach ($userdata as $key => $value){
                 if ($key=="repassword"){
-                    unset($user[$key]);
+                    unset($userdata[$key]);
                 }
             }
-            $user=$this->Khachhang->patchEntity($user,$userdata);
+            $user=$khachhang->patchEntity($user,$userdata);
             if ($khachhang->save($user)){
                 $return = array(
                     'success' => true,
                     'message' => "Bạn đã đăng ký thành công"
-                );
+                    );
             }
             echo json_encode($return);
+            die();
+        }else{
+            $this->set('title','Đăng ký');
         }
-        $this->set('title','Đăng ký');
     }
 
     /**
@@ -109,7 +117,7 @@ class KhachhangController extends AppController
     {
         $khachhang = $this->Khachhang->get($id, [
             'contain' => []
-        ]);
+            ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
             $khachhang = $this->Khachhang->patchEntity($khachhang, $this->request->data);
             if ($this->Khachhang->save($khachhang)) {

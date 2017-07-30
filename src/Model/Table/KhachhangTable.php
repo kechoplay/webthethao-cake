@@ -79,10 +79,10 @@ class KhachhangTable extends Table
             ->requirePresence('address', 'create')
             ->notEmpty('address');
 
-        $validator
-            ->boolean('status')
-            ->requirePresence('status', 'create')
-            ->notEmpty('status');
+        // $validator
+        //     ->boolean('status')
+        //     ->requirePresence('status', 'create')
+        //     ->notEmpty('status');
 
         return $validator;
     }
@@ -104,7 +104,4 @@ class KhachhangTable extends Table
         return $rules;
     }
 
-    public function checkusername($username){
-
-    }
 }

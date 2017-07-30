@@ -41,7 +41,7 @@
                                 <h3>Đăng nhập</h3>
                             </div>
                             <div class="modal-body">
-                                <form class="form-horizontal loginFrm" method="POST">
+                                <form class="form-horizontal loginFrm" id="form-login">
                                     <div class="control-group">
                                         <input type="text" id="inputEmail" name="inputUsername" placeholder="Username">
                                     </div>
@@ -50,7 +50,7 @@
                                                placeholder="Password">
                                     </div>
                                     <div class="control-group">
-                                        <button type="submit" name="login" class="btn btn-success">Đăng nhập</button>
+                                        <input type="submit" name="login" class="btn btn-success" value="Đăng nhập">
                                         <button class="btn" data-dismiss="modal" aria-hidden="true">Đóng</button>
                                     </div>
 
@@ -64,3 +64,20 @@
         </div>
     </div>
 </div>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('#form-login').validate({
+            rules : {
+                inputUsername : "required",
+                inputPassword : "required"
+            },
+            messages : {
+                inputUsername : "Bạn hãy điền đủ thông tin",
+                inputPassword : "Bạn hãy điền đủ thông tin"
+            },
+            submitHandler : function(form){
+
+            }
+        });
+    });
+</script>
