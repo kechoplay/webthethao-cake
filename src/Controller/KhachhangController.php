@@ -89,21 +89,33 @@ class KhachhangController extends AppController
      *
      * @return \Cake\Network\Response|null Redirects on successful add, renders view otherwise.
      */
-    public function add()
+    public function login()
     {
-        $khachhang = $this->Khachhang->newEntity();
-        if ($this->request->is('post')) {
-            $khachhang = $this->Khachhang->patchEntity($khachhang, $this->request->data);
-            if ($this->Khachhang->save($khachhang)) {
-                $this->Flash->success(__('The khachhang has been saved.'));
-
-                return $this->redirect(['action' => 'index']);
+        if ($this->request->is('post')){
+            $user=$this->Auth->identify();
+            if ($user){
+                if ($user['status']==1) {
+                    $this->Auth->setUser($user);
+                    $return = array(
+                        'success' => true
+                    );
+                }else{
+                    $return = array(
+                        'success' => false,
+                        'message' => 'Tài khoản chưa kích hoạt'
+                    );
+                }
+            }else{
+                $return = array(
+                    'success' => false,
+                    'message' => 'Tên đăng nhập hoặc mật khẩu chưa đúng'
+                );
             }
-            $this->Flash->error(__('The khachhang could not be saved. Please, try again.'));
+            echo json_encode($this->Auth->identify());
+//            die();
+        }else{
+            return $this->redirect($this->referer());
         }
-        $cuses = $this->Khachhang->find('list', ['limit' => 200]);
-        $this->set(compact('khachhang', 'cuses'));
-        $this->set('_serialize', ['khachhang']);
     }
 
     /**

@@ -2,12 +2,16 @@
     <div class="container">
         <div id="welcomeLine" class="row">
 
-            <div class="span6"><a href="<?=$this->Url->build(['controller'=>'khachhang','action'=>'register'])?>">Đăng ký</div>
+            <div class="span6"><a
+                        href="<?= $this->Url->build(['controller' => 'khachhang', 'action' => 'register']) ?>">Đăng ký
+            </div>
 
             <div class="span6">
                 <div class="pull-right">
-                    <a href="<?=$this->Url->build(['controller'=>'cart','action'=>'index'])?>"><span class="btn btn-mini btn-primary"><i
-                                    class="icon-shopping-cart icon-white"></i> [ <span id="cart"><?= $countCart ?></span> ] sản phẩm trong giỏ hàng </span>
+                    <a href="<?= $this->Url->build(['controller' => 'cart', 'action' => 'index']) ?>"><span
+                                class="btn btn-mini btn-primary"><i
+                                    class="icon-shopping-cart icon-white"></i> [ <span
+                                    id="cart"><?= $countCart ?></span> ] sản phẩm trong giỏ hàng </span>
                     </a>
                 </div>
             </div>
@@ -42,11 +46,12 @@
                             </div>
                             <div class="modal-body">
                                 <form class="form-horizontal loginFrm" id="form-login">
+                                    <p id="message"></p>
                                     <div class="control-group">
-                                        <input type="text" id="inputEmail" name="inputUsername" placeholder="Username">
+                                        <input type="text" id="inputEmail" name="inputUser" placeholder="Username">
                                     </div>
                                     <div class="control-group">
-                                        <input type="password" id="inputPassword" name="inputPassword"
+                                        <input type="password" id="inputPassword" name="inputPass"
                                                placeholder="Password">
                                     </div>
                                     <div class="control-group">
@@ -64,19 +69,34 @@
         </div>
     </div>
 </div>
+<?php $urlLogin = Cake\Routing\Router::Url(['controller' => 'khachhang', 'action' => 'login']) ?>
 <script type="text/javascript">
-    $(document).ready(function(){
+    var urlLogin = "<?=$urlLogin?>";
+    $(document).ready(function () {
         $('#form-login').validate({
-            rules : {
-                inputUsername : "required",
-                inputPassword : "required"
+            rules: {
+                inputUser: "required",
+                inputPass: "required"
             },
-            messages : {
-                inputUsername : "Bạn hãy điền đủ thông tin",
-                inputPassword : "Bạn hãy điền đủ thông tin"
+            messages: {
+                inputUser: "Bạn hãy điền đủ thông tin",
+                inputPass: "Bạn hãy điền đủ thông tin"
             },
-            submitHandler : function(form){
-
+            submitHandler: function (form) {
+                $.ajax({
+                    type: 'post',
+                    url: urlLogin,
+                    data: $(form).serialize(),
+                    success: function (data) {
+                        console.log(data);
+                        var obj = JSON.parse(data);
+                        if (obj.success) {
+                            location.reload();
+                        }else{
+                            $('#message').html(obj.message);
+                        }
+                    }
+                });
             }
         });
     });
