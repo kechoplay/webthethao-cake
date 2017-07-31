@@ -148,6 +148,7 @@
                             },3000);
                         }else{
                             $('.alert-block').css('display','block');
+                            $('.alert-success').css('display','none');
                             $('.alert-block').html(data.message);
                         }
                     }

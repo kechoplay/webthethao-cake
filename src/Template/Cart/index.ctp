@@ -16,7 +16,7 @@
         </tr>
         <tr>
             <td>
-                <form class="form-horizontal" method="POST">
+                <!-- <form class="form-horizontal" method="POST">
                     <div class="control-group">
                         <label class="control-label" for="inputUsername">Tên dăng nhập</label>
                         <div class="controls">
@@ -40,7 +40,7 @@
                             <a href="forgetpass.php" style="text-decoration:underline">Quên mật khẩu ?</a>
                         </div>
                     </div>
-                </form>
+                </form> -->
             </td>
         </tr>
     </table>

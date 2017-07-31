@@ -52,16 +52,16 @@ class AppController extends Controller
         $this->loadComponent('Paginator');
         $this->loadComponent('Auth',[
             'authenticate' => [
-                'Form'=>[
-                    'fields' =>[
-                        'username' =>'username',
+                'Form' => [
+                    'fields' => [
+                        'username' => 'username',
                         'password' => 'password',
                         'status' => 1
                     ],
                     'userModel' => 'Khachhang'
                 ]
             ],
-            'loginAction' => array('controller' => 'Home', 'action' => 'index'),
+            // 'loginAction' => array('controller' => 'Home', 'action' => 'index'),
             'loginRedirect' => false,
             'logoutRedirect' => array('controller' => 'Khachhang', 'action' => 'logout'),
             'authError' => false
@@ -87,6 +87,7 @@ class AppController extends Controller
     public function beforeFilter(Event $event)
     {
         $this->Auth->allow();
+        $this->set('loginUser',$this->Auth->user);
         $session=$this->request->session();
         $countCart=0;
         if($session->check('cart')){

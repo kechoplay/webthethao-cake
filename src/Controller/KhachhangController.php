@@ -111,11 +111,16 @@ class KhachhangController extends AppController
                     'message' => 'Tên đăng nhập hoặc mật khẩu chưa đúng'
                 );
             }
-            echo json_encode($this->Auth->identify());
-//            die();
+            echo json_encode($return);
+           die();
         }else{
             return $this->redirect($this->referer());
         }
+    }
+
+    public function logout()
+    {
+        return $this->redirect($this->Auth->logout());
     }
 
     /**
