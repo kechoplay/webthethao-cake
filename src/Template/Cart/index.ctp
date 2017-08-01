@@ -10,40 +10,40 @@
         </a>
     </h3>
 	<hr class="soft"/>
-    <table class="table table-bordered">
-        <tr>
-            <th> TÔI SẴN SÀNG ĐĂNG NHẬP</th>
-        </tr>
-        <tr>
-            <td>
-                <!-- <form class="form-horizontal" method="POST">
-                    <div class="control-group">
-                        <label class="control-label" for="inputUsername">Tên dăng nhập</label>
-                        <div class="controls">
-                            <input type="text" id="inputUsername" name="inputUsername" placeholder="Username">
-                        </div>
-                    </div>
-                    <div class="control-group">
-                        <label class="control-label" for="inputPassword">Mật khẩu</label>
-                        <div class="controls">
-                            <input type="password" id="inputPassword" name="inputPassword" placeholder="Password">
-                        </div>
-                    </div>
-                    <div class="control-group">
-                        <div class="controls">
-                            <button type="submit" name="login" class="btn">Đăng nhập</button>
-                            HOẶC <a href="register.php" class="btn">Đăng ký ngay!</a>
-                        </div>
-                    </div>
-                    <div class="control-group">
-                        <div class="controls">
-                            <a href="forgetpass.php" style="text-decoration:underline">Quên mật khẩu ?</a>
-                        </div>
-                    </div>
-                </form> -->
-            </td>
-        </tr>
-    </table>
+<!--    <table class="table table-bordered">-->
+<!--        <tr>-->
+<!--            <th> TÔI SẴN SÀNG ĐĂNG NHẬP</th>-->
+<!--        </tr>-->
+<!--        <tr>-->
+<!--            <td>-->
+<!--                <form class="form-horizontal" method="POST">-->
+<!--                    <div class="control-group">-->
+<!--                        <label class="control-label" for="inputUsername">Tên dăng nhập</label>-->
+<!--                        <div class="controls">-->
+<!--                            <input type="text" id="inputUsername" name="inputUsername" placeholder="Username">-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="control-group">-->
+<!--                        <label class="control-label" for="inputPassword">Mật khẩu</label>-->
+<!--                        <div class="controls">-->
+<!--                            <input type="password" id="inputPassword" name="inputPassword" placeholder="Password">-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="control-group">-->
+<!--                        <div class="controls">-->
+<!--                            <button type="submit" name="login" class="btn">Đăng nhập</button>-->
+<!--                            HOẶC <a href="register.php" class="btn">Đăng ký ngay!</a>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="control-group">-->
+<!--                        <div class="controls">-->
+<!--                            <a href="forgetpass.php" style="text-decoration:underline">Quên mật khẩu ?</a>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </form>-->
+<!--            </td>-->
+<!--        </tr>-->
+<!--    </table>-->
 	<form id="form-cart">
 		<table class="table table-bordered">
 			<thead>
@@ -115,15 +115,20 @@
                             (<?= number_format($total) . " - " . number_format($totaldiscount); ?>) =</strong></td>
                     <td class="label label-important" style="display:block">
                         <strong> <?php echo number_format($totalall);
-                            $_SESSION['total'] = $totalall; ?> </strong></td>
+                            Cake\Network\Session::write('total',$totalall); ?> </strong></td>
                 </tr>
 			</tbody>
 		</table>
 	</form>
     <a href="<?= $this->Url->build(['controller' => 'sanpham', 'action' => 'index']) ?>" class="btn btn-large"><i
                 class="icon-arrow-left"></i> Continue Shopping </a>
-    <a href="payment.php" class="btn btn-large pull-right">Next <i class="icon-arrow-right"></i></a>
-    <h4 class="pull-right">Bạn hãy đăng nhập để được thanh toán</h4>
+    <?php if ($loginUser): ?>
+        <a href="<?= $this->Url->build('cart/checkout') ?>" class="btn btn-large pull-right">Next <i
+                    class="icon-arrow-right"></i></a>
+    <?php else: ?>
+        <a href="javascript:void(0)" data-toggle="modal" data-target="#login" class="btn btn-large pull-right">Next <i
+                    class="icon-arrow-right"></i></a>
+    <?php endif; ?>
 </div>
 <script type="text/javascript">
     function numberOnly(myfield, e) {

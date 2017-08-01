@@ -33,5 +33,9 @@ $description = 'Shop thể thao';
 
 <?php echo $this->element('layouts/footer') ?>
 
+<?php echo $this->element('Popup/login') ?>
+
+<?php echo $this->element('Popup/resetpass') ?>
+
 </body>
 </html>

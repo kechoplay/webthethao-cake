@@ -84,17 +84,13 @@ class KhachhangController extends AppController
         $this->set('_serialize', ['khachhang']);
     }
 
-    /**
-     * Add method
-     *
-     * @return \Cake\Network\Response|null Redirects on successful add, renders view otherwise.
-     */
     public function login()
     {
         if ($this->request->is('post')){
+//            echo '<pre>'; var_dump($this->Auth->identify());die('xxx');
             $user=$this->Auth->identify();
-            if ($user){
-                if ($user['status']==1) {
+            if($user){
+                if($user['status'] == 1){
                     $this->Auth->setUser($user);
                     $return = array(
                         'success' => true
@@ -112,9 +108,7 @@ class KhachhangController extends AppController
                 );
             }
             echo json_encode($return);
-           die();
-        }else{
-            return $this->redirect($this->referer());
+            die();
         }
     }
 

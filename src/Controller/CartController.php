@@ -28,11 +28,6 @@ class CartController extends AppController
     {
         $sessioncart=$this->request->session();
         $mycart=$sessioncart->read('cart');
-
-//        echo "<pre>";
-//        print_r($mycart);
-//        die();
-
         $this->set('mycart',$mycart);
         $this->set('title','Giỏ hàng');
     }
@@ -60,10 +55,6 @@ class CartController extends AppController
         $session->read('cart');
         echo count($sessioncart);
         die();
-//        echo $sanpham->pro_name;
-//        echo "<pre>";
-//        print_r($sessioncart);
-//        die();
     }
 
     public function addcartwithquan()
@@ -137,5 +128,13 @@ class CartController extends AppController
             echo json_encode($return);
             die();
         }
+    }
+
+    public function checkout()
+    {
+        if ($this->request->is('post')){
+
+        }
+        $this->set('title','Thanh toán');
     }
 }
