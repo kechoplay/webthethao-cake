@@ -8,6 +8,11 @@
 
 namespace App\Controller;
 
+use Cake\Core\Configure;
+use Cake\Network\Exception\ForbiddenException;
+use Cake\Network\Exception\NotFoundException;
+use Cake\View\Exception\MissingTemplateException;
+
 use App\Controller\AppController;
 use Cake\ORM\TableRegistry;
 
@@ -18,6 +23,14 @@ use Cake\ORM\TableRegistry;
  */
 class CartController extends AppController
 {
+
+    public function initialize()
+    {
+        parent::initialize();
+        $this->_tblproduct=TableRegistry::get('sanpham');
+        $this->_tblhoadon=TableRegistry::get('hoadon');
+        $this->_tblhoadonchitiet=TableRegistry::get('hoadonchitiet');
+    }
 
     /**
      * Index method
@@ -132,9 +145,32 @@ class CartController extends AppController
 
     public function checkout()
     {
+        $hoadon=$this->_tblhoadon->newEntity();
+        $session=$this->request->session();
         if ($this->request->is('post')){
-
+            $sessioncart=$session->read('cart');
+            foreach ($sessioncart as $key => $value) {
+                $id=$key;
+                $price=$value['price'];
+                $discount=$value['discount'];
+                $quantity=$value['quantity'];
+                $sl=$value['sl'];
+                $total=($price*$sl)-($discount*$sl);
+                $cusid=$this->Auth->user('cus_id');
+                $hoadon=$this->_tblhoadon->patchEntity($hoadon,$this->request->getData());
+                $hoadon->cus_id=$cusid;
+                $hoadon->total=$total;
+                if($this->_tblhoadon->save($hoadon)){
+                    $return = array(
+                        'success'=>'true',
+                        'message'=>'Bạn đã mua hàng thành công'
+                        );
+                }
+            }
+            echo json_encode($return);
+            die();
+        }else{
+            $this->set('title','Thanh toán');
         }
-        $this->set('title','Thanh toán');
     }
 }

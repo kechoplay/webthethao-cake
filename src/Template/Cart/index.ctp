@@ -114,8 +114,7 @@
                     <td colspan="5" style="text-align:right"><strong>TOTAL
                             (<?= number_format($total) . " - " . number_format($totaldiscount); ?>) =</strong></td>
                     <td class="label label-important" style="display:block">
-                        <strong> <?php echo number_format($totalall);
-                            Cake\Network\Session::write('total',$totalall); ?> </strong></td>
+                        <strong> <?php echo number_format($totalall);?> </strong></td>
                 </tr>
 			</tbody>
 		</table>
@@ -123,7 +122,7 @@
     <a href="<?= $this->Url->build(['controller' => 'sanpham', 'action' => 'index']) ?>" class="btn btn-large"><i
                 class="icon-arrow-left"></i> Continue Shopping </a>
     <?php if ($loginUser): ?>
-        <a href="<?= $this->Url->build('cart/checkout') ?>" class="btn btn-large pull-right">Next <i
+        <a href="<?= $this->Url->build('/cart/checkout') ?>" class="btn btn-large pull-right">Next <i
                     class="icon-arrow-right"></i></a>
     <?php else: ?>
         <a href="javascript:void(0)" data-toggle="modal" data-target="#login" class="btn btn-large pull-right">Next <i

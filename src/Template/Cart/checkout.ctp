@@ -1,6 +1,6 @@
 <div class="span9">
     <ul class="breadcrumb">
-        <li><a href="<?= $this->Url->build('home')?>">Trang chủ</a> <span class="divider">/</span></li>
+        <li><a href="<?= $this->Url->build('/home')?>">Trang chủ</a> <span class="divider">/</span></li>
         <li class="active">Thanh toán</li>
     </ul>
     <h3>Thanh toán</h3>
@@ -29,7 +29,7 @@
             <tr>
                 <td>Phương thức thanh toán : </td>
                 <td style="padding-left:52px;">
-                    <select name="tt">
+                    <select name="ord_payment">
                         <option value="Thanh toán trực tiếp">Thanh toán khi nhận hàng</option>
                     </select>
                 </td>
@@ -41,7 +41,6 @@
         </table>
     </form>
 </div>
-<?=Cake\Network\Session::read('total')?>
 <script type="text/javascript">
     function numberOnly(myfield, e){
         var key,keychar;
@@ -65,7 +64,7 @@
             rules : {
                 name : 'required',
                 address : 'required',
-                mobile : 'reqeuired'
+                mobile : 'required'
             },
             messages : {
                 name : "Không được để trống",
@@ -73,11 +72,16 @@
                 mobile : "Không được để trống"
             },
             submitHandler : function (form) {
+                console.log($(form).serialize());
                 $.ajax({
                     type: 'post',
-                    data : $(form).serialize();
+                    url:'checkout',
+                    data : $(form).serialize(),
                     success : function (data) {
-
+                        var obj=JSON.parse(data);
+                        if(obj.success){
+                            console.log(message);
+                        }
                     }
                 });
             }

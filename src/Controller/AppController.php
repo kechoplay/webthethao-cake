@@ -70,6 +70,13 @@ class AppController extends Controller
         //$this->loadComponent('Csrf');
     }
 
+    public function isAuthorized($user){
+        if (isset($user['status']) && $user['status'] === 1) {
+            return true;
+        }
+        return false;
+    }
+
     public function beforeRender(Event $event)
     {
         if (!array_key_exists('_serialize', $this->viewVars) &&
@@ -81,7 +88,7 @@ class AppController extends Controller
 
     public function beforeFilter(Event $event)
     {
-        $this->Auth->allow();
+        $this->Auth->allow(['index','detail','discount','home','login','logout','view']);
         $this->set('loginUser', $this->Auth->user());
         $session = $this->request->session();
         $countCart = 0;
