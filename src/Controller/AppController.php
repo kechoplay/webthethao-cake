@@ -88,7 +88,7 @@ class AppController extends Controller
 
     public function beforeFilter(Event $event)
     {
-        $this->Auth->allow(['index','detail','discount','home','login','logout','view']);
+        $this->Auth->allow(['index','detail','discount','home','login','logout','view','update','delcart','addcartwithquan','addcart','register']);
         $this->set('loginUser', $this->Auth->user());
         $session = $this->request->session();
         $countCart = 0;

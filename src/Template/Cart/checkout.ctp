@@ -72,13 +72,13 @@
                 mobile : "Không được để trống"
             },
             submitHandler : function (form) {
-                console.log($(form).serialize());
                 $.ajax({
                     type: 'post',
-                    url:'checkout',
+                    url:'/hoadon/add',
                     data : $(form).serialize(),
                     success : function (data) {
                         var obj=JSON.parse(data);
+                        console.log(obj);
                         if(obj.success){
                             console.log(message);
                         }

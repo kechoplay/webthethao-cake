@@ -15,6 +15,7 @@ use Cake\View\Exception\MissingTemplateException;
 
 use App\Controller\AppController;
 use Cake\ORM\TableRegistry;
+use Cake\ORM\Table;
 
 /**
  * Hoadon Controller
@@ -27,9 +28,6 @@ class CartController extends AppController
     public function initialize()
     {
         parent::initialize();
-        $this->_tblproduct=TableRegistry::get('sanpham');
-        $this->_tblhoadon=TableRegistry::get('hoadon');
-        $this->_tblhoadonchitiet=TableRegistry::get('hoadonchitiet');
     }
 
     /**
@@ -39,13 +37,13 @@ class CartController extends AppController
      */
     public function index()
     {
-        $sessioncart=$this->request->session();
-        $mycart=$sessioncart->read('cart');
-        $this->set('mycart',$mycart);
-        $this->set('title','Giỏ hàng');
+        $sessioncart = $this->request->session();
+        $mycart = $sessioncart->read('cart');
+        $this->set('mycart', $mycart);
+        $this->set('title', 'Giỏ hàng');
     }
 
-    public function addcart($id=null)
+    public function addcart($id = null)
     {
         $sanpham = TableRegistry::get('sanpham')->get($id);
         $session = $this->request->session();
@@ -63,7 +61,7 @@ class CartController extends AppController
             'discount' => $sanpham->pro_discount,
             'quantity' => $sanpham->pro_quantity,
             'sl' => $sl
-            );
+        );
         $session->write('cart', $sessioncart);
         $session->read('cart');
         echo count($sessioncart);
@@ -72,18 +70,18 @@ class CartController extends AppController
 
     public function addcartwithquan()
     {
-        $session=$this->request->session();
-        if($this->request->is('post')){
-            $id=$this->request->getData('proid');
-            $number=$this->request->getData('number');
+        $session = $this->request->session();
+        if ($this->request->is('post')) {
+            $id = $this->request->getData('proid');
+            $number = $this->request->getData('number');
             $sanpham = TableRegistry::get('sanpham')->get($id);
-            $sessioncart=$session->read('cart') ? $session->read('cart') : [];
-            if (array_key_exists($id,$sessioncart)){
-                $sl=$sessioncart[$id]['sl']+$number;
-            }else{
-                $sl=$number;
+            $sessioncart = $session->read('cart') ? $session->read('cart') : [];
+            if (array_key_exists($id, $sessioncart)) {
+                $sl = $sessioncart[$id]['sl'] + $number;
+            } else {
+                $sl = $number;
             }
-            $sessioncart[$id]=array(
+            $sessioncart[$id] = array(
                 'id' => $id,
                 'name' => $sanpham->pro_name,
                 'image' => $sanpham->pro_image,
@@ -91,8 +89,8 @@ class CartController extends AppController
                 'discount' => $sanpham->pro_discount,
                 'quantity' => $sanpham->pro_quantity,
                 'sl' => $sl
-                );
-            $session->write('cart',$sessioncart);
+            );
+            $session->write('cart', $sessioncart);
             echo count($sessioncart);
             die();
         }
@@ -100,44 +98,44 @@ class CartController extends AppController
 
     public function delcart($id = null)
     {
-        $session=$this->request->session();
-        $sessioncart=$session->read('cart');
-        if (count($sessioncart)!=1 && count($sessioncart)>0 ) {
+        $session = $this->request->session();
+        $sessioncart = $session->read('cart');
+        if (count($sessioncart) != 1 && count($sessioncart) > 0) {
             unset($sessioncart[$id]);
-            $session->write('cart',$sessioncart);
-        }else{
+            $session->write('cart', $sessioncart);
+        } else {
             $session->delete('cart');
         }
-        $this->redirect(['action'=>'index']);
+        $this->redirect(['action' => 'index']);
     }
 
 
     public function update()
     {
-        $session=$this->request->session();
-        $sessioncart=$session->read('cart');
-        if ($this->request->is('post')){
-            $number=$this->request->data('num');
-            $quan=$this->request->data('quan');
-            foreach ($number as $key => $value){
-                if (intval($value)>intval($quan)){
-                    $return =array(
+        $session = $this->request->session();
+        $sessioncart = $session->read('cart');
+        if ($this->request->is('post')) {
+            $number = $this->request->data('num');
+            $quan = $this->request->data('quan');
+            foreach ($number as $key => $value) {
+                if (intval($value) > intval($quan)) {
+                    $return = array(
                         'success' => false,
                         'message' => 'Số lượng bạn nhập nhiều hơn số lượng có trong shop'
-                        );
-                }elseif ($value==0 || $value=='') {
+                    );
+                } elseif ($value == 0 || $value == '') {
                     unset($sessioncart[$key]);
-                    $return =array(
+                    $return = array(
                         'success' => true
-                        );
-                }elseif($value > 0){
-                    $sessioncart[$key]['sl']=$value;
-                    $return =array(
+                    );
+                } elseif ($value > 0) {
+                    $sessioncart[$key]['sl'] = $value;
+                    $return = array(
                         'success' => true
-                        );
+                    );
                 }
             }
-            $session->write('cart',$sessioncart);
+            $session->write('cart', $sessioncart);
             echo json_encode($return);
             die();
         }
@@ -145,32 +143,6 @@ class CartController extends AppController
 
     public function checkout()
     {
-        $hoadon=$this->_tblhoadon->newEntity();
-        $session=$this->request->session();
-        if ($this->request->is('post')){
-            $sessioncart=$session->read('cart');
-            foreach ($sessioncart as $key => $value) {
-                $id=$key;
-                $price=$value['price'];
-                $discount=$value['discount'];
-                $quantity=$value['quantity'];
-                $sl=$value['sl'];
-                $total=($price*$sl)-($discount*$sl);
-                $cusid=$this->Auth->user('cus_id');
-                $hoadon=$this->_tblhoadon->patchEntity($hoadon,$this->request->getData());
-                $hoadon->cus_id=$cusid;
-                $hoadon->total=$total;
-                if($this->_tblhoadon->save($hoadon)){
-                    $return = array(
-                        'success'=>'true',
-                        'message'=>'Bạn đã mua hàng thành công'
-                        );
-                }
-            }
-            echo json_encode($return);
-            die();
-        }else{
-            $this->set('title','Thanh toán');
-        }
+        $this->set('title', 'Thanh toán');
     }
 }

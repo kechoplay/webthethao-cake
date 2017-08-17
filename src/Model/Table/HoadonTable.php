@@ -69,18 +69,8 @@ class HoadonTable extends Table
             ->notEmpty('total');
 
         $validator
-            ->dateTime('ord_date')
-            ->requirePresence('ord_date', 'create')
-            ->notEmpty('ord_date');
-
-        $validator
             ->requirePresence('ord_payment', 'create')
             ->notEmpty('ord_payment');
-
-        $validator
-            ->integer('ord_status')
-            ->requirePresence('ord_status', 'create')
-            ->notEmpty('ord_status');
 
         return $validator;
     }
@@ -97,5 +87,19 @@ class HoadonTable extends Table
         $rules->add($rules->existsIn(['cus_id'], 'Khachhang'));
 
         return $rules;
+    }
+
+    public function totalPrice($data,$sessioncart)
+    {
+        $hoadon=$this->newEntity();
+        $total=0;
+        foreach ($sessioncart as $key => $value)
+        {
+            $price = $value['price'];
+            $discount = $value['discount'];
+            $sl = $value['sl'];
+            $total+= ($price * $sl) - ($discount * $sl);
+        }
+        return $total;
     }
 }
