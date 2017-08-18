@@ -86,4 +86,12 @@ class SanphamTable extends Table
             ->limit($limit)
             ->toArray();
     }
+
+    public function changeQuantityWhenBuy($id,$sl)
+    {
+        $where='pro_id='.$id;
+        $sanpham_table=$this->get($id);
+        $sanpham_table->pro_quantity-=$sl;
+        return $this->save($sanpham_table);
+    }
 }
