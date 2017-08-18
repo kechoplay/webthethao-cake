@@ -33,9 +33,14 @@ class SanphamController extends AppController
         $sanpham = $this->Sanpham->get($id, [
             'contain' => ['Danhmuc']
         ]);
+
         $sanphamlienquan = $this->Sanpham
             ->find('all')
             ->where(['cat_id' => $sanpham['cat_id'], 'pro_id !=' => $id]);
+
+        $sanpham->pro_view++;
+        $this->Sanpham->save($sanpham);
+
         $this->set('sanpham', $sanpham);
         $this->set('sanphamlienquan', $sanphamlienquan);
         $this->set('title', $sanpham['pro_name']);
