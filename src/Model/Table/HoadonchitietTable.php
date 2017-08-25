@@ -40,11 +40,11 @@ class HoadonchitietTable extends Table
         $this->belongsTo('Hoadon', [
             'foreignKey' => 'ord_id',
             'joinType' => 'INNER'
-        ]);
+            ]);
         $this->belongsTo('Sanpham', [
             'foreignKey' => 'pro_id',
             'joinType' => 'INNER'
-        ]);
+            ]);
     }
 
     /**
@@ -56,14 +56,24 @@ class HoadonchitietTable extends Table
     public function validationDefault(Validator $validator)
     {
         $validator
-            ->integer('number')
-            ->requirePresence('number', 'create')
-            ->notEmpty('number');
+        ->integer('ord_id')
+        ->requirePresence('number', 'create')
+        ->notEmpty('number');
 
         $validator
-            ->numeric('price')
-            ->requirePresence('price', 'create')
-            ->notEmpty('price');
+        ->integer('pro_id')
+        ->requirePresence('number', 'create')
+        ->notEmpty('number');
+
+        $validator
+        ->integer('number')
+        ->requirePresence('number', 'create')
+        ->notEmpty('number');
+
+        $validator
+        ->numeric('price')
+        ->requirePresence('price', 'create')
+        ->notEmpty('price');
 
         return $validator;
     }
@@ -81,5 +91,23 @@ class HoadonchitietTable extends Table
         $rules->add($rules->existsIn(['pro_id'], 'Sanpham'));
 
         return $rules;
+    }
+
+    public function addOrderDetail($sessioncart,$ord_id)
+    {
+        foreach ($sessioncart as $key => $value) {
+            $billdetai=$this->newEntity();
+            $id = $key;
+            $price = $value['price'];
+            $discount = $value['discount'];
+            $quantity = $value['quantity'];
+            $sl = $value['sl'];
+            $lastprice=$price-$discount;
+            $billdetai->pro_id = $id;
+            $billdetai->ord_id = $ord_id;
+            $billdetai->price = $lastprice;
+            $billdetai->number = $sl;
+            $this->save($billdetai);  
+        }
     }
 }

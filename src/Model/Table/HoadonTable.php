@@ -89,9 +89,8 @@ class HoadonTable extends Table
         return $rules;
     }
 
-    public function totalPrice($data,$sessioncart)
+    public function totalPrice($sessioncart)
     {
-        $hoadon=$this->newEntity();
         $total=0;
         foreach ($sessioncart as $key => $value)
         {

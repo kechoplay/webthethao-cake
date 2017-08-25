@@ -92,6 +92,7 @@ class SanphamTable extends Table
         $where='pro_id='.$id;
         $sanpham_table=$this->get($id);
         $sanpham_table->pro_quantity-=$sl;
+        $sanpham_table->pro_count_buy +=$sl;
         return $this->save($sanpham_table);
     }
 }

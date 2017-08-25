@@ -1,3 +1,4 @@
+<?php if($countCart>0): ?>
 <div class="span9">
     <ul class="breadcrumb">
         <li><a href="<?= $this->Url->build('/home')?>">Trang chủ</a> <span class="divider">/</span></li>
@@ -41,7 +42,17 @@
         </table>
     </form>
 </div>
+<?php else: ?>
+    <h3 style='font-size:15px;'>Bạn chưa có sản phẩm nào trong giỏ hàng, xin hãy mua hàng để được thanh toán</h3>
+<?php endif; ?>
+
+<?php
+$url = Cake\Routing\Router::Url(['controller' => 'hoadon', 'action' => 'add']);
+$url2 = Cake\Routing\Router::Url(['controller' => 'home', 'action' => 'index']);
+?>
 <script type="text/javascript">
+    var url='<?=$url?>';
+    var url2='<?=$url2?>';
     function numberOnly(myfield, e){
         var key,keychar;
         if (window.event){
@@ -74,13 +85,16 @@
             submitHandler : function (form) {
                 $.ajax({
                     type: 'post',
-                    url:'/hoadon/add',
+                    url:url,
                     data : $(form).serialize(),
                     success : function (data) {
                         var obj=JSON.parse(data);
                         console.log(obj);
                         if(obj.success){
-                            console.log(message);
+                            alert(obj.message);
+                            window.location=url2;
+                        }else{
+                            alert(obj.message);
                         }
                     }
                 });

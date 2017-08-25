@@ -21,7 +21,7 @@ class HoadonController extends AppController
     public function index()
     {
         $this->paginate = [
-            'contain' => ['Khachhang']
+        'contain' => ['Khachhang']
         ];
         $hoadon = $this->paginate($this->Hoadon);
 
@@ -40,7 +40,7 @@ class HoadonController extends AppController
     {
         $hoadon = $this->Hoadon->get($id, [
             'contain' => ['Khachhang']
-        ]);
+            ]);
 
         $this->set('hoadon', $hoadon);
         $this->set('_serialize', ['hoadon']);
@@ -56,57 +56,33 @@ class HoadonController extends AppController
         $hoadon = $this->Hoadon;
         $hoadon_table=$hoadon->newEntity();
 
-        $hoadonchitiet=TableRegistry::get('Hoadonchitiet');
-        $billdetai=$hoadonchitiet->newEntity();
+        $hoadonchitiet=TableRegistry::get('hoadonchitiet');
 
         $sanpham=TableRegistry::get('Sanpham');
 
         $session = $this->request->session();
         if ($this->request->is('post')) {
+            $lastid=0;
             $sessioncart = $session->read('cart');
             $cusid = $this->Auth->user('cus_id');
             $data = $this->request->getData();
             $hoadon_table=$hoadon->patchEntity($hoadon_table,$data);
             $hoadon_table->cus_id=$cusid;
             $hoadon_table->total=$hoadon->totalPrice($sessioncart);
-            if ($hoadon->save($hoadon_table)) {
-                $return = array(
-                    'success' => 'true',
-                    'message' => 'Bạn đã mua hàng thành công'
-                );
-            } else {
-                $return = array(
-                    'success' => 'false',
-                    'message' => 'Bạn đã mua hàng thất bại'
-                );
-            }
+
+            $lastid=$hoadon->save($hoadon_table);
+            $hoadonchitiet->addOrderDetail($sessioncart,$lastid->ord_id);
+
             foreach ($sessioncart as $key => $value) {
                 $id = $key;
-                $price = $value['price'];
-                $discount = $value['discount'];
-                $quantity = $value['quantity'];
                 $sl = $value['sl'];
-                $lastprice=$price-$discount;
-                // $ord_id=$la
-                $billdetai->pro_id = $id;
-                $billdetai->ord_id = $ord_id;
-                $billdetai->price = $lastprice;
-                $billdetai->number = $sl;
-                if ($hoadonchitiet->save($billdetai)) {
-                    $return = array(
-                        'success' => 'true',
-                        'message' => 'Thêm từng sản phẩm thành công'
-                    );
-                } else {
-                    $return = array(
-                        'success' => 'false',
-                        'message' => 'Thêm từng sản phẩm thành công'
-                    );
-                }
-
                 $sanpham->changeQuantityWhenBuy($id,$sl);
             }
-
+            $return = array(
+                'success' => 'true',
+                'message' => 'Bạn đã mua hàng thành công'
+                );
+            $session->delete('cart');
             echo json_encode($return);
             die();
         }
@@ -123,7 +99,7 @@ class HoadonController extends AppController
     {
         $hoadon = $this->Hoadon->get($id, [
             'contain' => []
-        ]);
+            ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
             $hoadon = $this->Hoadon->patchEntity($hoadon, $this->request->data);
             if ($this->Hoadon->save($hoadon)) {
