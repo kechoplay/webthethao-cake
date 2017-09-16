@@ -16,7 +16,7 @@
             <div class="col-lg-7" style="padding-bottom:120px">
                 <?= $this->Form->create($sanpham, ['type' => 'file']) ?>
                 <div class="form-group">
-                    <?= $this->Form->input('cat_id', ['options' => $danhmuc, 'class' => 'form-control']) ?>
+                    <?= $this->Form->input('cat_id', ['options' => $danhmuc, 'class' => 'form-control', 'label' => 'Category']) ?>
                 </div>
                 <div class="form-group">
                     <?= $this->Form->input('pro_name', ['class' => 'form-control', 'placeholder' => 'Nhập tên sản phẩm']) ?>
