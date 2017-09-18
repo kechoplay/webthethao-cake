@@ -11,13 +11,13 @@
     <hr class="soft"/>
     <span>Sắp xếp theo</span>
     <div style="position:absolute;width:50%!important; top:135px; left: 90px; float:right">
-        <form>
-            <select class="dropdown">
+        <form id="form-sx" method="get" action="<?=$this->Url->build('/sanpham') ?>">
+            <select class="dropdown" name="order" id="order" onchange="if (this.value != ''){this.form.submit();}">
                 <option class="label">Sắp xếp theo</option>
-                <option value="nameasc">Sắp xếp theo tên từ A - Z</option>
-                <option value="namedesc">Sắp xếp theo tên từ Z - A</option>
-                <option value="priceasc">Sắp xếp theo giá tăng dần</option>
-                <option value="pricedesc">Sắp xếp theo giá giảm dần</option>
+                <option value="nameasc" <?= (isset($query) && $query=='nameasc') ? 'selected' : '' ?>>Sắp xếp theo tên từ A - Z</option>
+                <option value="namedesc" <?= (isset($query) && $query=='namedesc') ? 'selected' : '' ?>>Sắp xếp theo tên từ Z - A</option>
+                <option value="priceasc" <?= (isset($query) && $query=='priceasc') ? 'selected' : '' ?>>Sắp xếp theo giá tăng dần</option>
+                <option value="pricedesc" <?= (isset($query) && $query=='pricedesc') ? 'selected' : '' ?>>Sắp xếp theo giá giảm dần</option>
             </select>
         </form>
     </div>
@@ -176,5 +176,8 @@
 <script>
     var url="<?=$url?>";
     console.log(url);
+    $(document).ready(function () {
+       $('#order').submit();
+    });
 </script>
 

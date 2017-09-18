@@ -22,9 +22,28 @@ class SanphamController extends AppController
 
     public function index()
     {
-        $sanpham = $this->paginate($this->Sanpham);
+        $condition = [];
+        $order='';
+        if ($order = $this->request->getQuery('order')) {
+            if ($order == 'nameasc') {
+                $condition['pro_name'] = 'asc';
+            }
+            if ($order == 'namedesc') {
+                $condition['pro_name'] = 'desc';
+            }
+            if ($order == 'priceasc') {
+                $condition['pro_price'] = 'asc';
+            }
+            if ($order == 'pricedesc') {
+                $condition['pro_price'] = 'desc';
+            }
+        }
+        $sanpham = $this->paginate($this->Sanpham
+            ->find('all')
+            ->order($condition));
         $countsanpham = count($this->Sanpham->find('all')->toArray());
         $this->set('countsanpham', $countsanpham);
+        $this->set('query', $order);
         $this->set(compact('sanpham'));
     }
 
@@ -51,7 +70,7 @@ class SanphamController extends AppController
         $sanpham = $this->Sanpham
             ->find('all')
             ->where(['pro_discount !=' => 0]);
-        $countsanphamgiamgia=$sanpham->count();
+        $countsanphamgiamgia = $sanpham->count();
         $this->set('sanpham', $this->paginate($sanpham));
         $this->set('countsanphamgiamgia', $countsanphamgiamgia);
         $this->set('title', 'Sản phẩm giảm giá');
