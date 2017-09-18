@@ -23,7 +23,7 @@
         <li class="active">Tìm kiếm</li>
     </ul>
     <div>
-        <form method="GET">
+        <form method="GET" action="<?=$this->Url->build('/search')?>">
             <table class="">
                 <tr>
                     <td>Tìm theo danh mục :</td>

@@ -17,6 +17,10 @@ class SearchController extends AppController
     public function index()
     {
         $danhmuc=TableRegistry::get('danhmuc')->find('list')->where(['parent_id != ' => '0'])->toArray();
+        if ($this->request->is('get')) {
+            $condition=[];
+            if ($this->request->getQuery()!='')
+        }
 //        echo "<pre>";
 //        print_r($options);
 //        print_r($danhmuc);
