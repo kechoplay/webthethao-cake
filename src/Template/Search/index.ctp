@@ -23,7 +23,7 @@
         <li class="active">Tìm kiếm</li>
     </ul>
     <div>
-        <form method="GET" action="<?=$this->Url->build('/search')?>">
+        <form method="get" action="<?=$this->Url->build(['controller'=>'search','action'=>'index'])?>">
             <table class="">
                 <tr>
                     <td>Tìm theo danh mục :</td>
@@ -48,13 +48,11 @@
                 </tr>
                 <tr>
                     <td>Tìm kiếm theo giá :</td>
-                    <td>Giá min :<input type="text" onkeypress="return numberOnly(this, event);" name="minprice"
-                                        id="minprice"></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td>Giá max:<input type="text" onkeyup="mixMoney(this)" onkeypress="return numberOnly(this, event);"
-                                       value="" name="maxprice" id="maxprice"></td>
+                    <td style="padding-left:52px;">
+                        <input type="number">
+                        <input id="ex2" type="text" class="span2" value="" data-slider-min="10" data-slider-max="<?=$maxprice['pro_price']?>"
+                               data-slider-step="100000" data-slider-value="[250,450]"/> <b>€ 1000</b>
+                    </td>
                 </tr>
                 <tr>
                     <td></td>
@@ -63,4 +61,19 @@
             </table>
         </form>
     </div>
+    <?php
+    echo $maxprice;
+        if(isset($sanpham)) {
+            echo "<pre>";
+            print_r($sanpham);
+//            die();
+        }
+    ?>
 </div>
+<script>
+    $(document).ready(function () {
+        $("#ex2").slider({
+            tooltip:'show'
+        });
+    });
+</script>
