@@ -49,9 +49,15 @@
                 <tr>
                     <td>Tìm kiếm theo giá :</td>
                     <td style="padding-left:52px;">
-                        <input type="number">
-                        <input id="ex2" type="text" class="span2" value="" data-slider-min="10" data-slider-max="<?=$maxprice['pro_price']?>"
-                               data-slider-step="100000" data-slider-value="[250,450]"/> <b>€ 1000</b>
+                        <input id="ex2" type="text" class="span2" name="price" data-slider-min="<?=$minprice['pro_price']?>" data-slider-max="<?=$maxprice['pro_price']?>"
+                               data-slider-step="10000" data-slider-value="[<?=$minprice['pro_price']?>,<?=$maxprice['pro_price']?>]"/> 
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td style="padding-left:52px;">
+                        <span id="min"><?=$minprice['pro_price']?></span>
+                        <span id="max" style="float: right;"><?=$maxprice['pro_price']?></span>
                     </td>
                 </tr>
                 <tr>
@@ -62,7 +68,6 @@
         </form>
     </div>
     <?php
-    echo $maxprice;
         if(isset($sanpham)) {
             echo "<pre>";
             print_r($sanpham);
@@ -73,7 +78,12 @@
 <script>
     $(document).ready(function () {
         $("#ex2").slider({
-            tooltip:'show'
+            tooltip:'show',
         });
+        $("#ex2").on('slide',function(slideEvt) {
+                $('#max').text(slideEvt.value[1]);
+                $('#min').text(slideEvt.value[0]);
+            }
+        );
     });
 </script>
