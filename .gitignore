@@ -1,0 +1,7 @@
+tmp/
+logs/
+vendor/
+.editorconfig
+.htaccess
+.idea/
+.travis.yml
