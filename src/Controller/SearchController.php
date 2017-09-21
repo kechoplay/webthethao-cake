@@ -7,6 +7,12 @@ use Cake\ORM\TableRegistry;
 
 class SearchController extends AppController
 {
+    public $paginate = [
+        'limit' => 10,
+//        'order' => [
+//            'pro_name' => 'asc'
+//        ]
+    ];
 
     public function initialize()
     {
@@ -23,7 +29,7 @@ class SearchController extends AppController
     public function index()
     {
         if ($this->request->is(['get'])) {
-            if($this->request->getQuery('search')=='Search') {
+            if ($this->request->getQuery('search') == 'Search') {
                 $condition = [];
                 if ($this->request->getQuery('category') != 0) {
                     $categoory = $this->request->getQuery('category');
@@ -33,16 +39,34 @@ class SearchController extends AppController
                     $name = $this->request->getQuery('name');
                     $condition['pro_name LIKE'] = '%' . $name . '%';
                 }
-                if($this->request->getQuery('price')){
+                if ($this->request->getQuery('price')) {
                     $price = $this->request->getQuery('price');
                     $price = explode(',', $price);
-                    $minprice=$price[0];
-                    $maxprice=$price[1];
+                    $minprice = $price[0];
+                    $maxprice = $price[1];
                     $condition['pro_price >='] = $minprice;
                     $condition['pro_price <='] = $maxprice;
                 }
-                $sanpham = TableRegistry::get('sanpham')->find('all')->where($condition)->toArray();
-                $this->set('sanpham', $sanpham);
+                $orders=[];
+                if ($order = $this->request->getQuery('order')) {
+                    if ($order == 'nameasc') {
+                        $orders['pro_name'] = 'asc';
+                    }
+                    if ($order == 'namedesc') {
+                        $orders['pro_name'] = 'desc';
+                    }
+                    if ($order == 'priceasc') {
+                        $orders['pro_price'] = 'asc';
+                    }
+                    if ($order == 'pricedesc') {
+                        $orders['pro_price'] = 'desc';
+                    }
+                }
+                $sanpham = TableRegistry::get('sanpham')->find('all')->where($condition)->order($orders);
+//                debug($sanpham);
+//                die();
+                $this->set('query',$order);
+                $this->set('sanpham', $this->paginate($sanpham));
             }
         }
     }

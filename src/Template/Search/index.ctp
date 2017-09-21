@@ -23,20 +23,20 @@
         <li class="active">Tìm kiếm</li>
     </ul>
     <div>
-        <form method="get" action="<?= $this->Url->build(['controller' => 'search', 'action' => 'index']) ?>">
+        <form method="get" action="<?= $this->Url->build('/search/') ?>">
             <table class="">
                 <tr>
                     <td>Tìm theo danh mục :</td>
                     <td style="padding-left:52px">
                         <select class="srchTxt" name="category">
                             <option value="0">All</option>
-                            <?php
-                            foreach ($danhmuc as $key => $value) {
-                                ?>
-                                <option value="<?= $key ?>"><?= $value ?></option>
-                                <?php
-                            }
-                            ?>
+                            <?php foreach ($danhmuc as $key => $value) : ?>
+                                <?php if ($key == $this->request->getQuery('category')) : ?>
+                                    <option value="<?= $key ?>" selected><?= $value ?></option>
+                                <?php else : ?>
+                                    <option value="<?= $key ?>"><?= $value ?></option>
+                                <?php endif; ?>
+                            <?php endforeach; ?>
                         </select>
                     </td>
                 </tr>
@@ -53,14 +53,19 @@
                                data-slider-min="<?= $minprice['pro_price'] ?>"
                                data-slider-max="<?= $maxprice['pro_price'] ?>" data-slider-step="10000"
                                data-slider-value="[<?= $minprice['pro_price'] ?>,<?= $maxprice['pro_price'] ?>]"/>
-                        <input type="number" id="number"/>
+                        <!--                        <input type="number" id="number"/>-->
                     </td>
                 </tr>
                 <tr>
                     <td></td>
                     <td style="padding-left:52px;">
-                        <span id="min"><?= $minprice['pro_price'] ?></span>
-                        <span id="max" style="float: right;"><?= $maxprice['pro_price'] ?></span>
+                        <input type="number" style="width: 80px" id="min" readonly
+                               value="<?= $minprice['pro_price'] ?>"/>
+                        <!--                        <span id="min">--><? //= $minprice['pro_price'] ?><!--</span>-->
+                        <input type="number" style="width: 80px;float: right;" readonly id="max"
+                               value="<?= $maxprice['pro_price'] ?>"/>
+                        <!--                        <span id="max" style="float: right;">-->
+                        <? //= $maxprice['pro_price'] ?><!--</span>-->
                     </td>
                 </tr>
                 <tr>
@@ -70,20 +75,34 @@
             </table>
         </form>
     </div>
+    <?php  ?>
     <?php if (isset($sanpham)) : ?>
-        <h3><small class="pull-right"> <?= count($sanpham); ?> sản phẩm có sẵn</small></h3>
+        <h3>
+            <small class="pull-right"> <?= count($sanpham); ?> sản phẩm có sẵn</small>
+        </h3>
         <hr class="soft"/>
-        <span>Sắp xếp theo</span>
-        <div style="position:absolute;width:50%!important; top:300px; left: 500px; float:right">
-            <form id="form-sx" method="get" action="<?=$this->Url->build('/sanpham') ?>">
-                <select class="dropdown" name="order" id="order" onchange="if (this.value != ''){this.form.submit();}">
-                    <option class="label">Sắp xếp theo</option>
-                    <option value="nameasc" <?= (isset($query) && $query=='nameasc') ? 'selected' : '' ?>>Sắp xếp theo tên từ A - Z</option>
-                    <option value="namedesc" <?= (isset($query) && $query=='namedesc') ? 'selected' : '' ?>>Sắp xếp theo tên từ Z - A</option>
-                    <option value="priceasc" <?= (isset($query) && $query=='priceasc') ? 'selected' : '' ?>>Sắp xếp theo giá tăng dần</option>
-                    <option value="pricedesc" <?= (isset($query) && $query=='pricedesc') ? 'selected' : '' ?>>Sắp xếp theo giá giảm dần</option>
-                </select>
-            </form>
+        <div style="position: relative; width: 50%">
+            <span>Sắp xếp theo</span>
+            <div style="position:absolute;width:40%!important; top: 0; left: 80px; float:right">
+                <form id="form-sx" method="get" action="<?=$this->Url->build('/search/') ?>">
+                    <select class="dropdown" name="order" id="order"
+                            onchange="submitForm()">
+                        <option class="label">Sắp xếp theo</option>
+                        <option value="nameasc" <?= (isset($query) && $query == 'nameasc') ? 'selected' : '' ?>>Sắp xếp
+                            theo tên từ A - Z
+                        </option>
+                        <option value="namedesc" <?= (isset($query) && $query == 'namedesc') ? 'selected' : '' ?>>Sắp
+                            xếp theo tên từ Z - A
+                        </option>
+                        <option value="priceasc" <?= (isset($query) && $query == 'priceasc') ? 'selected' : '' ?>>Sắp
+                            xếp theo giá tăng dần
+                        </option>
+                        <option value="pricedesc" <?= (isset($query) && $query == 'pricedesc') ? 'selected' : '' ?>>Sắp
+                            xếp theo giá giảm dần
+                        </option>
+                    </select>
+                </form>
+            </div>
         </div>
         <div id="myTab" class="pull-right" style="margin-bottom:20px;">
             <a href="#listView" data-toggle="tab"><span class="btn btn-large"><i class="icon-list"></i></span></a>
@@ -115,7 +134,8 @@
                                     <h3><?= number_format($value['pro_price']); ?> VNĐ </h3>
                                 <?php else : ?>
                                     <h3><?= number_format($value['pro_price'] - $value['pro_discount']); ?> VNĐ </h3>
-                                    <h4 style="text-decoration:line-through;"><?= number_format($value['pro_price']); ?>VNĐ</h4>
+                                    <h4 style="text-decoration:line-through;"><?= number_format($value['pro_price']); ?>
+                                        VNĐ</h4>
                                 <?php endif; ?>
                                 <br/>
                                 <?php if ($value['pro_quantity'] > 0) : ?>
@@ -150,7 +170,8 @@
                                             <i class="icon-zoom-in"></i>
                                         </a>
                                         <?php if ($value['pro_quantity'] > 0) : ?>
-                                            <a class="btn" href="javascript:void(0)" onclick="addcart(<?= $value->pro_id ?>)">Add to
+                                            <a class="btn" href="javascript:void(0)"
+                                               onclick="addcart(<?= $value->pro_id ?>)">Add to
                                                 <i class="icon-shopping-cart"></i>
                                             </a>
                                         <?php else : ?>
@@ -175,10 +196,43 @@
                 </ul>
             </div>
         </div>
+        <div class="pagination">
+            <ul class="pagination">
+                <li>
+                    <?= $this->Paginator->first('<< ' . __('first')) ?>
+                </li>
+                <li>
+                    <?= $this->Paginator->prev('< ' . __('previous')) ?>
+                </li>
+                <li class="active">
+                    <?= $this->Paginator->numbers() ?>
+                </li>
+                <li>
+                    <?= $this->Paginator->next(__('next') . ' >') ?>
+                </li>
+                <li>
+                    <?= $this->Paginator->last(__('last') . ' >>') ?>
+                </li>
+            </ul>
+        </div>
+        <br class="clr"/>
     <?php endif; ?>
 </div>
+<?php $sendUrl=$this->request->here();?>
 <script>
+    function submitForm() {
+        var value=document.getElementById('order').value;
+        var form =document.getElementById('form-sx');
+        console.log(value);
+        if(value != ''){
+            form.submit();
+//            var sendUrl='<?//=$sendUrl?>//&order='+value;
+//            window.location=sendUrl;
+//            console.log(window.location.hash=(sendUrl));
+        }
+    }
     $(document).ready(function () {
+//        console.log($("#order"));
         $("#ex2").slider({
             tooltip: 'show',
         });
@@ -188,8 +242,10 @@
 //            }
 //        );
         $("#ex2").on('change', function (slideEvt) {
-                $('#max').text(slideEvt.value['newValue'][1]);
-                $('#min').text(slideEvt.value['newValue'][0]);
+//                $('#max').text(slideEvt.value['newValue'][1]);
+//                $('#min').text(slideEvt.value['newValue'][0]);
+                $('#max').val(slideEvt.value['newValue'][1]);
+                $('#min').val(slideEvt.value['newValue'][0]);
                 $('#number').val(slideEvt.value['newValue'][1]);
 //                console.log(slideEvt.value);
             }

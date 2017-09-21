@@ -89,9 +89,9 @@
                  }
                  ?>
 
-             </div>
+            </div>
 
-             <div class="tab-pane active" id="blockView">
+            <div class="tab-pane active" id="blockView">
                 <ul class="thumbnails">
                     <?php
                     foreach ($sanpham as $key => $value) {
