@@ -8,7 +8,7 @@ use Cake\ORM\TableRegistry;
 class SearchController extends AppController
 {
     public $paginate = [
-        'limit' => 10,
+        'limit' => ITEMS_BLOCKS_PER_PAGE,
 //        'order' => [
 //            'pro_name' => 'asc'
 //        ]
@@ -31,16 +31,15 @@ class SearchController extends AppController
         if ($this->request->is(['get'])) {
             if ($this->request->getQuery('search') == 'Search') {
                 $condition = [];
-                if ($this->request->getQuery('category') != 0) {
-                    $categoory = $this->request->getQuery('category');
+                if (($categoory=$this->request->getQuery('category')) != 0) {
                     $condition['cat_id'] = $categoory;
                 }
-                if ($this->request->getQuery('name') != '') {
-                    $name = $this->request->getQuery('name');
+                if (($name=$this->request->getQuery('name')) != '') {
                     $condition['pro_name LIKE'] = '%' . $name . '%';
                 }
-                if ($this->request->getQuery('price')) {
-                    $price = $this->request->getQuery('price');
+//                echo $this->request->getQuery('name');
+//                die();
+                if ($price=$this->request->getQuery('price')) {
                     $price = explode(',', $price);
                     $minprice = $price[0];
                     $maxprice = $price[1];
@@ -63,9 +62,14 @@ class SearchController extends AppController
                     }
                 }
                 $sanpham = TableRegistry::get('sanpham')->find('all')->where($condition)->order($orders);
+                $sanphamwithcount = TableRegistry::get('sanpham')->find('all')->where($condition)->order($orders)->count();
 //                debug($sanpham);
 //                die();
                 $this->set('query',$order);
+                $this->set('price',$price);
+                $this->set('name',$name);
+                $this->set('categoory',$categoory);
+                $this->set('sanphamwithcount',$sanphamwithcount);
                 $this->set('sanpham', $this->paginate($sanpham));
             }
         }

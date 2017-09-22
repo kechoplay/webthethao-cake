@@ -37,6 +37,7 @@ if (!extension_loaded('mbstring')) {
  * constants
  */
 require __DIR__ . '/paths.php';
+require __DIR__ . '/constants.php';
 
 /*
  * Bootstrap CakePHP.

@@ -31,7 +31,7 @@
                         <select class="srchTxt" name="category">
                             <option value="0">All</option>
                             <?php foreach ($danhmuc as $key => $value) : ?>
-                                <?php if ($key == $this->request->getQuery('category')) : ?>
+                                <?php if ($key == $categoory) : ?>
                                     <option value="<?= $key ?>" selected><?= $value ?></option>
                                 <?php else : ?>
                                     <option value="<?= $key ?>"><?= $value ?></option>
@@ -42,8 +42,7 @@
                 </tr>
                 <tr>
                     <td>Tìm kiếm theo tên :</td>
-                    <td style="padding-left:52px;"><input type="text" name="name">
-
+                    <td style="padding-left:52px;"><input type="text" name="name" value="<?= (isset($name) ? $name : '') ?>">
                     </td>
                 </tr>
                 <tr>
@@ -52,7 +51,7 @@
                         <input id="ex2" type="text" class="span2" name="price"
                                data-slider-min="<?= $minprice['pro_price'] ?>"
                                data-slider-max="<?= $maxprice['pro_price'] ?>" data-slider-step="10000"
-                               data-slider-value="[<?= $minprice['pro_price'] ?>,<?= $maxprice['pro_price'] ?>]"/>
+                               data-slider-value="[<?=(isset($price) ? implode(',',$price) : $minprice['pro_price'] . ',' . $maxprice['pro_price']) ?>]"/>
                         <!--                        <input type="number" id="number"/>-->
                     </td>
                 </tr>
@@ -60,10 +59,10 @@
                     <td></td>
                     <td style="padding-left:52px;">
                         <input type="number" style="width: 80px" id="min" readonly
-                               value="<?= $minprice['pro_price'] ?>"/>
+                               value="<?= (isset($price) ? $price[0] : $minprice['pro_price']) ?>"/>
                         <!--                        <span id="min">--><? //= $minprice['pro_price'] ?><!--</span>-->
                         <input type="number" style="width: 80px;float: right;" readonly id="max"
-                               value="<?= $maxprice['pro_price'] ?>"/>
+                               value="<?= (isset($price) ? $price[1] : $maxprice['pro_price']) ?>"/>
                         <!--                        <span id="max" style="float: right;">-->
                         <? //= $maxprice['pro_price'] ?><!--</span>-->
                     </td>
@@ -75,16 +74,16 @@
             </table>
         </form>
     </div>
-    <?php  ?>
+    <?php ?>
     <?php if (isset($sanpham)) : ?>
         <h3>
-            <small class="pull-right"> <?= count($sanpham); ?> sản phẩm có sẵn</small>
+            <small class="pull-right"> <?= ($sanphamwithcount); ?> sản phẩm có sẵn</small>
         </h3>
         <hr class="soft"/>
         <div style="position: relative; width: 50%">
             <span>Sắp xếp theo</span>
             <div style="position:absolute;width:40%!important; top: 0; left: 80px; float:right">
-                <form id="form-sx" method="get" action="<?=$this->Url->build('/search/') ?>">
+                <form id="form-sx" method="get" action="<?= $this->request->here() ?>">
                     <select class="dropdown" name="order" id="order"
                             onchange="submitForm()">
                         <option class="label">Sắp xếp theo</option>
@@ -101,6 +100,10 @@
                             xếp theo giá giảm dần
                         </option>
                     </select>
+                    <input type="hidden" name="category" value="<?= $this->request->getQuery('category') ?>">
+                    <input type="hidden" name="name" value="<?= $this->request->getQuery('name') ?>">
+                    <input type="hidden" name="price" value="<?= $this->request->getQuery('price') ?>">
+                    <input type="hidden" name="search" value="<?= $this->request->getQuery('search') ?>">
                 </form>
             </div>
         </div>
@@ -196,41 +199,45 @@
                 </ul>
             </div>
         </div>
-        <div class="pagination">
-            <ul class="pagination">
-                <li>
-                    <?= $this->Paginator->first('<< ' . __('first')) ?>
-                </li>
-                <li>
-                    <?= $this->Paginator->prev('< ' . __('previous')) ?>
-                </li>
-                <li class="active">
-                    <?= $this->Paginator->numbers() ?>
-                </li>
-                <li>
-                    <?= $this->Paginator->next(__('next') . ' >') ?>
-                </li>
-                <li>
-                    <?= $this->Paginator->last(__('last') . ' >>') ?>
-                </li>
-            </ul>
-        </div>
+        <?php if (($sanphamwithcount) > ITEMS_BLOCKS_PER_PAGE): ?>
+            <div class="pagination">
+                <ul class="pagination">
+                    <li>
+                        <?= $this->Paginator->first('<< ' . __('first')) ?>
+                    </li>
+                    <li>
+                        <?= $this->Paginator->prev('< ' . __('previous')) ?>
+                    </li>
+                    <li class="active">
+                        <?= $this->Paginator->numbers() ?>
+                    </li>
+                    <li>
+                        <?= $this->Paginator->next(__('next') . ' >') ?>
+                    </li>
+                    <li>
+                        <?= $this->Paginator->last(__('last') . ' >>') ?>
+                    </li>
+                </ul>
+                <p><?= $this->Paginator->counter(['format' => __('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')]) ?></p>
+            </div>
+        <?php endif; ?>
         <br class="clr"/>
     <?php endif; ?>
 </div>
-<?php $sendUrl=$this->request->here();?>
+<?php $sendUrl = $this->request->here(); ?>
 <script>
     function submitForm() {
-        var value=document.getElementById('order').value;
-        var form =document.getElementById('form-sx');
+        var value = document.getElementById('order').value;
+        var form = document.getElementById('form-sx');
         console.log(value);
-        if(value != ''){
+        if (value != '') {
             form.submit();
-//            var sendUrl='<?//=$sendUrl?>//&order='+value;
-//            window.location=sendUrl;
+            var sendUrl = '<?=$sendUrl?>&order=' + value;
+//            window.location.assign(sendUrl);
 //            console.log(window.location.hash=(sendUrl));
         }
     }
+
     $(document).ready(function () {
 //        console.log($("#order"));
         $("#ex2").slider({

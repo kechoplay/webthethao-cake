@@ -8,7 +8,7 @@ use App\Controller\AppController;
 class SanphamController extends AppController
 {
     public $paginate = [
-        'limit' => 10,
+        'limit' => ITEMS_BLOCKS_PER_PAGE,
 //        'order' => [
 //            'pro_name' => 'asc'
 //        ]

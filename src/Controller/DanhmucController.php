@@ -13,7 +13,7 @@ use Cake\ORM\TableRegistry;
 class DanhmucController extends AppController
 {
     public $paginate = [
-        'limit' => 10
+        'limit' => ITEMS_BLOCKS_PER_PAGE
     ];
 
     public function initialize()
