@@ -46,6 +46,18 @@ class App2Controller extends Controller
         $this->loadComponent('Flash');
         $this->loadComponent('Paginator');
 
+        $this->loadComponent('Auth',[
+        	'authenticate'=>[
+        		'form' => [
+        			'fields' => ['username' => 'user','password' => 'pass'],
+        			'userModel' => 'Admin'
+        		]
+        	],
+        	'loginAction' => ['controller'=>'admin','action'=>'login'],
+        	'loginRedirect' => ['controller' => 'sanpham','action'=>'index'],
+        	'logoutRedirect' => ['controller' => '../home','action'=>'index']
+        ]);
+
         /*
          * Enable the following components for recommended CakePHP security settings.
          * see http://book.cakephp.org/3.0/en/controllers/components/security.html

@@ -111,9 +111,21 @@ class AdminController extends App2Controller
         return $this->redirect(['action' => 'index']);
     }
 
-    protected function _setPassword($value)
+    public function login()
     {
-        $hasher=new DefaultPasswordHasher();
-        return $hasher->hash($value);
+        $this->viewBuilder()->setLayout('login_admin');
+        if($this->request->is('post')){
+//            echo '<pre>'; var_dump($this->Auth->identify());die('xxx');
+            $user=$this->Auth->identify();
+            if($user){
+                if($user->status==1){
+                    $this->Auth->setUser($user);
+                }else{
+                    $this->Flash->error('Banj  k co quyen',['key'=>'auth']);
+                }
+            }else{
+                $this->Flash->error('sai roi nhes',['key'=>'auth']);
+            }
+        }
     }
 }
