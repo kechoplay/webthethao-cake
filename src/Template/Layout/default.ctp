@@ -21,8 +21,7 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
     <?= $this->Html->charset() ?>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>
-        <?= $cakeDescription ?>:
-        <?= $this->fetch('title') ?>
+        <?= $title ?>
     </title>
 
     <?= $this->Html->meta('icon') ?>
@@ -30,7 +29,7 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
     <?= $this->Html->css('admin/bootstrap.min.css') ?>
     <?= $this->Html->css('admin/metisMenu.min.css') ?>
     <?= $this->Html->css('admin/sb-admin-2.css') ?>
-    <?= $this->Html->css('admin/font-awesome.min.css') ?>
+    <?= $this->Html->css('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css') ?>
     <?= $this->Html->css('admin/dataTables.bootstrap.css') ?>
     <?= $this->Html->css('admin/dataTables.responsive.css') ?>
     <?= $this->Html->script('admin/jquery.min.js') ?>

@@ -31,6 +31,17 @@ class Hoadon extends Entity
      *
      * @var array
      */
+
+    public static $PAYMENT=array(
+       '0' => 'Thanh toán trực tiếp',
+       '1' => 'Thanh toán qua thẻ'
+    );
+
+    public static $STATUS=array(
+        '0' => 'Chưa xử lí',
+        '1' => 'Đang xử lí',
+        '2' => 'Đã xử lí'
+    );
     protected $_accessible = [
         '*' => true,
         'ord_id' => false

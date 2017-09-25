@@ -21,7 +21,7 @@
                     <small>Welcome</small>  <i class="fa fa-caret-down"></i>
                 </a>
                 <ul class="dropdown-menu dropdown-user">
-                    <li><a href="admin_account.php"><i class="fa fa-user fa-fw"></i> User Profile</a>
+                    <li><a href="<?=$this->Url->build(['controller'=>'Myaccount','action'=>'index'])?>"><i class="fa fa-user fa-fw"></i> User Profile</a>
                     </li>
                     <li class="divider"></li>
                     <li><a href="admin_logout.php"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
@@ -68,7 +68,7 @@
                         <a href="#"><i class="fa fa-users fa-fw"></i> Tài khoản<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li>
-                                <a href="<?= $this->Url->build(['controller'=>'admin','action'=>'index'])?>">Thông tin cá nhân</a>
+                                <a href="<?= $this->Url->build(['controller'=>'Myaccount','action'=>'index'])?>">Thông tin cá nhân</a>
                             </li>
                             <li>
                                 <a href="<?= $this->Url->build(['controller'=>'khachhang','action'=>'index'])?>">Danh sách người dùng</a>

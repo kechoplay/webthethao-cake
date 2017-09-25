@@ -30,19 +30,16 @@
                 </tr>
                 </thead>
                 <tbody>
-                <?php
-                foreach ($admin as $key => $value) {
-
-                    ?>
+                <?php foreach ($admin as $key => $value) : ?>
                     <tr class="odd gradeX" align="center">
                         <td><?= $value['id'] ?></td>
-                        <td><?= $value['user'] ?></td>
+                        <td><?= $this->Html->link($value['user'],['action'=>'edit',$value['id']]) ?></td>
                         <td><?= $value['fullname'] ?></td>
                         <td><?= $value['email'] ?></td>
                         <td><?= ($value['level'] == 1) ? "Administrator" : "Manager" ?></td>
                         <td><?= ($value['status'] == 1) ? "Hiện" : "Ẩn" ?></td>
-                        <td><?= ($value['created_at']) ?></td>
-                        <td><?= ($value['last_access']) ?></td>
+                        <td><?= date_format(date_create($value['created_at']),'d/m/Y H:i:s') ?></td>
+                        <td><?= date_format(date_create($value['last_access']),'d/m/y H:i:s') ?></td>
                         <td class="center"><i
                                     class="fa fa-pencil fa-fw"></i><?= $this->Html->link('Edit', ['action' => 'edit', $value->id]) ?>
                         </td>
@@ -50,9 +47,7 @@
                                     class="fa fa-trash-o fa-fw"></i> <?= $this->Form->postLink('Delete', ['action' => 'delete', $value->id], ['confirm' => __('Are you sure want to delete {0}', $value->user)]) ?>
                         </td>
                     </tr>
-                    <?php
-                }
-                ?>
+                    <?php endforeach; ?>
                 </tbody>
             </table>
         </div>

@@ -29,7 +29,7 @@ class AppController extends Controller
     {
         parent::initialize();
         $session = $this->request->session();
-        date_default_timezone_set('Asia/Ho_Chi_Minh');
+        date_default_timezone_set('asia/ho_chi_minh');
         $where = 'pro_status=1';
         $randomproduct = TableRegistry::get('sanpham')->getlistProduct($where, 'RAND()', 2);
         $treecategory = TableRegistry::get('danhmuc')->find('all');

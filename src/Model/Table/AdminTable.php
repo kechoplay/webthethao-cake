@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Model\Table;
 
 use Cake\ORM\Query;
@@ -33,11 +34,11 @@ class AdminTable extends Table
         $this->setTable('admin');
         $this->setDisplayField('id');
         $this->setPrimaryKey('id');
-        $this->addBehavior('Timestamp',[
-            'event'=>[
-                'Model.beforeSave'=>[
-                    'created_at'=>'new',
-                    'last_access'=>'always'
+        $this->addBehavior('Timestamp', [
+            'event' => [
+                'Model.beforeSave' => [
+                    'created_at' => 'new',
+                    'last_access' => 'always'
                 ]
             ]
         ]);
@@ -64,19 +65,19 @@ class AdminTable extends Table
             ->notEmpty('fullname');
 
         $validator
-            ->email('email')
+            ->email('email','/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/','Your password is not in the correct format')
             ->requirePresence('email', 'create')
             ->notEmpty('email');
 
         $validator
             ->integer('level')
-            ->notEquals('level','0','Please choose the level')
+            ->notEquals('level', '0', 'Please choose the level')
             ->requirePresence('level', 'create')
             ->notEmpty('level');
 
         $validator
             ->integer('status')
-            ->notEquals('status','0','Please choose the status')
+            ->notEquals('status', '0', 'Please choose the status')
             ->requirePresence('status', 'create')
             ->notEmpty('status');
 
@@ -102,8 +103,8 @@ class AdminTable extends Table
      */
     public function buildRules(RulesChecker $rules)
     {
-        $rules->add($rules->isUnique(['email'],['message'=>'The email has been used']));
-        $rules->add($rules->isUnique(['user'],['message'=>'The user has been used']));
+        $rules->add($rules->isUnique(['email'], ['message' => 'The email has been used']));
+        $rules->add($rules->isUnique(['user'], ['message' => 'The user has been used']));
 
         return $rules;
     }

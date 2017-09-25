@@ -25,23 +25,7 @@ class AdminController extends App2Controller
 //        die();
         $this->set(compact('admin'));
         $this->set('_serialize', ['admin']);
-    }
-
-    /**
-     * View method
-     *
-     * @param string|null $id Admin id.
-     * @return \Cake\Network\Response|null
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
-     */
-    public function view($id = null)
-    {
-        $admin = $this->Admin->get($id, [
-            'contain' => []
-        ]);
-
-        $this->set('admin', $admin);
-        $this->set('_serialize', ['admin']);
+        $this->set('title','Danh sách quản trị');
     }
 
     /**
@@ -54,7 +38,7 @@ class AdminController extends App2Controller
         $admin = $this->Admin->newEntity();
         if ($this->request->is('post')) {
             $admin = $this->Admin->patchEntity($admin, $this->request->data);
-            $admin->pass=$this->_setPassword($admin->pass);
+//            $admin->pass=$this->_setPassword($admin->pass);
             if ($this->Admin->save($admin)) {
                 $this->Flash->success(__('The admin has been saved.'));
 
@@ -64,6 +48,7 @@ class AdminController extends App2Controller
         }
         $this->set(compact('admin'));
         $this->set('_serialize', ['admin']);
+        $this->set('title','Thêm quản trị');
     }
 
     /**
@@ -79,7 +64,7 @@ class AdminController extends App2Controller
             'contain' => []
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
-            $admin = $this->Admin->patchEntity($admin, $this->request->data);
+            $admin = $this->Admin->patchEntity($admin, $this->request->getData());
             if ($this->Admin->save($admin)) {
                 $this->Flash->success(__('The admin has been saved.'));
 
@@ -89,6 +74,7 @@ class AdminController extends App2Controller
         }
         $this->set(compact('admin'));
         $this->set('_serialize', ['admin']);
+        $this->set('title','Sửa thông tin quản trị');
     }
 
     /**

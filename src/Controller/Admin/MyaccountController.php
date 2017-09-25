@@ -1,14 +1,21 @@
 <?php
+/**
+ * Created by PhpStorm.
+ * User: New-User
+ * Date: 9/25/2017
+ * Time: 1:51 PM
+ */
 namespace App\Controller\Admin;
 
 use App\Controller\Admin\App2Controller;
+use Cake\ORM\TableRegistry;
 
 /**
  * Khachhang Controller
  *
  * @property \App\Model\Table\KhachhangTable $Khachhang
  */
-class KhachhangController extends App2Controller
+class MyaccountController extends App2Controller
 {
 
     /**
@@ -18,12 +25,12 @@ class KhachhangController extends App2Controller
      */
     public function index()
     {
-        $khachhang = $this->Khachhang->find('all');
+        $account = TableRegistry::get('admin')->find('all');
 //        echo "<pre>";
 //        print_r($khachhang);
 //        die();
-        $this->set(compact('khachhang'));
-        $this->set('title','Danh sách khách hàng');
+        $this->set(compact('account'));
+        $this->set('title','Thông tin cá nhân');
     }
 
     /**

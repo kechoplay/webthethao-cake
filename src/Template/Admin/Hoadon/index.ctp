@@ -1,62 +1,58 @@
 <?php
 /**
-  * @var \App\View\AppView $this
-  */
+ * @var \App\View\AppView $this
+ */
 ?>
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('New Hoadon'), ['action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Khachhang'), ['controller' => 'Khachhang', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Khachhang'), ['controller' => 'Khachhang', 'action' => 'add']) ?></li>
-    </ul>
-</nav>
-<div class="hoadon index large-9 medium-8 columns content">
-    <h3><?= __('Hoadon') ?></h3>
-    <table cellpadding="0" cellspacing="0">
-        <thead>
-            <tr>
-                <th scope="col"><?= $this->Paginator->sort('ord_id') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('cus_id') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('name') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('mobile') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('address') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('total') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('ord_date') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('ord_payment') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('ord_status') ?></th>
-                <th scope="col" class="actions"><?= __('Actions') ?></th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php foreach ($hoadon as $hoadon): ?>
-            <tr>
-                <td><?= $this->Number->format($hoadon->ord_id) ?></td>
-                <td><?= $hoadon->has('khachhang') ? $this->Html->link($hoadon->khachhang->cus_id, ['controller' => 'Khachhang', 'action' => 'view', $hoadon->khachhang->cus_id]) : '' ?></td>
-                <td><?= h($hoadon->name) ?></td>
-                <td><?= h($hoadon->mobile) ?></td>
-                <td><?= h($hoadon->address) ?></td>
-                <td><?= $this->Number->format($hoadon->total) ?></td>
-                <td><?= h($hoadon->ord_date) ?></td>
-                <td><?= h($hoadon->ord_payment) ?></td>
-                <td><?= $this->Number->format($hoadon->ord_status) ?></td>
-                <td class="actions">
-                    <?= $this->Html->link(__('View'), ['action' => 'view', $hoadon->ord_id]) ?>
-                    <?= $this->Html->link(__('Edit'), ['action' => 'edit', $hoadon->ord_id]) ?>
-                    <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $hoadon->ord_id], ['confirm' => __('Are you sure you want to delete # {0}?', $hoadon->ord_id)]) ?>
-                </td>
-            </tr>
-            <?php endforeach; ?>
-        </tbody>
-    </table>
-    <div class="paginator">
-        <ul class="pagination">
-            <?= $this->Paginator->first('<< ' . __('first')) ?>
-            <?= $this->Paginator->prev('< ' . __('previous')) ?>
-            <?= $this->Paginator->numbers() ?>
-            <?= $this->Paginator->next(__('next') . ' >') ?>
-            <?= $this->Paginator->last(__('last') . ' >>') ?>
-        </ul>
-        <p><?= $this->Paginator->counter(['format' => __('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')]) ?></p>
+<div id="page-wrapper">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">Hóa đơn
+                    <small>Danh sách</small>
+                </h1>
+                <h4 style="text-align:center"><strong><?= $this->Flash->render() ?></strong></h4>
+            </div>
+            <!-- /.col-lg-12 -->
+            <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                <thead>
+                <tr align="center">
+                    <th>ID</th>
+                    <th>Tên khách hàng</th>
+                    <th>Điện thoại</th>
+                    <th>Địa chỉ</th>
+                    <th>Ngày mua</th>
+                    <th>Thanh toán</th>
+                    <th>Trạng thái</th>
+                    <th>Chi tiết</th>
+                    <th>Sửa</th>
+                    <th>Hủy</th>
+                </tr>
+                </thead>
+                <tbody>
+                <?php foreach ($hoadon as $key => $value) : ?>
+                    <tr class="odd gradeX" align="center">
+                        <td><?= $value['ord_id'] ?></td>
+                        <td><?= $value['name'] ?></td>
+                        <td><?= $value['mobile'] ?></td>
+                        <td><?= $value['address'] ?></td>
+                        <td><?= date_format(date_create($value['ord_date']), 'd/m/Y H:i:s') ?></td>
+                        <td><?= $value['ord_payment'] ?></td>
+                        <td><?= $status[$value['ord_status']] ?></td>
+                        <td class="center"><i class="fa fa-info fa-fw"></i><a
+                                    href="<?= $this->Url->build(['action' => 'detail', $value['ord_id']]) ?>"> Chi
+                                tiết</a>
+                        </td>
+                        <td class="center"><i class="fa fa-pencil fa-fw"></i><a
+                                    href="<?= $this->Url->build(['action' => 'edit', $value['ord_id']]) ?>">Sửa</a></td>
+                        <td class="center"><i class="fa fa-trash fa-fw"></i>
+                            <?= $this->Form->postLink('Hủy', ['action' => 'delete', $value['ord_id']], ['confirm' => 'Are you sure want to delete {0}', $value['ord_id']]) ?>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
+                </tbody>
+            </table>
+        </div>
+        <!-- /.row -->
     </div>
+    <!-- /.container-fluid -->
 </div>

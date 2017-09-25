@@ -28,35 +28,33 @@ class App2Controller extends Controller
     public function initialize()
     {
         parent::initialize();
-        date_default_timezone_set('Asia/Ho_Chi_Minh');
-        if (isset($this->request->params['prefix']) || $this->request->params['prefix']=='admin') {
+        date_default_timezone_set('asia/ho_chi_minh');
+        if (isset($this->request->params['prefix']) || $this->request->params['prefix'] == 'admin') {
             $this->viewBuilder()->setLayout('default');
         }
         $where = 'pro_status=1';
         $randomproduct = TableRegistry::get('sanpham')->getlistProduct($where, 'RAND()', 2);
         $treecategory = TableRegistry::get('danhmuc')->find('all');
-        $slideimage = TableRegistry::get('slide')->find('all')->where(['sli_status' => '1'])->toArray();
         $collection = new Collection($treecategory);
 
         $this->set('randomproduct', $randomproduct);
-        $this->set('slideimage', $slideimage);
         $this->set(compact('collection'));
 
         $this->loadComponent('RequestHandler');
         $this->loadComponent('Flash');
         $this->loadComponent('Paginator');
 
-        $this->loadComponent('Auth',[
-        	'authenticate'=>[
-        		'form' => [
-        			'fields' => ['username' => 'user','password' => 'pass'],
-        			'userModel' => 'Admin'
-        		]
-        	],
-        	'loginAction' => ['controller'=>'admin','action'=>'login'],
-        	'loginRedirect' => ['controller' => 'sanpham','action'=>'index'],
-        	'logoutRedirect' => ['controller' => '../home','action'=>'index']
-        ]);
+//        $this->loadComponent('Auth', [
+//            'authenticate' => [
+//                'form' => [
+//                    'fields' => ['username' => 'user', 'password' => 'pass'],
+//                    'userModel' => 'Admin'
+//                ]
+//            ],
+//            'loginAction' => ['controller' => 'admin', 'action' => 'login'],
+//            'loginRedirect' => ['controller' => 'sanpham', 'action' => 'index'],
+//            'logoutRedirect' => ['controller' => '../home', 'action' => 'index']
+//        ]);
 
         /*
          * Enable the following components for recommended CakePHP security settings.
@@ -64,6 +62,12 @@ class App2Controller extends Controller
          */
         //$this->loadComponent('Security');
         //$this->loadComponent('Csrf');
+    }
+
+    public function beforeFilter(Event $event)
+    {
+//        $this->Auth->allow('login');
+//        $this->set('login_user', $this->Auth->user());
     }
 
     public function beforeRender(Event $event)
