@@ -24,7 +24,7 @@ class DanhmucController extends App2Controller
 //        debug($this->Danhmuc->find('all')->count());
 //        die();
         $this->set(compact('danhmuc'));
-        $this->set('_serialize', ['danhmuc']);
+        $this->set('title', 'Danh sách danh mục sản phẩm');
     }
 
     /**
@@ -50,6 +50,7 @@ class DanhmucController extends App2Controller
         $cats = $this->Danhmuc->find('list', ['limit' => 200]);
         $parentDanhmuc = $this->Danhmuc->find('treelist', ['limit' => 200]);
         $this->set(compact('danhmuc', 'cats', 'parentDanhmuc'));
+        $this->set('title', 'Thêm danh mục sản phẩm');
     }
 
     /**
@@ -74,12 +75,9 @@ class DanhmucController extends App2Controller
             }
             $this->Flash->error(__('The danhmuc could not be saved. Please, try again.'));
         }
-//        $cats = $this->Danhmuc->find('list', ['limit' => 200]);
         $parentDanhmuc = $this->Danhmuc->find('treelist', ['limit' => 200]);
-//        debug(compact('danhmuc', 'cats', 'parentDanhmuc'));
-//        die();
         $this->set(compact('danhmuc', 'parentDanhmuc'));
-//        $this->set('_serialize', ['danhmuc']);
+        $this->set('title', 'Sửa danh mục sản phẩm');
     }
 
     /**

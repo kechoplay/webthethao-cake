@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Model\Entity;
 
 use Cake\ORM\Entity;
@@ -28,6 +29,9 @@ class Danhmuc extends Entity
      *
      * @var array
      */
+
+    public static $STATUS = ['Ẩn', 'Hiển thị'];
+
     protected $_accessible = [
         '*' => true,
         'cat_id' => false

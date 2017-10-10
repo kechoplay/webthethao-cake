@@ -1,37 +1,63 @@
 <?php
 /**
-  * @var \App\View\AppView $this
-  */
+ * @var \App\View\AppView $this
+ */
 ?>
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Form->postLink(
-                __('Delete'),
-                ['action' => 'delete', $hoadon->ord_id],
-                ['confirm' => __('Are you sure you want to delete # {0}?', $hoadon->ord_id)]
-            )
-        ?></li>
-        <li><?= $this->Html->link(__('List Hoadon'), ['action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('List Khachhang'), ['controller' => 'Khachhang', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Khachhang'), ['controller' => 'Khachhang', 'action' => 'add']) ?></li>
-    </ul>
-</nav>
-<div class="hoadon form large-9 medium-8 columns content">
-    <?= $this->Form->create($hoadon) ?>
-    <fieldset>
-        <legend><?= __('Edit Hoadon') ?></legend>
-        <?php
-            echo $this->Form->input('cus_id', ['options' => $khachhang]);
-            echo $this->Form->input('name');
-            echo $this->Form->input('mobile');
-            echo $this->Form->input('address');
-            echo $this->Form->input('total');
-            echo $this->Form->input('ord_date');
-            echo $this->Form->input('ord_payment');
-            echo $this->Form->input('ord_status');
-        ?>
-    </fieldset>
-    <?= $this->Form->button(__('Submit')) ?>
-    <?= $this->Form->end() ?>
+<div id="page-wrapper">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">Hóa đơn
+                    <small>Sửa</small>
+                </h1>
+            </div>
+            <!-- /.col-lg-12 -->
+            <div class="col-lg-7" style="padding-bottom:120px">
+                <?= $this->Form->create($hoadon) ?>
+                <div class="form-group">
+                    <label>Tên khách hàng</label>
+                    <?=$this->Form->input('name',['class'=>'form-control','readonly','label'=>false])?>
+                </div>
+                <div class="form-group">
+                    <label>Điện thoại</label>
+                    <?=$this->Form->input('mobile',['class'=>'form-control','readonly','label'=>false])?>
+                </div>
+                <div class="form-group">
+                    <label>Địa chỉ</label>
+                    <?=$this->Form->input('address',['class'=>'form-control','readonly','label'=>false])?>
+                </div>
+                <div class="form-group">
+                    <label>Ngày mua</label>
+                    <?=$this->Form->input('ord_date',['class'=>'form-control','readonly','label'=>false])?>
+                </div>
+                <div class="form-group">
+                    <label>Phương thức thanh toán</label>
+                    <?=$this->Form->input('ord_payment',['class'=>'form-control','readonly','label'=>false])?>
+                </div>
+                <div class="form-group">
+                    <label>Trạng thái </label>
+                    <?=$this->Form->radio('ord_status',App\Model\Entity\Hoadon::$STATUS)?>
+                </div>
+                <button type="submit" name="save" class="btn btn-default">Lưu</button>
+                <button type="reset" class="btn btn-default">Làm lại</button>
+                <?= $this->Form->end() ?>
+            </div>
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
 </div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        if ($("#ord-status-2").is(":checked")) {
+            $("#ord-status-0").click(function () {
+                alert('Bạn không thể thay đổi');
+                return false;
+            });
+            $("#ord-status-1").click(function () {
+                alert('Bạn không thể thay đổi');
+                return false;
+            });
+        }
+    });
+</script>
