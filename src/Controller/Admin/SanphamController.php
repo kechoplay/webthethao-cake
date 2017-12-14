@@ -3,6 +3,7 @@
 namespace App\Controller\Admin;
 
 use App\Controller\Admin\App2Controller;
+use Cake\Http\Client;
 
 
 class SanphamController extends App2Controller
@@ -21,22 +22,32 @@ class SanphamController extends App2Controller
     {
         $sanpham = $this->Sanpham->newEntity();
         if ($this->request->is('post')) {
-            $file=$this->request->data['pro_image'];
-            $ext=substr(strtolower(strrchr($file['name'],'.')),1);
-            $arr_ext=array('jpg','png','jpeg','gif');
-            if (in_array($ext,$arr_ext)){
-                if ($file['name']!=''){
-                    move_uploaded_file($file['tmp_name'],WWW_ROOT . 'img/' . $file['name']);
-                    $this->request->data['pro_image']=$file['name'];
-                }
-            }
-            $sanpham = $this->Sanpham->patchEntity($sanpham, $this->request->data);
-            if ($this->Sanpham->save($sanpham)) {
-                $this->Flash->success(__('The sanpham has been saved.'));
 
-                return $this->redirect(['action' => 'index']);
-            }
-            $this->Flash->error(__('The sanpham could not be saved. Please, try again.'));
+            $url = 'https://images-fe.ssl-images-amazon.com/images/I/51hpWKPGUcL.jpg';
+            $content = file_get_contents($url);
+            $imagename = substr($url,strrpos($url, '/')+1);
+            echo $imagename;
+            die;
+            file_put_contents('img/image.jpg', $content);
+            $this->Flash->error(__('ádasdad.'));
+
+
+            // $file=$this->request->data['pro_image'];
+            // $ext=substr(strtolower(strrchr($file['name'],'.')),1);
+            // $arr_ext=array('jpg','png','jpeg','gif');
+            // if (in_array($ext,$arr_ext)){
+            //     if ($file['name']!=''){
+            //         move_uploaded_file($file['tmp_name'],WWW_ROOT . 'img/' . $file['name']);
+            //         $this->request->data['pro_image']=$file['name'];
+            //     }
+            // }
+            // $sanpham = $this->Sanpham->patchEntity($sanpham, $this->request->data);
+            // if ($this->Sanpham->save($sanpham)) {
+            //     $this->Flash->success(__('The sanpham has been saved.'));
+
+            //     return $this->redirect(['action' => 'index']);
+            // }
+            // $this->Flash->error(__('The sanpham could not be saved. Please, try again.'));
         }
         // $pros = $this->Sanpham->find('list', ['limit' => 200]);
         $danhmuc = $this->Sanpham->Danhmuc->find('list', ['limit' => 200])->where(['parent_id !=' => '0']);

@@ -17,7 +17,7 @@
                 <?= $this->Form->create($sanpham, ['type' => 'file']) ?>
                 <div class="form-group">
                     <?= $this->Form->input('cat_id', ['options' => $danhmuc, 'class' => 'form-control', 'label' => 'Category']) ?>
-                </div>
+                </div><!-- 
                 <div class="form-group">
                     <?= $this->Form->input('pro_name', ['class' => 'form-control', 'placeholder' => 'Nhập tên sản phẩm']) ?>
                 </div>
@@ -47,12 +47,39 @@
                     <?= $this->Form->input('pro_description', ['type' => 'textarea', 'class' => ['ckeditor', 'form-control']]) ?>
                 </div>
                 <div class="form-group">
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" value="all" id="check" onchange="checkAll(this)">
+                            Checkbox
+                        </label>
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" value="1" name="id">
+                            id1
+                        </label>
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" value="2" name="id">
+                            id2
+                        </label>
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" value="3" name="id">
+                            id3
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group">
                     <?= $this->Form->input('pro_quantity', ['class' => 'form-control', 'type' => 'number', 'max' => '9999', 'min' => '1']) ?>
                 </div>
                 <div class="form-group">
                     <?= $this->Form->input('pro_status', ['options' => [0, 1], 'class' => 'form-control']) ?>
-                </div>
-                <?= $this->Form->button(__('Submit'), ['class' => 'btn btn-default']) ?>
+                </div> -->
+                <!-- <?= $this->Form->button(__('Submit'), ['class' => 'btn btn-default', 'type' => 'button','onclick' => 'submit()']) ?> -->
+                <input type="submit" name="submit" value="submit">
                 <button type="reset" class="btn btn-default">Reset</button>
                 <?= $this->Form->end() ?>
             </div>
@@ -70,6 +97,14 @@
         $('#addImage').click(function () {
             $('#insert').append('<div class="form-group"><input type="file" name="fileDetail[]"></div>');
         });
+        var url = window.location.href;
+        url = url.substr(url.indexOf("=")+1);
+        url = url.split('-');
+        var name = url[0];
+        var price = url[1];
+        var quantity = url[2];
+
+        console.log(name);
     });
     document.getElementById('fileimage').onchange = function (event) {
         // alert("xx");
@@ -98,5 +133,17 @@
             return true
         }
         return false;
+    }
+
+    function checkAll(e) {
+        $('input[name=id]').prop('checked', e.checked);
+    }
+
+    function submitForm() {
+        var id = [];
+        $('input[name=id]:checked').each(function (index, element) {
+            id[index++] = ($(this).val());
+        });
+        console.log(id);
     }
 </script>
