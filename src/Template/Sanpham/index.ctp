@@ -8,6 +8,8 @@
         Tất cả sản phẩm
         <small class="pull-right"> <?= ($countsanpham); ?> sản phẩm có sẵn</small>
     </h3>
+    <?=$this->Paginator->sort('pro_name','Sắp xếp theo tên')?>
+    <?=$this->Paginator->sort('pro_price','Sắp xếp theo giá')?>
     <hr class="soft"/>
     <span>Sắp xếp theo</span>
     <div style="position:absolute;width:50%!important; top:135px; left: 90px; float:right">
@@ -120,7 +122,7 @@
             </ul>
         </div>
     </div>
-
+<!--    --><?//=$this->Paginator->limitControl();?>
     <div class="pagination">
         <ul class="pagination">
             <li>
@@ -132,6 +134,7 @@
             <li class="active">
                 <?= $this->Paginator->numbers() ?>
             </li>
+            <?=$this->Paginator->templates('counterRange')?>
             <li>
                 <?= $this->Paginator->next(__('next') . ' >') ?>
             </li>
